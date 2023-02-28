@@ -17,7 +17,9 @@ const loadIntentCSV = () => {
                     intent_name: row.intent_name,
                     training_phrases: row.training_phrases,
                     trained_responses: row.trained_responses,
-                    quick_replies: row.quick_replies
+                    quick_replies: row.quick_replies,
+                    input_context: row.input_context,
+                    output_context: row.output_context
                 };
                 jsons.push(formatJSONStrings(intent));
             }
@@ -34,9 +36,18 @@ const formatJSONStrings = (json) => {
     json.training_phrases = json.training_phrases.replace(/\s/g, "").split(',');
     json.trained_responses = json.trained_responses.replace(/\s/g, "").split(',');
     json.quick_replies = json.quick_replies.replace(/\s/g, "").split(',');
+    json.input_context = json.input_context.replace(/\s/g, "").split(',');
+    json.output_context = json.output_context.replace(/\s/g, "").split(',');
     return json;
 };
 
 module.exports = {
     loadIntentCSV
 };
+
+const main = async () => {
+    console.log("========== ========== ========== ========== ==========");
+    //console.log(await loadIntentCSV());
+};
+
+//main();

@@ -80,7 +80,6 @@ const getIntentID = async (inputName) => {
 	res.every(intent => {
 		if (inputName === intent.displayName) {
 			intentID.push(intent.name);
-			let temp = sjson.structProtoToJson(intent.messages[1].payload.fields.facebook.structValue);
 			return false;
 		} else {
 			return true;
@@ -98,6 +97,9 @@ const buildIntent = (json) => {
 	const inputResponses = json.trained_responses;
 	const inputQuickReplies = json.quick_replies;
 
+	const inputContexts = json.input_context;
+	const outputContexts = json.output_context;
+
 	// Training Phrases
 	let trainingPhrases = [];
 	inputPhrases.forEach(phrase => {
@@ -113,25 +115,43 @@ const buildIntent = (json) => {
 	const part = {text: inputResponses};
 	const trainedResponse = {
 		platform: 'FACEBOOK',
-		text: part,
+		text: part
 	};
-
-	// const part2 = buildQuickReplyPayload(inputQuickReplies);
+	
 	const part2 = sjson.jsonToStructProto(buildQuickReplyPayload(inputQuickReplies));
-
 	const trainedResponse2 = {
 		platform: 'FACEBOOK',
-		payload: part2,
+		payload: part2
 	};
 
-	let trainedResponses = [trainedResponse, trainedResponse2];
+	// Input Contexts
+	let trainedInputContexts = []
+	inputContexts.forEach(context => {
+		if (!context === '') {
+			trainedInputContexts.push(intentClient.projectAgentSessionContextPath(PROJECTID, 'testsessionx', context));
+		}
+	});
 
+	// Output Contexts
+	let trainedOutputContexts = []
+	outputContexts.forEach(context => {
+		let temp = context.split(':');
+		const part = {
+			name: intentClient.projectAgentSessionContextPath(PROJECTID, 'testsession', temp[0]),
+			lifespanCount: parseInt(temp[1])
+		};
+		trainedOutputContexts.push(part);
+	});
+
+	let trainedResponses = [trainedResponse, trainedResponse2];
 	return builtIntent = {
 		defaultResponsePlatforms: ['FACEBOOK'],
 		displayName: inputName,
 		trainingPhrases: trainingPhrases,
 		messages: trainedResponses,
-		webhookState: 'WEBHOOK_STATE_ENABLED'
+		webhookState: 'WEBHOOK_STATE_ENABLED',
+		inputContextNames: trainedInputContexts,
+		outputContexts: trainedOutputContexts
 	};
 
 	// TODO Set Conditional for WEBHOOK STATE
