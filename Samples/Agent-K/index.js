@@ -101,7 +101,7 @@ app.post('/df', async (req, res) => {
 // 	console.log('Agent K is running at port 3000...')
 // })
 
-let new_intent = buildIntent('sample.test.create', ['spaghetti', 'carbonara', 'pesto'], ['Italiano dishes'])
+let new_intent = buildIntent('sample.test.create2', ['spaghetti', 'carbonara', 'pesto'], ['Italiano dishes', "Wakanda"])
 
 console.log(new_intent)
 
