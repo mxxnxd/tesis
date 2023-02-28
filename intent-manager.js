@@ -18,12 +18,12 @@ const intentClient = new IntentsClient(CONFIGURATION);
 	Creates an Intent on the DialogFlow API
 	intent: 
 */
-const callCreateIntent = async (intent) => {
+const callCreateIntent = async (json) => {
 	let agentPath = intentClient.projectAgentPath(PROJECTID);
 
 	let req = {
 		parent: agentPath,
-		intent: intent
+		intent: buildIntent(json)
 	};
 
 	let [res] = await intentClient.createIntent(req);
@@ -80,24 +80,24 @@ const getIntentID = async (inputName) => {
 	res.every(intent => {
 		if (inputName === intent.displayName) {
 			intentID.push(intent.name);
-			console.log(intent.messages[1].payload)
-
 			let temp = sjson.structProtoToJson(intent.messages[1].payload.fields.facebook.structValue);
-			console.log(temp);
-
 			return false;
 		} else {
 			return true;
 		}
 	});
-
 	return intentID[0];
 }
 
 /*
 	Utility function for building Intent JSON
 */
-const buildIntent = (inputName, inputPhrases, inputResponses, inputQuickReplies) => {
+const buildIntent = (json) => {	
+	const inputName = json.intent_name;
+	const inputPhrases = json.training_phrases;
+	const inputResponses = json.trained_responses;
+	const inputQuickReplies = json.quick_replies;
+
 	// Training Phrases
 	let trainingPhrases = [];
 	inputPhrases.forEach(phrase => {
@@ -167,15 +167,8 @@ const buildQuickReplyPayload = (inputQuickReplies) => {
 	return payload;
 };
 
-/*
-	Main function
-*/
-const main = async () => {
-	//callListIntent()
-	//await callDeleteIntent('sample.create.test4');
-	await callCreateIntent(buildIntent('sample.create.test5', ['Marco', 'marko', 'asdadasd', 'mako'], ['Polo'], ['A', 'B', 'C']));
-	await getIntentID('sample.create.test4');
+module.exports = {
+	callCreateIntent,
+	callDeleteIntent,
+	callListIntent
 }
-
-console.log("========== ========== ========== ========== ==========");
-main();
