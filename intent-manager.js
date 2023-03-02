@@ -139,7 +139,6 @@ const buildIntent = (json) => {
 	}
 };
 
-
 /*
     Utility function for building Custom Quick Replies Payload JSON
 */

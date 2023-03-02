@@ -4,8 +4,6 @@ const main = async () => {
 	// Load Intent Data
 	const intents = await manager.loadIntentCSV();
 
-	//console.log(intents[2].trained_responses);
-
 	// Delete Intents
 	for (const intent of intents) {
 		await manager.callDeleteIntent(intent.intent_name);
