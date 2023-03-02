@@ -1,3 +1,5 @@
-intent_name,training_phrases,trained_responses,quick_replies,input_context,output_context
-sample.create.test10,"hello, konichiwa, ni hao","guten tag, bonjour, hola","sup, wee, woo",,"contexta:3, contextb:2"
-sample.create.test11,annyeonghaseyo,"salve, ola",hmmm,contexta,contextc:3
+intent_name,training_phrases,trained_responses,quick_replies,input_context,output_context,webhook_enabled
+sample.create.test10,"hello, konichiwa, ni hao","guten tag, bonjour, hola","sup, wee, woo",,"contexta:3, contextb:2",1
+sample.create.test11,annyeonghaseyo,"salve, ola",,contexta,contextc:3,0
+sample.create.test12,salve, Zdravstvuyte,,,,0
+sample.create.test13,ola amigo,,,,,

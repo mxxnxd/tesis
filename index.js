@@ -1,9 +1,10 @@
 const manager = require('./intent-manager');
-const loader = require('./intent-loader');
 
 const main = async () => {
 	// Load Intent Data
-	const intents = await loader.loadIntentCSV();
+	const intents = await manager.loadIntentCSV();
+
+	//console.log(intents[2].trained_responses);
 
 	// Delete Intents
 	for (const intent of intents) {
@@ -17,8 +18,9 @@ const main = async () => {
 }
 
 const test = async () => {
-	
+	console.log(await manager.callListIntent());
 }
 
 console.log("========== ========== ========== ========== ==========");
+//test();
 main();
