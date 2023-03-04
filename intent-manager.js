@@ -39,7 +39,8 @@ const loadIntentCSV = () => {
                     webhook_enabled: row.webhook_enabled,
                     parameters: row.parameters,
                     prompts: row.prompts,
-                    entity_phrases: row.entity_phrases
+                    entity_phrases: row.entity_phrases,
+                    events: row.events
                 };
                 jsons.push(formatJSON(intent));
             }
@@ -139,7 +140,8 @@ const buildIntent = (json) => {
 		webhookState: json.webhook_enabled,
 		inputContextNames: json.input_contexts,
 		outputContexts: json.output_contexts,
-		parameters: json.parameters
+		parameters: json.parameters,
+		events: json.events
 	}
 };
 
@@ -182,6 +184,7 @@ const formatJSON = (json) => {
     let trainedInputContexts = [];
     let trainedOutputContexts = [];
     let trainedParameters = [];
+    let trainedEvents = [];
 
 	// Parameters
 	json.parameters = json.parameters.replace(/\s/g, "").split(',');
@@ -270,6 +273,14 @@ const formatJSON = (json) => {
 		}
 	});
 
+	// Events
+	json.events = json.events.replace(/\s/g, "").split(',');
+	json.events.forEach(event => {
+		if (event.length > 0) {
+			trainedEvents.push(event);
+		}
+	});
+
 	// Webhook Enabled
 	let webhookEnabled = (parseInt(json.webhook_enabled) == 1) ? 'WEBHOOK_STATE_ENABLED' : 'WEBHOOK_STATE_UNSPECIFIED';
 
@@ -280,7 +291,8 @@ const formatJSON = (json) => {
     	input_contexts: trainedInputContexts,
     	output_contexts: trainedOutputContexts,
     	webhook_enabled: webhookEnabled,
-    	parameters: trainedParameters
+    	parameters: trainedParameters,
+    	events: trainedEvents
     }
     return formatJSON;
 };
