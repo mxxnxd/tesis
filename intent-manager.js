@@ -36,7 +36,10 @@ const loadIntentCSV = () => {
                     quick_replies: row.quick_replies,
                     input_context: row.input_context,
                     output_context: row.output_context,
-                    webhook_enabled: row.webhook_enabled
+                    webhook_enabled: row.webhook_enabled,
+                    parameters: row.parameters,
+                    prompts: row.prompts,
+                    entity_phrases: row.entity_phrases
                 };
                 jsons.push(formatJSON(intent));
             }
@@ -135,7 +138,8 @@ const buildIntent = (json) => {
 		messages: json.trained_responses,
 		webhookState: json.webhook_enabled,
 		inputContextNames: json.input_contexts,
-		outputContexts: json.output_contexts
+		outputContexts: json.output_contexts,
+		parameters: json.parameters
 	}
 };
 
@@ -175,13 +179,50 @@ const buildQuickReplyPayload = (inputQuickReplies) => {
 const formatJSON = (json) => {
     let trainingPhrases = [];
     let trainedResponses = [];
-    let trainedInputContexts = []
-    let trainedOutputContexts = []
+    let trainedInputContexts = [];
+    let trainedOutputContexts = [];
+    let trainedParameters = [];
+
+	// Parameters
+	json.parameters = json.parameters.replace(/\s/g, "").split(',');
+	json.prompts = json.prompts.split(',');
+	json.parameters.forEach(parameter => {	
+		let temp = (parameter.includes('.')) ? (parameter.split('.')) : (parameter.split('-'));
+		const part = {
+			displayName: temp[1],
+			mandatory: true,
+			entityTypeDisplayName: `@${parameter}`,
+			prompts: json.prompts
+		};
+		trainedParameters.push(part);
+	});
+
+	// Entity Phrases
+	json.entity_phrases = json.entity_phrases.split(',');
+    json.entity_phrases.forEach(phrase => {
+    	if (phrase.length > 0) {
+    		let temp = phrase.split(':');
+    		let temp2 = (temp[1].includes('.')) ? (temp[1].split('.')) : (temp[1].split('-'));
+	        const part = {
+	        	text: temp[0],
+	        	entityType: `@${temp[1]}`,
+	        	alias: temp2[1], 
+	        	userDefined: true
+	        };
+	        const trainingPhrase = {
+            	type: 'EXAMPLE',
+            	parts: [part]
+        	};
+        	trainingPhrases.push(trainingPhrase);
+    	}
+    });	    
 
     // Training Phrases
-    json.training_phrases = json.training_phrases.replace(/\s/g, "").split(',');    
+    json.training_phrases = json.training_phrases.split(',');    
     json.training_phrases.forEach(phrase => {
-        const part = {text: phrase}
+        const part = {
+        	text: phrase
+        };
         const trainingPhrase = {
             type: 'EXAMPLE',
             parts: [part]
@@ -190,7 +231,7 @@ const formatJSON = (json) => {
     });
 
     // Trained Responses
-    const part = {text: json.trained_responses.replace(/\s/g, "").split(',')};
+    const part = {text: json.trained_responses.split(',')};
     const trainedResponse = {
         platform: 'FACEBOOK',
         text: part
@@ -198,7 +239,7 @@ const formatJSON = (json) => {
     trainedResponses.push(trainedResponse);
 
     // Quick replies
-    json.quick_replies = json.quick_replies.replace(/\s/g, "").split(',');
+    json.quick_replies = json.quick_replies.split(',');
     if (json.quick_replies[0].length > 0) {
         const part2 = sjson.jsonToStructProto(buildQuickReplyPayload(json.quick_replies));
         const trainedResponse2 = {
@@ -238,7 +279,8 @@ const formatJSON = (json) => {
     	trained_responses: trainedResponses,
     	input_contexts: trainedInputContexts,
     	output_contexts: trainedOutputContexts,
-    	webhook_enabled: webhookEnabled
+    	webhook_enabled: webhookEnabled,
+    	parameters: trainedParameters
     }
     return formatJSON;
 };
@@ -248,10 +290,4 @@ module.exports = {
 	callCreateIntent,
 	callDeleteIntent,
 	callListIntent
-}
-
-// json.training_phrases = json.training_phrases.replace(/\s/g, "").split(',');
-// json.trained_responses = json.trained_responses.replace(/\s/g, "").split(',');
-// json.quick_replies = json.quick_replies.replace(/\s/g, "").split(',');
-// json.input_context = json.input_context.replace(/\s/g, "").split(',');
-// json.output_context = json.output_context.replace(/\s/g, "").split(',');
+};

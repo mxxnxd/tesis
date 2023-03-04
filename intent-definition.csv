@@ -1,5 +1,4 @@
-intent_name,training_phrases,trained_responses,quick_replies,input_context,output_context,webhook_enabled
-sample.create.test10,"hello, konichiwa, ni hao","guten tag, bonjour, hola","sup, wee, woo",,"contexta:3, contextb:2",1
-sample.create.test11,annyeonghaseyo,"salve, ola",,contexta,contextc:3,0
-sample.create.test12,salve, Zdravstvuyte,,,,0
-sample.create.test13,ola amigo,,,,,
+intent_name,training_phrases,trained_responses,quick_replies,input_context,output_context,webhook_enabled,parameters,prompts,entity_phrases
+en.greeting,"hello, hi, hi there, good morning, good evening, Hey, good afternoon, greetings","Hello! I'm [CHATBOT]. How can I help you?, Greetings! I'm [CHATBOT]. How may I help you?",,,introduction:3,0,,,
+en.get.language,"I prefer, I choose, po",,,"introduction, language","introduction:3, terms:3",1,bot-language,I did not quite get that. What language do you prefer?,"English:bot-language, Tagalog:bot-language, Ingles:bot-language, Filipino:bot-language"
+en.start.checkup,"check up, give me a check up, diagnose me, help me, evaluate me, test me",It seems like this is your first time. What language do you prefer? (English or Filipino).,"English, Filipino, Tagalog, Ingles",introduction,"introduction:3, language:3",0,,,

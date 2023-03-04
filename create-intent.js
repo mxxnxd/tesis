@@ -9,7 +9,7 @@ const main = async () => {
 		await manager.callDeleteIntent(intent.intent_name);
 	}
 
-	// Crete Intents
+	// Create Intents
 	for (const intent of intents) {
 		await manager.callCreateIntent(intent);
 	}

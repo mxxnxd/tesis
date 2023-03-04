@@ -1,22 +1,31 @@
-const express = require('express');
-const app = express();
 const dfff = require('dialogflow-fulfillment');
 
-app.post('/webhook', express.json(), (req, res) => {
-	// Instantiate Agent
-	const agent = new dfff.WebhookClient({
-		request : req,
-		response: res
+const webhook = (agent) => {
+	agent.add("Webhook reply :)!");
+};
+
+const en_get_language = async (agent) => {
+	console.log(agent.parameters);
+
+	// TODO STORE IN USER DATABASE
+
+	setContexts(agent, ['introduction', 'test'], [3, 3]);
+	agent.add('I see your selected language :)');
+};
+
+/*
+	Utility function for setting multiple contexts
+*/
+const setContexts = (agent, contexts, lifespan) => {
+	contexts.forEach((context, index) => {
+		agent.context.set({
+			name: context,
+			lifespan: lifespan[index]
+		});
 	});
+};
 
-	// // Map Intents
-	// var intentMap = new Map()
-	// intentMap.set('webhook', webhookStart)
-	// intentMap.set('webhook.reply.yes', webhookReplyYes)
-	// intentMap.set('webhook.reply.no', webhookReplyNo)
-	// agent.handleRequest(intentMap);
-});
-
-app.listen(3000, () => {
-	console.log("Webhook server is online!");
-});
+module.exports = {
+	webhook,
+	en_get_language
+};
