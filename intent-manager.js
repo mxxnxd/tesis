@@ -167,7 +167,7 @@ const buildQuickReplyPayload = (inputQuickReplies) => {
             let part = {
                 content_type: 'text',
                 title: quickReply,
-                payload: '<POSTBACK_PAYLOAD>'
+                payload: quickReply
             }
             payload.facebook.quick_replies.push(part);
         }

@@ -6,10 +6,14 @@ en.ask.language.retry,,"My apologies let us try again. What is your preferred la
 en.get.language,"I prefer,I choose,po",,,"PH-INTRO, CX-GET-LANG","PH-INTRO:3,CX-CFM-LANG:3",1,bot-language,I did not quite get that. What language do you prefer?,"English:bot-language, Tagalog:bot-language, Ingles:bot-language, Filipino:bot-language",
 en.get.language.yes,"yes, correct, yep, that's right",,,"PH-INTRO, CX-CFM-LANG",,1,,,,
 en.get.language.no,"no, incorrect, nope, that's wrong",,,"PH-INTRO, CX-CFM-LANG",,1,,,,
-en.ask.terms,,Alrighty! before we proceed do you agree to my terms of service? [URL],,,"PH-INTRO:3, CX-CFM-TERM:3",0,,,,EN-ASK-TERMS
+en.ask.terms,,Alrighty! before we proceed do you agree to my terms of service? [URL/TOS],,,"PH-INTRO:3, CX-CFM-TERM:3",0,,,,EN-ASK-TERMS
 en.end.terms,,I'm sorry. You will need to accept my Terms of Service to use my services :(,,,,0,,,,EN-END-TERMS
 en.get.terms.yes,"yes, correct, yep, that's right",,,"PH-INTRO, CX-CFM-TERM",,1,,,,
 en.get.terms.no,"no, incorrect, nope, that's wrong",,,"PH-INTRO, CX-CFM-TERM",,1,,,,
-en.get.symptom.yes,"yes, correct, yep, that's right",,,"PH-CHECK, CX-GET-SYMP",,1,,,,
-en.get.symptom.no,"no, incorrect, nope, that's wrong",,,"PH-CHECK, CX-GET-SYMP",,1,,,,
+en.get.symptom.yes,"yes, correct, yep, that's right",,,"PH-CHECK, CX-CFM-SYMP",,1,,,,
+en.get.symptom.no,"no, incorrect, nope, that's wrong",,,"PH-CHECK, CX-CFM-SYMP",,1,,,,
 en.start.checkup,"check up, give me a check up, diagnose me, help me, evaluate me, test me, po",,,,,1,,,,
+en.start.question,"questions,I have a question, I would like to ask medical queries,I have a query",,,,,1,,,,
+en.get.question,,"Sure! What question do you have for me?,What would you like to ask me? :>",,,PH-QUERY:3,0,,,,EN-GET-QUESTION
+en.ask.copd,"What is copd,can you tell me about copd, what does copd do, what are symptoms of copd",Chronic obstructive pulmonary disease (COPD) is a long-term lung condition that makes it hard for a person to breathe. Common causes for these diseases is long-term exposure to things that irritate the lung such as tobacco smoke.,,PH-QUERY,PH-QUERY:3,0,,,,EN-ASK-COPD
+en.ask.emphysema,"What is emphysema, what are the effects of emphysema","Emphysema occurs when a person’s lungs’ air sacs (alveoli) are damaged causing them to merge into one giant air sac that can't absorb oxygen as well. This results in the blood getting less oxygen and air getting trapped in a person’s lungs, making it hard to breath out thus feeling a shortness of breath (dyspnea).",,PH-QUERY,PH-QUERY:3,0,,,,EN-ASK-EMPHYSEMA
