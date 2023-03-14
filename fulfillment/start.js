@@ -46,6 +46,18 @@ const en_start_question = async (agent) => {
 	}
 };
 
+const fi_start_checkup = async (agent) => {
+
+	// TODO: KNOWLEDGE BASE LOGIC (DETERMINE NEW USER)
+
+};
+
+const fi_start_question = async (agent) => {
+
+	// TODO: KNOWLEDGE BASE LOGIC (DETERMINE NEW USER)
+
+};
+
 module.exports = {
 	en_start_checkup,
 	en_start_question

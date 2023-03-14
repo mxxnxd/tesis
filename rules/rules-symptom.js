@@ -67,6 +67,26 @@ const symptom_group_swell = {
 	}
 };
 
+const symptom_group_pain = {
+	priority: rulePriority,
+	condition: (R, fact) => {
+		let symp = fact.user.symptoms;
+		if (fact.temp.pain) { R.next(); return; }
+		R.when(symp.pain_arm ||
+			   symp.pain_back ||
+			   symp.pain_belly ||
+			   symp.pain_jaw ||
+			   symp.pain_neck ||
+			   symp.pain_shoulder ||
+			   symp.pain_teeth ||
+			   symp.pain_throat);
+	},
+	consequence: (R, fact) => {
+		fact.temp.pain = true;
+		R.restart();
+	}
+};
+
 /*
 	Similar Symptoms
 */
@@ -155,6 +175,7 @@ const applyRules = (R) => {
 	R.register(symptom_group_swell_lower);
 	R.register(symptom_group_swell_upper);
 	R.register(symptom_group_swell);
+	R.register(symptom_group_pain);
 };
 
 module.exports = {
