@@ -3,57 +3,62 @@ const rulePriority = 50;
 const diagnose_copd = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.breath_short && 	// 2
-				  symp.colds && 		// 1
-				  symp.confusion && 	// 3
-				  symp.cough_long && 	// 1
-				  symp.cyanosis && 		// 3
-				  symp.dizzy && 		// 3
-				  symp.fatigue && 		// 2
-				  symp.fever_high && 	// 2
-				  symp.heart_rapid && 	// 3
-				  symp.temp.phlegm && 	// 2.6	(AVG)
-				  symp.temp.swell && 	// 2 	(AVG)
-				  symp.throat_clear && 	// 1
-				  symp.weightloss && 	// 1
-				  symp.wheeze; 		   	// 2 	
-		R.when(exp);
+		const S = fact.user.symptoms;
+		const G = fact.group;
+		// Expression
+		const E =
+			// Common Symptoms:
+			G.phlegm &&	S.cough && S.wheeze && S.dyspnea &&
+
+			// Severe Symptoms:
+			(S.trachycardia || S.dizzy || S.fever || S.confusion || S.cyanosis) &&
+
+			// Other Symptoms
+			(S.fatigue || S.legs_swell) && (S.dysphasia || S.weightloss || S.colds);
+		R.when(E);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.COPD' : 'FI.DIAGNOSE.COPD';	
+		// Event & Diagnosis
+		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.COPD' : 'FI.DIAGNOSE.COPD';
+		fact.user.diagnosis.illness = 'COPD';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
 	}
 };
 
-const diagnose_asthma = {
+const diagnose_asthma  = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.anxiety && 		// 3
-				  symp.breath_rapid && 	// 3
-				  symp.breath_short && 	// 2
-				  symp.chest_pain && 	// 3
-				  symp.chest_tight && 	// 3
-				  symp.colds && 		// 1
-				  symp.cough && 		// 1
-				  symp.cough_hard && 	// 3
-				  symp.cough_long && 	// 1
-				  symp.cyanosis && 		// 3
-				  symp.fatigue && 		// 1
-				  symp.headaches && 	// 1
-				  symp.neck_tight && 	// 3
-				  symp.pale	&& 			// 3
-				  symp.sleep_hard && 	// 3
-				  symp.wheeze && 		// 1
-				  symp.wheeze_hard;    	// 4
-		R.when(exp);
+		const S = fact.user.symptoms;
+		const G = fact.group;
+		// Expression
+		const E =
+			// Common Symptoms:
+			S.wheeze && S.dyspnea && (S.chest_tight || S.chest_pain) &&
+
+			// Severe Symptoms
+			(S.anxiety || S.cyanosis || S.pale_sweat || S.tachypnea || S.neck_tight) &&
+
+			// Other Symptoms
+			(S.sleep_hard || S.fatigue || S.headaches || S.colds);
+		R.when(E);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ASTHMA' : 'FI.DIAGNOSE.ASTHMA';	
+		// Event & Diagnosis
+		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ASTHMA' : 'FI.DIAGNOSE.ASTHMA';
+		fact.user.diagnosis.illness = 'ASTHMA';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
 	}
 };
+
+/* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 
 const diagnose_pneumonia = {
 	priority: rulePriority,

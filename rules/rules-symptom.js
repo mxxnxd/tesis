@@ -7,19 +7,32 @@ const rulePriority = 30;
 const symptom_group_phlegm = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		if (fact.temp.phlegm) { R.next(); return; }
-		R.when(symp.phlegm_clear  ||
-			   symp.phlegm_green  ||
-			   symp.phlegm_red    ||
-			   symp.phlegm_white  ||
-			   symp.phlegm_yellow);
+		const S = fact.user.symptoms;
+
+		if (fact.group.phlegm) {
+			R.next();
+			return;
+		}
+
+		// Expression
+		const E =
+			S.phlegm_clear ||
+			S.phlegm_white ||
+			S.phlegm_green ||
+			S.phlegm_red;
+
+		R.when(E);
 	},
 	consequence: (R, fact) => {
-		fact.temp.phlegm = true;
+		fact.group.phlegm = true;
 		R.next();
 	}
 };
+
+
+
+
+/*asdasdadafsgnojgwkjgk*/
 
 const symptom_group_swell_lower = {
 	priority: rulePriority,
@@ -94,7 +107,7 @@ const symptom_group_pain = {
 const symptom_phlegm_red = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
+		let symp = fact.user.symptoms;e
 		R.when(symp.phlegm_red);
 	},
 	consequence: (R, fact) => {
@@ -165,17 +178,19 @@ const symptom_colds_long = {
 };
 
 const applyRules = (R) => {
-	R.register(symptom_wheeze_hard);
-	R.register(symptom_cough_hard);
-	R.register(symptom_cough_long);
-	R.register(symptom_cough_blood);
-	R.register(symptom_colds_long);
-
 	R.register(symptom_group_phlegm);
-	R.register(symptom_group_swell_lower);
-	R.register(symptom_group_swell_upper);
-	R.register(symptom_group_swell);
-	R.register(symptom_group_pain);
+
+	// R.register(symptom_wheeze_hard);
+	// R.register(symptom_cough_hard);
+	// R.register(symptom_cough_long);
+	// R.register(symptom_cough_blood);
+	// R.register(symptom_colds_long);
+
+	// R.register(symptom_group_phlegm);
+	// R.register(symptom_group_swell_lower);
+	// R.register(symptom_group_swell_upper);
+	// R.register(symptom_group_swell);
+	// R.register(symptom_group_pain);
 };
 
 module.exports = {
