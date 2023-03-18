@@ -231,7 +231,7 @@ const diagnose_arrhythmia = {
 			S.fatigue && S.dyspnea && S.dizzy && S.tachycardia &&
 
 			// Other Symptoms:
-			(S.chest_pain || S.faint || S.pale_sweat S.blurry || S.anxiety);
+			(S.chest_pain || S.faint || S.pale_sweat || S.blurry || S.anxiety);
 
 		R.when(E)
 	},

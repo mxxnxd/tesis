@@ -2,48 +2,49 @@
 
 
 stuff = [
-  'abdomen_pain',  'anxiety',      'appetite_Loss', 'blurry',
-  'bone_pain',     'breath_rapid', 'breath_short',  'chest_pain',
-  'chest_tight',   'chills',       'colds',         'colds_long',
-  'confusion',     'cough',        'cough_blood',   'cough_hard',
-  'cough_long',    'cyanosis',     'dizzy',         'faint',
-  'fatigue',       'fever',        'fever_high',    'headaches',
-  'heart_rapid',   'heartburn',    'hoarseness',    'muscle_pain',
-  'nausea',        'neck_tight',   'pain_arm',      'pain_back',
-  'pain_belly',    'pain_jaw',     'pain_neck',     'pain_shoulder',
-  'pain_teeth',    'pain_throat',  'pale',          'phlegm_clear',
-  'phlegm_green',  'phlegm_red',   'phlegm_white',  'phlegm_yellow',
-  'r_infections',  'sleep_hard',   'smoking',       'swallow_hard',
-  'sweating_cold', 'swell_ankle',  'swell_belly',   'swell_feet',
-  'swell_legs',    'swell_neck',   'throat_clear',  'urine_blood',
-  'weakness',      'weightgain',   'weightloss',    'wheeze',
-  'wheeze_hard']
+  'abdomen_pain', 'anxiety',      'appetite_loss',
+  'arm_pain',     'back_pain',    'belly_swell',
+  'blurry',       'bone_pain',    'tachypnea',
+  'chest_pain',   'chest_tight',  'chills',
+  'colds',        'confusion',    'cough',
+  'cyanosis',     'dizzy',        'dysphasia',
+  'dyspnea',      'faint',        'fatigue',
+  'fever',        'headaches',    'heartburn',
+  'hoarseness',   'legs_swell',   'mouth_pain',
+  'muscle_pain',  'nausea',       'neck_shoulder_pain',
+  'neck_swell',   'neck_tight',   'pale_sweat',
+  'phlegm_clear', 'phlegm_green', 'phlegm_red',
+  'phlegm_white', 'r_infections', 'sleep_hard',
+  'tachycardia',  'urine_blood',  'weakness',
+  'weightgain',   'weightloss',   'wheeze']
 
 count = [
-  1, 2, 2, 3,
-  1, 2, 11, 12,
-  1, 2, 2, 1,
-  2, 3, 2, 1,
-  6, 4, 8, 4,
-  12, 4, 2, 5,
-  7, 1, 2, 1,
-  4, 1, 1, 1,
-  1, 1, 1, 1,
-  1, 1, 4, 2,
-  2, 4, 2, 2,
-  1, 1, 1, 2,
-  1, 5, 4, 3,
-  1, 3, 1, 1,
-  4, 2, 3, 5,
-  1
-]
+  2, 2, 2,
+  1,     1, 4,
+  3,       1,    2,
+  12,   1,  2,
+  3,        2,    7,
+  4,     8,        4,
+  11,      4,        12,
+  5,        5,    1,
+  2,   5,   1,
+  1,  4,       1,
+  1,   1,   5,
+  2, 2, 4,
+  2, 1, 1,
+  7,  1,  4,
+  2, 3,   5]
 
 start = '{'
 end = '}'
 
+# print(sorted(list(zip(stuff, count)), key=lambda x: x[1], reverse=True))
+
+
+
 with open('code.js', 'w') as f:
 
-  for symp, num in zip(stuff, count):
+  for symp, num in sorted(list(zip(stuff, count)), key=lambda x: x[1], reverse=True):
     f.write(f"const ask_{symp} = {start}\n")
     f.write(f"\tpriority: {num + 1},\n")
     f.write(f"\tcondition: (R, fact) => {start}\n")
