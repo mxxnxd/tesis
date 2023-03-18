@@ -58,63 +58,60 @@ const diagnose_asthma  = {
 	}
 };
 
-/* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
-
-const diagnose_pneumonia = {
+const diagnose_pneumonia  = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.breath_rapid && 	// 1
-				  symp.breath_short && 	// 1
-				  symp.chest_pain && 	// 3
-				  symp.chills && 		// 2
-				  symp.colds_long && 	// 3
-				  symp.confusion && 	// 1
-				  symp.cough && 		// 2
-				  symp.cough_long && 	// 3
-				  symp.cyanosis && 		// 1
-				  symp.fatigue && 		// 2
-				  symp.fever && 		// 1
-				  symp.fever_high && 	// 3
-				  symp.heart_rapid && 	// 1
-				  symp.nausea && 		// 1
-				  symp.pale	&& 			// 1
-				  symp.temp.phlegm && 	// 2 (AVG)
-				  symp.wheeze;		   	// 1
-		R.when(exp);
+		const S = fact.user.symptoms;
+		const G = fact.group;
+		// Expression
+		const E =	
+			// Common Symptoms:
+			G.phlegm && S.cough && S.tachypnea && S.chest_pain &&
+			(S.fever || S.chills || S.pale_sweat) &&
+
+			// Other Symptoms
+			(S.nausea || S.confusion || S.colds || S.cyanosis) &&	
+			(S.fatigue || S.wheeze)	&&	
+			(S.dyspnea || S.trachycardia);		
+		R.when(E);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.PNEUMONIA' : 'FI.DIAGNOSE.PNEUMONIA';	
+		// Event & Diagnosis
+		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.PNEUMONIA' : 'FI.DIAGNOSE.PNEUMONIA';
+		fact.user.diagnosis.illness = 'PNEUMONIA';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
 	}
 };
 
-const diagnose_lung_cancer = {
+const diagnose_lung_cancer  = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.appetite_loss && // 1
-				  symp.blurry && 		// 3
-				  symp.bone_pain && 	// 3
-				  symp.breath_short && 	// 3
-				  symp.chest_pain && 	// 3
-				  symp.cough_blood && 	// 3
-				  symp.cough_long && 	// 2
-				  symp.fatigue && 		// 1
-				  symp.fever && 		// 1
-				  symp.headaches && 	// 1
-				  symp.hoarseness && 	// 2
-				  symp.phlegm_red && 	// 2
-				  symp.r_infections && 	// 1
-				  symp.swallow_hard && 	// 1
-				  symp.swell_neck && 	// 1
-				  symp.weakness && 		// 3
-				  symp.weightloss && 	// 1
-				  symp.wheeze; 			// 1
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms:
+			S.cough && S.chest_pain && S.dyspnea && S.phlegm_red && S.fatigue && S.weightloss &&
+
+			// Other Symptoms:
+			(S.appetite_loss || S.hoarsness || S.weakness || S.blurry || S.bone_pain || S.neck_swell) &&
+			(S.headaches || S.wheeze || S.fever || S.dysphasia);
+			
+		const E2 =
+			S.r_infections && S.cough && S.fatigue && S.chest_pain;
+		R.when(E || E2);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.LUNG_CANCER' : 'FI.DIAGNOSE.LUNG_CANCER';	
+		// Event & Diagnosis
+		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.LUNG_CANCER' : 'FI.DIAGNOSE.LUNG_CANCER';
+		fact.user.diagnosis.illness = 'LUNG_CANCER';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
 	}
 };
@@ -122,21 +119,25 @@ const diagnose_lung_cancer = {
 const diagnose_tuberculosis = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.appetite_loss && // 2
-				  symp.chest_pain && 	// 2
-				  symp.chills && 		// 2
-				  symp.cough_blood && 	// 2
-				  symp.cough_long && 	// 2
-				  symp.fatigue && 		// 2
-				  symp.fever && 		// 2
-				  symp.pale && 			// 2
-				  symp.phlegm_red && 	// 2
-				  symp.weightloss; 		// 2
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms:
+			S.chest_pain && S.phlegm_red && S.cough && S.fatigue &&
+			
+			// Other Symptoms
+			(S.fever || S.pale_sweat || S.chills) &&
+			(S.weightloss || S.appetite_loss);
+		R.when(E);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.TUBERCULOSIS' : 'FI.DIAGNOSE.TUBERCULOSIS';	
+		// Event & Diagnosis
+		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.TUBERCULOSIS' : 'FI.DIAGNOSE.TUBERCULOSIS';
+		fact.user.diagnosis.illness = 'TUBERCULOSIS';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
 	}
 };
@@ -144,25 +145,27 @@ const diagnose_tuberculosis = {
 const diagnose_heart_failure = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.breath_short && 		// 3
-				  symp.chest_pain && 		// 3
-				  symp.dizzy && 			// 1
-				  symp.faint && 			// 2
-				  symp.fatigue && 			// 2
-				  symp.fever && 			// 1
-				  symp.headaches && 		// 1 
-				  symp.heart_rapid && 		// 3
-				  symp.nausea && 			// 2
-				  fact.temp.swell && 		// AVG(2)
-				  fact.temp.swell_lower && 	// AVG(2)
-				  symp.weakness &&			// 4
-				  symp.weightgain &&		// 2
-				  symp.wheeze; 				// 2
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms:
+			S.dyspnea && S.fatigue && S.weakness &&
+
+			// Other Symptoms
+			(S.chest_pain || S.trachycardia) &&
+			(S.dizzy || S.faint || S.nausea) &&	
+			(S.headaches || S.wheeze || S.fever) &&
+			(S.legs_swell || S.belly_swell);
+		R.when(E);
 	},
 	consequence: (R, fact) => {
+		// Event & Diagnosis
 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.HEART_FAILURE' : 'FI.DIAGNOSE.HEART_FAILURE';	
+		fact.user.diagnosis.illness = 'HEART_FAILURE';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
 	}
 };
@@ -170,142 +173,178 @@ const diagnose_heart_failure = {
 const diagnose_hypertension = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.blurry && 			// 3
-				  symp.breath_short && 		// 4
-				  symp.chest_pain && 		// 3
-				  symp.cyanosis && 			// 3
-				  symp.dizzy && 			// 1
-				  symp.faint && 			// 1
-				  symp.fatigue && 			// 3
-				  symp.headaches && 		// 4 
-				  symp.heart_rapid && 		// 3
-				  fact.temp.swell && 		// AVG(1.6)
-				  symp.urine_blood;			// 3
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms: 
+			S.headaches && S.dizzy && S.chest_pain && S.blurry &&
+
+			// Other Symptoms
+			(S.belly_swell || S.legs_swell) &&
+			(S.fatigue || S.faint || S.dyspnea || S.cyanosis || S.trachycardia);
+			
+		const E2 =
+			S.urine_blood;
+		R.when(E || E2)
 	},
 	consequence: (R, fact) => {
+		// Event & Diagnosis
 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.HYPERTENSION' : 'FI.DIAGNOSE.HYPERTENSION';	
+		fact.user.diagnosis.illness = 'HYPERTENSION';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
-	}	
+	}
 };
 
 const diagnose_coronary_artery_disease = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.breath_short && 		// 2
-				  symp.chest_pain && 		// 2
-				  symp.dizzy && 			// 1
-				  symp.fatigue && 			// 2
-				  symp.muscle_pain &&		// 1
-				  symp.nausea;				// 1
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms: 
+			S.chest_pain && S.fatigue && S.dyspnea && S.dizzy && S.nausea && S.muscle_pain
+		R.when(E)
 	},
 	consequence: (R, fact) => {
+		// Event & Diagnosis
 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.CORONARY_ARTERY_DISEASE' : 'FI.DIAGNOSE.CORONARY_ARTERY_DISEASE';	
+		fact.user.diagnosis.illness = 'CORONARY_ARTERY_DISEASE';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
-	}	
+	}
 };
 
 const diagnose_arrhythmia = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.anxiety && 			// 2
-				  symp.blurry && 			// 1
-				  symp.breath_short && 		// 2
-				  symp.chest_pain && 		// 2
-				  symp.dizzy && 			// 2
-				  symp.faint && 			// 2
-				  symp.fatigue && 			// 2
-				  symp.heart_rapid && 		// 2
-				  symp.pale;; 				// 2
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms: 
+			S.fatigue && S.dyspnea && S.dizzy && S.tachycardia &&
+
+			// Other Symptoms:
+			(S.chest_pain || S.faint || S.pale_sweat S.blurry || S.anxiety);
+
+		R.when(E)
 	},
 	consequence: (R, fact) => {
+		// Event & Diagnosis
 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ARRHYTHMIA' : 'FI.DIAGNOSE.ARRHYTHMIA';	
+		fact.user.diagnosis.illness = 'ARRHYTHMIA';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
-	}	
+	}
 };
 
 const diagnose_valve_disease = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.breath_short && 		// 2
-				  symp.chest_pain && 		// 2
-				  symp.dizzy && 			// 2
-				  symp.fatigue && 			// 1
-				  symp.heart_rapid && 		// 2
-				  fact.temp.swell && 	 	// AVG(2)
-				  symp.weakness && 			// 1
-				  symp.weightgain; 			// 1
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms: 
+			S.chest_pain && S.fatigue && S.dyspnea && S.dizzy && S.tachycardia && 
+
+			// Other Symptoms
+			(S.legs_swell || S.belly_swell) && S.weakness;
+		R.when(E)
 	},
 	consequence: (R, fact) => {
+		// Event & Diagnosis
 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.VALVE_DISEASE' : 'FI.DIAGNOSE.VALVE_DISEASE';	
+		fact.user.diagnosis.illness = 'VALVE_DISEASE';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
-	}	
+	}
 };
 
-const diagnose_cardiomyopathy = {
+const diagnose_cardiomyopathy= {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.breath_short && 		// 1
-				  symp.chest_pain && 		// 3
-				  symp.cough && 			// 1
-				  symp.dizzy && 			// 1
-				  symp.faint && 			// 1
-				  symp.fatigue && 			// 1
-				  fact.temp.swell;	 		// AVG(1)
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms: 
+			S.dizzy && S.fatigue && S.dyspnea && S.faint &&
+			(S.legs_swell || S.belly_swell) &&
+
+			// Other Symptoms
+			(S.chest_pain || S.cough);
+		R.when(E)
 	},
 	consequence: (R, fact) => {
+		// Event & Diagnosis
 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.CARDIOMYOPATHY' : 'FI.DIAGNOSE.CARDIOMYOPATHY';	
+		fact.user.diagnosis.illness = 'CARDIOMYOPATHY';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
-	}	
+	}
 };
 
-const diagnose_myocardial_infarction = {
+const diagnose_myocardial_infarction= {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.breath_short && 		// 2
-				  symp.chest_pain && 		// 2
-				  symp.dizzy && 			// 2
-				  symp.fatigue && 			// 1
-				  symp.heartburn && 		// 2
-				  symp.heart_rapid && 		// 1
-				  symp.nausea && 			// 2
-				  fact.temp.pain && 		// AVG(1.3)
-				  symp.pale && 				// 1
-				  symp.weakness; 			// 1
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms: 
+			(S.fatigue || S.weakness) && S.dyspnea && (S.dizzy || S.nausea) && S.chest_pain &&
+			(S.back_pain || S.mouth_pain || S.neck_shoulder_pain || S.arm_pain || S.abdomen_pain) &&
+
+			// Other Symptoms
+			(S.tachycardia || S.pale_sweat || S.dysphasia || S.heartburn);
+		R.when(E)
 	},
 	consequence: (R, fact) => {
+		// Event & Diagnosis
 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.MYOCARDIAL_INFARCTION' : 'FI.DIAGNOSE.MYOCARDIAL_INFARCTION';	
+		fact.user.diagnosis.illness = 'MYOCARDIAL_INFARCTION';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
-	}	
+	}
 };
 
 const diagnose_aneurysm = {
 	priority: rulePriority,
 	condition: (R, fact) => {
-		let symp = fact.user.symptoms;
-		let exp = symp.abdomen_pain && 		// 1
-				  symp.chest_pain && 		// 1
-				  symp.cough_long && 		// 1
-				  symp.headaches && 		// 3
-				  symp.hoarseness && 		// 1
-				  symp.swallow_hard 		// 1
-		R.when(exp);
+		const S = fact.user.symptoms;
+		// Expression
+		const E =	
+			// Common Symptoms: 
+			S.headaches && S.chest_pain && S.cough &&	
+			S.dysphasia && S.hoarseness && S.abdomen_pain
+		R.when(E)
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ANEURYSM' : 'FI.DIAGNOSE.ANEURYSM';	
+		// Event & Diagnosis
+		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ANEURYSM' : 'FI.DIAGNOSE.ANEURYSM';
+		fact.user.diagnosis.illness = 'ANEURYSM';
+
+		// Severity
+		fact.user.diagnosis.severity = 1;
+
 		R.stop();
-	}	
+	}
 };
 
 const applyRules = (R) => {
