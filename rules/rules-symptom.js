@@ -8,8 +8,9 @@ const symptom_group_phlegm = {
 	priority: rulePriority,
 	condition: (R, fact) => {
 		const S = fact.user.symptoms;
+		const G = fact.user.group;
 
-		if (fact.group.phlegm) {
+		if (G.phlegm) {
 			R.next();
 			return;
 		}
@@ -24,7 +25,7 @@ const symptom_group_phlegm = {
 		R.when(E);
 	},
 	consequence: (R, fact) => {
-		fact.group.phlegm = true;
+		fact.user.group.phlegm = true;
 		R.next();
 	}
 };

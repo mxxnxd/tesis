@@ -1,4 +1,5 @@
 const util = require('./utility.js');
+const rule = require('../rules/rules-engine.js');
 
 /*
 	Webhook Functions: Symptom Extraction Intents
@@ -10,12 +11,17 @@ const util = require('./utility.js');
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
-const en_ = async (agent) => {
+const en_get_symptoms_yes = async (agent) => {
 
-	console.log(agent.request_.body.originalDetectIntentRequest.payload.data);
+	agent.add("Webhook!");
+};
+
+const en_get_symptoms_no = async (agent) => {
+
 	agent.add("Webhook!");
 };
 
 module.exports = {
-	dv_webhook
+	en_get_symptoms_yes,
+	en_get_symptoms_no
 };

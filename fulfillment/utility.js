@@ -22,7 +22,15 @@ const triggerEvent = (agent, name) => {
 	agent.setFollowupEvent(name);
 };
 
+/*	
+	Utility function for obtaining Facebook user ID
+*/
+const getSenderID = (agent) => {
+	return agent.request_.body.originalDetectIntentRequest.payload.data.sender.id;
+};
+
 module.exports = {
 	setContexts,
-	triggerEvent
+	triggerEvent,
+	getSenderID
 };

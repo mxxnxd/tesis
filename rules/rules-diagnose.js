@@ -4,7 +4,7 @@ const diagnose_copd = {
 	priority: rulePriority,
 	condition: (R, fact) => {
 		const S = fact.user.symptoms;
-		const G = fact.group;
+		const G = fact.user.group;
 		// Expression
 		const E =
 			// Common Symptoms:
@@ -19,7 +19,7 @@ const diagnose_copd = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.COPD' : 'FI.DIAGNOSE.COPD';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-COPD' : 'FI-DIAGNOSE-COPD';
 		fact.user.diagnosis.illness = 'COPD';
 
 		// Severity
@@ -33,7 +33,7 @@ const diagnose_asthma  = {
 	priority: rulePriority,
 	condition: (R, fact) => {
 		const S = fact.user.symptoms;
-		const G = fact.group;
+		const G = fact.user.group;
 		// Expression
 		const E =
 			// Common Symptoms:
@@ -48,7 +48,7 @@ const diagnose_asthma  = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ASTHMA' : 'FI.DIAGNOSE.ASTHMA';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-ASTHMA' : 'FI-DIAGNOSE-ASTHMA';
 		fact.user.diagnosis.illness = 'ASTHMA';
 
 		// Severity
@@ -62,7 +62,7 @@ const diagnose_pneumonia  = {
 	priority: rulePriority,
 	condition: (R, fact) => {
 		const S = fact.user.symptoms;
-		const G = fact.group;
+		const G = fact.user.group;
 		// Expression
 		const E =	
 			// Common Symptoms:
@@ -77,7 +77,7 @@ const diagnose_pneumonia  = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.PNEUMONIA' : 'FI.DIAGNOSE.PNEUMONIA';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-PNEUMONIA' : 'FI-DIAGNOSE-PNEUMONIA';
 		fact.user.diagnosis.illness = 'PNEUMONIA';
 
 		// Severity
@@ -106,7 +106,7 @@ const diagnose_lung_cancer  = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.LUNG_CANCER' : 'FI.DIAGNOSE.LUNG_CANCER';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-LUNG_CANCER' : 'FI-DIAGNOSE-LUNG_CANCER';
 		fact.user.diagnosis.illness = 'LUNG_CANCER';
 
 		// Severity
@@ -132,7 +132,7 @@ const diagnose_tuberculosis = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.TUBERCULOSIS' : 'FI.DIAGNOSE.TUBERCULOSIS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-TUBERCULOSIS' : 'FI-DIAGNOSE-TUBERCULOSIS';
 		fact.user.diagnosis.illness = 'TUBERCULOSIS';
 
 		// Severity
@@ -160,7 +160,7 @@ const diagnose_heart_failure = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.HEART_FAILURE' : 'FI.DIAGNOSE.HEART_FAILURE';	
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-HEART_FAILURE' : 'FI-DIAGNOSE-HEART_FAILURE';	
 		fact.user.diagnosis.illness = 'HEART_FAILURE';
 
 		// Severity
@@ -189,7 +189,7 @@ const diagnose_hypertension = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.HYPERTENSION' : 'FI.DIAGNOSE.HYPERTENSION';	
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-HYPERTENSION' : 'FI-DIAGNOSE-HYPERTENSION';	
 		fact.user.diagnosis.illness = 'HYPERTENSION';
 
 		// Severity
@@ -211,7 +211,7 @@ const diagnose_coronary_artery_disease = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.CORONARY_ARTERY_DISEASE' : 'FI.DIAGNOSE.CORONARY_ARTERY_DISEASE';	
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-CORONARY_ARTERY_DISEASE' : 'FI-DIAGNOSE-CORONARY_ARTERY_DISEASE';	
 		fact.user.diagnosis.illness = 'CORONARY_ARTERY_DISEASE';
 
 		// Severity
@@ -237,7 +237,7 @@ const diagnose_arrhythmia = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ARRHYTHMIA' : 'FI.DIAGNOSE.ARRHYTHMIA';	
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-ARRHYTHMIA' : 'FI-DIAGNOSE-ARRHYTHMIA';	
 		fact.user.diagnosis.illness = 'ARRHYTHMIA';
 
 		// Severity
@@ -262,7 +262,7 @@ const diagnose_valve_disease = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.VALVE_DISEASE' : 'FI.DIAGNOSE.VALVE_DISEASE';	
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-VALVE_DISEASE' : 'FI-DIAGNOSE-VALVE_DISEASE';	
 		fact.user.diagnosis.illness = 'VALVE_DISEASE';
 
 		// Severity
@@ -288,7 +288,7 @@ const diagnose_cardiomyopathy= {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.CARDIOMYOPATHY' : 'FI.DIAGNOSE.CARDIOMYOPATHY';	
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-CARDIOMYOPATHY' : 'FI-DIAGNOSE-CARDIOMYOPATHY';	
 		fact.user.diagnosis.illness = 'CARDIOMYOPATHY';
 
 		// Severity
@@ -314,7 +314,7 @@ const diagnose_myocardial_infarction= {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.MYOCARDIAL_INFARCTION' : 'FI.DIAGNOSE.MYOCARDIAL_INFARCTION';	
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-MYOCARDIAL_INFARCTION' : 'FI-DIAGNOSE-MYOCARDIAL_INFARCTION';	
 		fact.user.diagnosis.illness = 'MYOCARDIAL_INFARCTION';
 
 		// Severity
@@ -337,7 +337,7 @@ const diagnose_aneurysm = {
 	},
 	consequence: (R, fact) => {
 		// Event & Diagnosis
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.DIAGNOSE.ANEURYSM' : 'FI.DIAGNOSE.ANEURYSM';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-DIAGNOSE-ANEURYSM' : 'FI-DIAGNOSE-ANEURYSM';
 		fact.user.diagnosis.illness = 'ANEURYSM';
 
 		// Severity

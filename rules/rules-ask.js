@@ -1,10 +1,10 @@
 const ask_chest_pain = {
 	priority: 13,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.chest_pain == null);
+		R.when(fact.user.symptoms.chest_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.CHEST_PAIN' : 'FI.ASK.CHEST_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHEST_PAIN' : 'FI-ASK-CHEST_PAIN';
 		R.stop();
 	}
 };
@@ -12,10 +12,10 @@ const ask_chest_pain = {
 const ask_fatigue = {
 	priority: 13,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.fatigue == null);
+		R.when(fact.user.symptoms.fatigue == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.FATIGUE' : 'FI.ASK.FATIGUE';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FATIGUE' : 'FI-ASK-FATIGUE';
 		R.stop();
 	}
 };
@@ -23,10 +23,10 @@ const ask_fatigue = {
 const ask_dyspnea = {
 	priority: 12,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.dyspnea == null);
+		R.when(fact.user.symptoms.dyspnea == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.DYSPNEA' : 'FI.ASK.DYSPNEA';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-DYSPNEA' : 'FI-ASK-DYSPNEA';
 		R.stop();
 	}
 };
@@ -34,10 +34,10 @@ const ask_dyspnea = {
 const ask_dizzy = {
 	priority: 9,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.dizzy == null);
+		R.when(fact.user.symptoms.dizzy == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.DIZZY' : 'FI.ASK.DIZZY';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-DIZZY' : 'FI-ASK-DIZZY';
 		R.stop();
 	}
 };
@@ -45,10 +45,10 @@ const ask_dizzy = {
 const ask_cough = {
 	priority: 8,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.cough == null);
+		R.when(fact.user.symptoms.cough == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.COUGH' : 'FI.ASK.COUGH';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-COUGH' : 'FI-ASK-COUGH';
 		R.stop();
 	}
 };
@@ -56,10 +56,10 @@ const ask_cough = {
 const ask_tachycardia = {
 	priority: 8,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.tachycardia == null);
+		R.when(fact.user.symptoms.tachycardia == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.TACHYCARDIA' : 'FI.ASK.TACHYCARDIA';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-TACHYCARDIA' : 'FI-ASK-TACHYCARDIA';
 		R.stop();
 	}
 };
@@ -67,10 +67,10 @@ const ask_tachycardia = {
 const ask_fever = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.fever == null);
+		R.when(fact.user.symptoms.fever == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.FEVER' : 'FI.ASK.FEVER';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FEVER' : 'FI-ASK-FEVER';
 		R.stop();
 	}
 };
@@ -78,10 +78,10 @@ const ask_fever = {
 const ask_headaches = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.headaches == null);
+		R.when(fact.user.symptoms.headaches == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.HEADACHES' : 'FI.ASK.HEADACHES';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-HEADACHES' : 'FI-ASK-HEADACHES';
 		R.stop();
 	}
 };
@@ -89,10 +89,10 @@ const ask_headaches = {
 const ask_legs_swell = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.legs_swell == null);
+		R.when(fact.user.symptoms.legs_swell == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.LEGS_SWELL' : 'FI.ASK.LEGS_SWELL';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-LEGS_SWELL' : 'FI-ASK-LEGS_SWELL';
 		R.stop();
 	}
 };
@@ -100,10 +100,10 @@ const ask_legs_swell = {
 const ask_pale_sweat = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.pale_sweat == null);
+		R.when(fact.user.symptoms.pale_sweat == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.PALE_SWEAT' : 'FI.ASK.PALE_SWEAT';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PALE_SWEAT' : 'FI-ASK-PALE_SWEAT';
 		R.stop();
 	}
 };
@@ -111,10 +111,10 @@ const ask_pale_sweat = {
 const ask_wheeze = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.wheeze == null);
+		R.when(fact.user.symptoms.wheeze == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.WHEEZE' : 'FI.ASK.WHEEZE';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WHEEZE' : 'FI-ASK-WHEEZE';
 		R.stop();
 	}
 };
@@ -122,10 +122,10 @@ const ask_wheeze = {
 const ask_belly_swell = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.belly_swell == null);
+		R.when(fact.user.symptoms.belly_swell == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.BELLY_SWELL' : 'FI.ASK.BELLY_SWELL';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BELLY_SWELL' : 'FI-ASK-BELLY_SWELL';
 		R.stop();
 	}
 };
@@ -133,10 +133,10 @@ const ask_belly_swell = {
 const ask_cyanosis = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.cyanosis == null);
+		R.when(fact.user.symptoms.cyanosis == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.CYANOSIS' : 'FI.ASK.CYANOSIS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CYANOSIS' : 'FI-ASK-CYANOSIS';
 		R.stop();
 	}
 };
@@ -144,10 +144,10 @@ const ask_cyanosis = {
 const ask_dysphasia = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.dysphasia == null);
+		R.when(fact.user.symptoms.dysphasia == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.DYSPHASIA' : 'FI.ASK.DYSPHASIA';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-DYSPHASIA' : 'FI-ASK-DYSPHASIA';
 		R.stop();
 	}
 };
@@ -155,10 +155,10 @@ const ask_dysphasia = {
 const ask_faint = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.faint == null);
+		R.when(fact.user.symptoms.faint == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.FAINT' : 'FI.ASK.FAINT';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FAINT' : 'FI-ASK-FAINT';
 		R.stop();
 	}
 };
@@ -166,10 +166,10 @@ const ask_faint = {
 const ask_nausea = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.nausea == null);
+		R.when(fact.user.symptoms.nausea == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.NAUSEA' : 'FI.ASK.NAUSEA';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NAUSEA' : 'FI-ASK-NAUSEA';
 		R.stop();
 	}
 };
@@ -177,10 +177,10 @@ const ask_nausea = {
 const ask_phlegm_red = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_red == null);
+		R.when(fact.user.symptoms.phlegm_red == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.PHLEGM_RED' : 'FI.ASK.PHLEGM_RED';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_RED' : 'FI-ASK-PHLEGM_RED';
 		R.stop();
 	}
 };
@@ -188,10 +188,10 @@ const ask_phlegm_red = {
 const ask_weakness = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.weakness == null);
+		R.when(fact.user.symptoms.weakness == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.WEAKNESS' : 'FI.ASK.WEAKNESS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WEAKNESS' : 'FI-ASK-WEAKNESS';
 		R.stop();
 	}
 };
@@ -199,10 +199,10 @@ const ask_weakness = {
 const ask_blurry = {
 	priority: 4,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.blurry == null);
+		R.when(fact.user.symptoms.blurry == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.BLURRY' : 'FI.ASK.BLURRY';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BLURRY' : 'FI-ASK-BLURRY';
 		R.stop();
 	}
 };
@@ -210,10 +210,10 @@ const ask_blurry = {
 const ask_colds = {
 	priority: 4,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.colds == null);
+		R.when(fact.user.symptoms.colds == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.COLDS' : 'FI.ASK.COLDS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-COLDS' : 'FI-ASK-COLDS';
 		R.stop();
 	}
 };
@@ -221,10 +221,10 @@ const ask_colds = {
 const ask_weightloss = {
 	priority: 4,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.weightloss == null);
+		R.when(fact.user.symptoms.weightloss == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.WEIGHTLOSS' : 'FI.ASK.WEIGHTLOSS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WEIGHTLOSS' : 'FI-ASK-WEIGHTLOSS';
 		R.stop();
 	}
 };
@@ -232,10 +232,10 @@ const ask_weightloss = {
 const ask_abdomen_pain = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.abdomen_pain == null);
+		R.when(fact.user.symptoms.abdomen_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.ABDOMEN_PAIN' : 'FI.ASK.ABDOMEN_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-ABDOMEN_PAIN' : 'FI-ASK-ABDOMEN_PAIN';
 		R.stop();
 	}
 };
@@ -243,10 +243,10 @@ const ask_abdomen_pain = {
 const ask_anxiety = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.anxiety == null);
+		R.when(fact.user.symptoms.anxiety == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.ANXIETY' : 'FI.ASK.ANXIETY';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-ANXIETY' : 'FI-ASK-ANXIETY';
 		R.stop();
 	}
 };
@@ -254,10 +254,10 @@ const ask_anxiety = {
 const ask_appetite_loss = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.appetite_loss == null);
+		R.when(fact.user.symptoms.appetite_loss == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.APPETITE_LOSS' : 'FI.ASK.APPETITE_LOSS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-APPETITE_LOSS' : 'FI-ASK-APPETITE_LOSS';
 		R.stop();
 	}
 };
@@ -265,10 +265,10 @@ const ask_appetite_loss = {
 const ask_tachypnea = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.tachypnea == null);
+		R.when(fact.user.symptoms.tachypnea == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.TACHYPNEA' : 'FI.ASK.TACHYPNEA';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-TACHYPNEA' : 'FI-ASK-TACHYPNEA';
 		R.stop();
 	}
 };
@@ -276,10 +276,10 @@ const ask_tachypnea = {
 const ask_chills = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.chills == null);
+		R.when(fact.user.symptoms.chills == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.CHILLS' : 'FI.ASK.CHILLS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHILLS' : 'FI-ASK-CHILLS';
 		R.stop();
 	}
 };
@@ -287,10 +287,10 @@ const ask_chills = {
 const ask_confusion = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.confusion == null);
+		R.when(fact.user.symptoms.confusion == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.CONFUSION' : 'FI.ASK.CONFUSION';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CONFUSION' : 'FI-ASK-CONFUSION';
 		R.stop();
 	}
 };
@@ -298,10 +298,10 @@ const ask_confusion = {
 const ask_hoarseness = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.hoarseness == null);
+		R.when(fact.user.symptoms.hoarseness == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.HOARSENESS' : 'FI.ASK.HOARSENESS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-HOARSENESS' : 'FI-ASK-HOARSENESS';
 		R.stop();
 	}
 };
@@ -309,10 +309,10 @@ const ask_hoarseness = {
 const ask_phlegm_clear = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_clear == null);
+		R.when(fact.user.symptoms.phlegm_clear == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.PHLEGM_CLEAR' : 'FI.ASK.PHLEGM_CLEAR';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_CLEAR' : 'FI-ASK-PHLEGM_CLEAR';
 		R.stop();
 	}
 };
@@ -320,10 +320,10 @@ const ask_phlegm_clear = {
 const ask_phlegm_green = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_green == null);
+		R.when(fact.user.symptoms.phlegm_green == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.PHLEGM_GREEN' : 'FI.ASK.PHLEGM_GREEN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_GREEN' : 'FI-ASK-PHLEGM_GREEN';
 		R.stop();
 	}
 };
@@ -331,10 +331,10 @@ const ask_phlegm_green = {
 const ask_phlegm_white = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_white == null);
+		R.when(fact.user.symptoms.phlegm_white == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.PHLEGM_WHITE' : 'FI.ASK.PHLEGM_WHITE';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_WHITE' : 'FI-ASK-PHLEGM_WHITE';
 		R.stop();
 	}
 };
@@ -342,10 +342,10 @@ const ask_phlegm_white = {
 const ask_weightgain = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.weightgain == null);
+		R.when(fact.user.symptoms.weightgain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.WEIGHTGAIN' : 'FI.ASK.WEIGHTGAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WEIGHTGAIN' : 'FI-ASK-WEIGHTGAIN';
 		R.stop();
 	}
 };
@@ -353,10 +353,10 @@ const ask_weightgain = {
 const ask_arm_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.arm_pain == null);
+		R.when(fact.user.symptoms.arm_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.ARM_PAIN' : 'FI.ASK.ARM_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-ARM_PAIN' : 'FI-ASK-ARM_PAIN';
 		R.stop();
 	}
 };
@@ -364,10 +364,10 @@ const ask_arm_pain = {
 const ask_back_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.back_pain == null);
+		R.when(fact.user.symptoms.back_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.BACK_PAIN' : 'FI.ASK.BACK_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BACK_PAIN' : 'FI-ASK-BACK_PAIN';
 		R.stop();
 	}
 };
@@ -375,10 +375,10 @@ const ask_back_pain = {
 const ask_bone_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.bone_pain == null);
+		R.when(fact.user.symptoms.bone_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.BONE_PAIN' : 'FI.ASK.BONE_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BONE_PAIN' : 'FI-ASK-BONE_PAIN';
 		R.stop();
 	}
 };
@@ -386,10 +386,10 @@ const ask_bone_pain = {
 const ask_chest_tight = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.chest_tight == null);
+		R.when(fact.user.symptoms.chest_tight == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.CHEST_TIGHT' : 'FI.ASK.CHEST_TIGHT';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHEST_TIGHT' : 'FI-ASK-CHEST_TIGHT';
 		R.stop();
 	}
 };
@@ -397,10 +397,10 @@ const ask_chest_tight = {
 const ask_heartburn = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.heartburn == null);
+		R.when(fact.user.symptoms.heartburn == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.HEARTBURN' : 'FI.ASK.HEARTBURN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-HEARTBURN' : 'FI-ASK-HEARTBURN';
 		R.stop();
 	}
 };
@@ -408,10 +408,10 @@ const ask_heartburn = {
 const ask_mouth_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.mouth_pain == null);
+		R.when(fact.user.symptoms.mouth_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.MOUTH_PAIN' : 'FI.ASK.MOUTH_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-MOUTH_PAIN' : 'FI-ASK-MOUTH_PAIN';
 		R.stop();
 	}
 };
@@ -419,10 +419,10 @@ const ask_mouth_pain = {
 const ask_muscle_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.muscle_pain == null);
+		R.when(fact.user.symptoms.muscle_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.MUSCLE_PAIN' : 'FI.ASK.MUSCLE_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-MUSCLE_PAIN' : 'FI-ASK-MUSCLE_PAIN';
 		R.stop();
 	}
 };
@@ -430,10 +430,10 @@ const ask_muscle_pain = {
 const ask_neck_shoulder_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.neck_shoulder_pain == null);
+		R.when(fact.user.symptoms.neck_shoulder_pain == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.NECK_SHOULDER_PAIN' : 'FI.ASK.NECK_SHOULDER_PAIN';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NECK_SHOULDER_PAIN' : 'FI-ASK-NECK_SHOULDER_PAIN';
 		R.stop();
 	}
 };
@@ -441,10 +441,10 @@ const ask_neck_shoulder_pain = {
 const ask_neck_swell = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.neck_swell == null);
+		R.when(fact.user.symptoms.neck_swell == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.NECK_SWELL' : 'FI.ASK.NECK_SWELL';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NECK_SWELL' : 'FI-ASK-NECK_SWELL';
 		R.stop();
 	}
 };
@@ -452,10 +452,10 @@ const ask_neck_swell = {
 const ask_neck_tight = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.neck_tight == null);
+		R.when(fact.user.symptoms.neck_tight == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.NECK_TIGHT' : 'FI.ASK.NECK_TIGHT';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NECK_TIGHT' : 'FI-ASK-NECK_TIGHT';
 		R.stop();
 	}
 };
@@ -463,10 +463,10 @@ const ask_neck_tight = {
 const ask_r_infections = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.r_infections == null);
+		R.when(fact.user.symptoms.r_infections == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.R_INFECTIONS' : 'FI.ASK.R_INFECTIONS';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-R_INFECTIONS' : 'FI-ASK-R_INFECTIONS';
 		R.stop();
 	}
 };
@@ -474,10 +474,10 @@ const ask_r_infections = {
 const ask_sleep_hard = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.sleep_hard == null);
+		R.when(fact.user.symptoms.sleep_hard == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.SLEEP_HARD' : 'FI.ASK.SLEEP_HARD';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-SLEEP_HARD' : 'FI-ASK-SLEEP_HARD';
 		R.stop();
 	}
 };
@@ -485,10 +485,10 @@ const ask_sleep_hard = {
 const ask_urine_blood = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.urine_blood == null);
+		R.when(fact.user.symptoms.urine_blood == 0);
 	},
 	consequence: (R, fact) => {
-		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.URINE_BLOOD' : 'FI.ASK.URINE_BLOOD';
+		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-URINE_BLOOD' : 'FI-ASK-URINE_BLOOD';
 		R.stop();
 	}
 };
@@ -549,7 +549,7 @@ module.exports = {
 // const askShortBreath = {
 // 	priority: 1,
 // 	condition: (R, fact) => {
-// 		R.when(fact.user.symptoms.fever == null);
+// 		R.when(fact.user.symptoms.fever == 0);
 // 	},
 // 	consequence: (R, fact) => {
 // 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.FEVER' : 'FI.ASK.FEVER';

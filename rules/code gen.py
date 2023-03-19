@@ -48,10 +48,10 @@ with open('code.js', 'w') as f:
     f.write(f"const ask_{symp} = {start}\n")
     f.write(f"\tpriority: {num + 1},\n")
     f.write(f"\tcondition: (R, fact) => {start}\n")
-    f.write(f"\t\tR.when(fact.user.symptoms.{symp} == null);\n")
+    f.write(f"\t\tR.when(fact.user.symptoms.{symp} == 0);\n")
     f.write(f"\t{end},\n")
     f.write(f"\tconsequence: (R, fact) => {start}\n")
-    f.write(f"\t\tfact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.{symp.upper()}' : 'FI.ASK.{symp.upper()}';\n")
+    f.write(f"\t\tfact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-{symp.upper()}' : 'FI-ASK-{symp.upper()}';\n")
     f.write(f"\t\tR.stop();\n")
     f.write(f"\t{end}\n")
     f.write(f"{end};\n\n")
@@ -59,8 +59,8 @@ with open('code.js', 'w') as f:
   f.write(f"\n\n\n")
 
   for symp in stuff:
-    f.write(f"'EN.ASK.{symp.upper()}'\n")
-    f.write(f"'FI.ASK.{symp.upper()}'\n")
+    f.write(f"'EN-ASK-{symp.upper()}'\n")
+    # f.write(f"'fi.ask.{symp.lower()}'\n")
 
   f.write(f"\n\n\n")
 

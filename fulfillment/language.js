@@ -1,4 +1,5 @@
 const util = require('./utility.js');
+const db = require('../firebase/database.js');
 
 /*
 	Webhook Functions: Language Selection Intents 
@@ -6,27 +7,34 @@ const util = require('./utility.js');
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
-let SELECTED_LANGUAGE = 'ENGLISH';
+var userLangMap = new Map();
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
 const en_get_language = async (agent) => {
-	SELECTED_LANGUAGE = agent.parameters.language;
+	const senderID = util.getSenderID(agent);
+	userLangMap.set(senderID, agent.parameters.language); 
+
 	agent.add(`Great! I see your selected language is ${agent.parameters.language} am I correct?`);
 };
 
 const en_get_language_yes = async (agent) => {
-	console.log(`LANG: ${SELECTED_LANGUAGE}`);
+	const senderID = util.getSenderID(agent);
+	console.log(`USER: ${senderID} LANG: ${userLangMap.get(senderID)}`);
 
-	// TODO: KNOWLEDGE BASE LOGIC
+	db.createUser(senderID, {
+		language: userLangMap.get(senderID)
+	});
 
 	util.setContexts(agent, ['CX-CFM-LANG'], [0]);
 
-	if (SELECTED_LANGUAGE === 'ENGLISH') {
+	if (userLangMap.get(senderID) === 'ENGLISH') {
 		util.triggerEvent(agent, 'EN-ASK-TERMS');
 	} else {
 		util.triggerEvent(agent, 'FI-ASK-TERMS');
 	}
+
+	userLangMap.delete(senderID);
 };
 
 const en_get_language_no = async (agent) => {	

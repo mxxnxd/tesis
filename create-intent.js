@@ -1,17 +1,20 @@
 const manager = require('./intent-manager');
 
 const main = async () => {
+	const start = 0
+	const end = 19
+
 	// Load Intent Data
 	const intents = await manager.loadIntentCSV();
 
 	// Delete Intents
-	for (const intent of intents) {
-		await manager.callDeleteIntent(intent.intent_name);
+	for (i = start; i < end; i++) {
+		await manager.callDeleteIntent(intents[i].intent_name);
 	}
 
 	// Create Intents
-	for (const intent of intents) {
-		await manager.callCreateIntent(intent);
+	for (i = start; i < end; i++) {
+		await manager.callCreateIntent(intents[i]);
 	}
 }
 

@@ -15,5 +15,50 @@ en.get.symptom.no,"no, incorrect, nope, that's wrong",,,"PH-CHECK, CX-CFM-SYMP",
 en.start.checkup,"check up, give me a check up, diagnose me, help me, evaluate me, test me, po",,,,,1,,,,
 en.start.question,"questions,I have a question, I would like to ask medical queries,I have a query",,,,,1,,,,
 en.get.question,,"Sure! What question do you have for me?,What would you like to ask me? :>",,,PH-QUERY:3,0,,,,EN-GET-QUESTION
-en.ask.copd,"What is copd,can you tell me about copd, what does copd do, what are symptoms of copd",Chronic obstructive pulmonary disease (COPD) is a long-term lung condition that makes it hard for a person to breathe. Common causes for these diseases is long-term exposure to things that irritate the lung such as tobacco smoke.,,PH-QUERY,PH-QUERY:3,0,,,,EN-ASK-COPD
 en.greeting.new,,Great! How can I help you?,"Check Up, Questions",,,0,,,,EN-GREET-NEW
+en.ask.copd,"What is copd,can you tell me about copd, what does copd do, what are symptoms of copd",Chronic obstructive pulmonary disease (COPD) is a long-term lung condition that makes it hard for a person to breathe. Common causes for these diseases is long-term exposure to things that irritate the lung such as tobacco smoke.,,PH-QUERY,PH-QUERY:3,0,,,,EN-ASK-COPD
+en.ask.abdomen_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ABDOMEN_PAIN
+en.ask.anxiety,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ANXIETY
+en.ask.appetite_loss,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-APPETITE_LOSS
+en.ask.arm_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ARM_PAIN
+en.ask.back_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BACK_PAIN
+en.ask.belly_swell,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BELLY_SWELL
+en.ask.blurry,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BLURRY
+en.ask.bone_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BONE_PAIN
+en.ask.tachypnea,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-TACHYPNEA
+en.ask.chest_pain,,Have you been experience any form of pain in your chest region?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHEST_PAIN
+en.ask.chest_tight,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHEST_TIGHT
+en.ask.chills,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHILLS
+en.ask.colds,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-COLDS
+en.ask.confusion,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CONFUSION
+en.ask.cough,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-COUGH
+en.ask.cyanosis,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CYANOSIS
+en.ask.dizzy,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DIZZY
+en.ask.dysphasia,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DYSPHASIA
+en.ask.dyspnea,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DYSPNEA
+en.ask.faint,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FAINT
+en.ask.fatigue,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FATIGUE
+en.ask.fever,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FEVER
+en.ask.headaches,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HEADACHES
+en.ask.heartburn,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HEARTBURN
+en.ask.hoarseness,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HOARSENESS
+en.ask.legs_swell,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-LEGS_SWELL
+en.ask.mouth_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-MOUTH_PAIN
+en.ask.muscle_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-MUSCLE_PAIN
+en.ask.nausea,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NAUSEA
+en.ask.neck_shoulder_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_SHOULDER_PAIN
+en.ask.neck_swell,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_SWELL
+en.ask.neck_tight,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_TIGHT
+en.ask.pale_sweat,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PALE_SWEAT
+en.ask.phlegm_clear,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_CLEAR
+en.ask.phlegm_green,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_GREEN
+en.ask.phlegm_red,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_RED
+en.ask.phlegm_white,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_WHITE
+en.ask.r_infections,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-R_INFECTIONS
+en.ask.sleep_hard,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-SLEEP_HARD
+en.ask.tachycardia,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-TACHYCARDIA
+en.ask.urine_blood,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-URINE_BLOOD
+en.ask.weakness,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEAKNESS
+en.ask.weightgain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTGAIN
+en.ask.weightloss,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTLOSS
+en.ask.wheeze,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WHEEZE
