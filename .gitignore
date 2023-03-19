@@ -1,5 +1,6 @@
 /Samples/Agent-K/node_modules
 /Samples/Sample-Agent/node_modules
+/Samples/Agent-K/symptom-checker-chatbot-378004-ef78a8ac8d99.json
 .env
 /keys
 /node_modules

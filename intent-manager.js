@@ -234,7 +234,7 @@ const formatJSON = (json) => {
     });
 
     // Trained Responses
-    const part = {text: json.trained_responses.split(',')};
+    const part = {text: json.trained_responses.split('^^')};
     const trainedResponse = {
         platform: 'FACEBOOK',
         text: part

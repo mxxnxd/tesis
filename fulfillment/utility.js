@@ -29,8 +29,17 @@ const getSenderID = (agent) => {
 	return agent.request_.body.originalDetectIntentRequest.payload.data.sender.id;
 };
 
+/*	
+	Utility function for obtaining symptom key from event name
+*/
+const getEventToKey = (event) => {
+	const strings = event.toLowerCase().split('-');
+	return strings[2];
+};
+
 module.exports = {
 	setContexts,
 	triggerEvent,
-	getSenderID
+	getSenderID,
+	getEventToKey
 };

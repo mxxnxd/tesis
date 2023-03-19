@@ -1,8 +1,8 @@
 intent_name,training_phrases,trained_responses,quick_replies,input_context,output_context,webhook_enabled,parameters,prompts,entity_phrases,events
 dv.webhook,"webhook, webhooks, web, hook",,,,,1,,,,
-en.greeting,"hello, hi, hi there, good morning, good evening, Hey, good afternoon, greetings","Hello! I'm [CHATBOT]. How can I help you?, Greetings! I'm [CHATBOT]. How may I help you?","Check Up, Questions",,,0,,,,
-en.ask.language,,"It seems like this is your first time. What language do you prefer? (English or Filipino).,It seems you are new. What language do you prefer (English or Filipino).","English, Filipino, Tagalog, Ingles",,"PH-INTRO:3, CX-GET-LANG:3",0,,,,EN-ASK-LANGUAGE
-en.ask.language.retry,,"My apologies let us try again. What is your preferred language? (English or Filipino).,Sorry let me ask again. What language do you prefer? (English or Filipino).","English, Filipino, Tagalog, Ingles",,"PH-INTRO:3, CX-GET-LANG:3",0,,,,EN-ASK-LANGUAGE-RETRY
+en.greeting,"hello, hi, hi there, good morning, good evening, Hey, good afternoon, greetings","Hello! I'm [CHATBOT]. How can I help you?, Greetings!^^I'm [CHATBOT]. How may I help you?","Check Up, Questions",,,0,,,,
+en.ask.language,,It seems like this is your first time. What language do you prefer? (English or Filipino).^^It seems you are new. What language do you prefer (English or Filipino).,"English, Filipino, Tagalog, Ingles",,"PH-INTRO:3, CX-GET-LANG:3",0,,,,EN-ASK-LANGUAGE
+en.ask.language.retry,,My apologies let us try again. What is your preferred language? (English or Filipino).^^Sorry let me ask again. What language do you prefer? (English or Filipino).,"English, Filipino, Tagalog, Ingles",,"PH-INTRO:3, CX-GET-LANG:3",0,,,,EN-ASK-LANGUAGE-RETRY
 en.get.language,"I prefer,I choose,po",,,"PH-INTRO, CX-GET-LANG","PH-INTRO:3,CX-CFM-LANG:3",1,bot-language,I did not quite get that. What language do you prefer?,"English:bot-language, Tagalog:bot-language, Ingles:bot-language, Filipino:bot-language",
 en.get.language.yes,"yes, correct, yep, that's right",,,"PH-INTRO, CX-CFM-LANG",,1,,,,
 en.get.language.no,"no, incorrect, nope, that's wrong",,,"PH-INTRO, CX-CFM-LANG",,1,,,,
@@ -10,55 +10,69 @@ en.ask.terms,,Alrighty! before we proceed do you agree to my terms of service? [
 en.end.terms,,I'm sorry. You will need to accept my Terms of Service to use my services :(,,,,0,,,,EN-END-TERMS
 en.get.terms.yes,"yes, correct, yep, that's right",,,"PH-INTRO, CX-CFM-TERM",,1,,,,
 en.get.terms.no,"no, incorrect, nope, that's wrong",,,"PH-INTRO, CX-CFM-TERM",,1,,,,
-en.get.symptom.yes,"yes, correct, yep, that's right",,,"PH-CHECK, CX-CFM-SYMP",,1,,,,
+en.get.symptom,,,,,"PH-CHECK, CX-CFM-SYMP",1,,,,EN-ASK-SYMPTOM
+en.get.symptom.yes,"yes, correct, yep, that's right",Thank you for accepting my Terms of Service. We may now proceed to checking for your symptoms.,,"PH-CHECK, CX-CFM-SYMP",,1,,,,
 en.get.symptom.no,"no, incorrect, nope, that's wrong",,,"PH-CHECK, CX-CFM-SYMP",,1,,,,
 en.start.checkup,"check up, give me a check up, diagnose me, help me, evaluate me, test me, po",,,,,1,,,,
 en.start.question,"questions,I have a question, I would like to ask medical queries,I have a query",,,,,1,,,,
 en.get.question,,"Sure! What question do you have for me?,What would you like to ask me? :>",,,PH-QUERY:3,0,,,,EN-GET-QUESTION
 en.greeting.new,,Great! How can I help you?,"Check Up, Questions",,,0,,,,EN-GREET-NEW
 en.ask.copd,"What is copd,can you tell me about copd, what does copd do, what are symptoms of copd",Chronic obstructive pulmonary disease (COPD) is a long-term lung condition that makes it hard for a person to breathe. Common causes for these diseases is long-term exposure to things that irritate the lung such as tobacco smoke.,,PH-QUERY,PH-QUERY:3,0,,,,EN-ASK-COPD
-en.ask.abdomen_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ABDOMEN_PAIN
-en.ask.anxiety,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ANXIETY
-en.ask.appetite_loss,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-APPETITE_LOSS
-en.ask.arm_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ARM_PAIN
-en.ask.back_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BACK_PAIN
-en.ask.belly_swell,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BELLY_SWELL
-en.ask.blurry,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BLURRY
-en.ask.bone_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BONE_PAIN
-en.ask.tachypnea,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-TACHYPNEA
+en.ask.abdomen_pain,,Are you experiencing pain in your abdomen?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ABDOMEN_PAIN
+en.ask.anxiety,,Do you have anxiety?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ANXIETY
+en.ask.appetite_loss,,Did you lose your apetite?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-APPETITE_LOSS
+en.ask.arm_pain,,Do you have pain in your arm/s?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-ARM_PAIN
+en.ask.back_pain,,Are you experiencing back pain?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BACK_PAIN
+en.ask.belly_swell,,Is your belly swelling?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BELLY_SWELL
+en.ask.blurry,,Is your eyesight unnaturally blurry?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BLURRY
+en.ask.bone_pain,,Are you experiencing pain in your bones?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-BONE_PAIN
+en.ask.tachypnea,,Are you experiencing tachypnea (abnormally rapid breathing)?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-TACHYPNEA
 en.ask.chest_pain,,Have you been experience any form of pain in your chest region?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHEST_PAIN
-en.ask.chest_tight,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHEST_TIGHT
-en.ask.chills,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHILLS
-en.ask.colds,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-COLDS
-en.ask.confusion,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CONFUSION
-en.ask.cough,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-COUGH
-en.ask.cyanosis,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CYANOSIS
-en.ask.dizzy,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DIZZY
-en.ask.dysphasia,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DYSPHASIA
-en.ask.dyspnea,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DYSPNEA
-en.ask.faint,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FAINT
-en.ask.fatigue,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FATIGUE
-en.ask.fever,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FEVER
-en.ask.headaches,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HEADACHES
-en.ask.heartburn,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HEARTBURN
-en.ask.hoarseness,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HOARSENESS
-en.ask.legs_swell,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-LEGS_SWELL
-en.ask.mouth_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-MOUTH_PAIN
-en.ask.muscle_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-MUSCLE_PAIN
-en.ask.nausea,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NAUSEA
-en.ask.neck_shoulder_pain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_SHOULDER_PAIN
-en.ask.neck_swell,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_SWELL
-en.ask.neck_tight,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_TIGHT
-en.ask.pale_sweat,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PALE_SWEAT
-en.ask.phlegm_clear,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_CLEAR
-en.ask.phlegm_green,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_GREEN
-en.ask.phlegm_red,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_RED
-en.ask.phlegm_white,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_WHITE
-en.ask.r_infections,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-R_INFECTIONS
-en.ask.sleep_hard,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-SLEEP_HARD
-en.ask.tachycardia,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-TACHYCARDIA
-en.ask.urine_blood,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-URINE_BLOOD
-en.ask.weakness,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEAKNESS
-en.ask.weightgain,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTGAIN
-en.ask.weightloss,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTLOSS
-en.ask.wheeze,,,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WHEEZE
+en.ask.chest_tight,,Does your chest feel tight?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHEST_TIGHT
+en.ask.chills,,Are you feeling unusually chilly?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CHILLS
+en.ask.colds,,Do you have colds?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-COLDS
+en.ask.confusion,,Are you experiencing confusion?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CONFUSION
+en.ask.cough,,Do you have coughs?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-COUGH
+en.ask.cyanosis,,Do you have cyanosis (blue-ish/purple skin)?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-CYANOSIS
+en.ask.dizzy,,Do you feel dizzy?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DIZZY
+en.ask.dysphasia,,Are you experiencing dysphasia (speech impairment resulting from brain disease/damage)?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DYSPHASIA
+en.ask.dyspnea,,"Are you experiencing dyspnea (intense chest tightening, lack of air, difficulty breathing, breathlessness, or feeling of suffocation)?",,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-DYSPNEA
+en.ask.faint,,Have you already fainted?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FAINT
+en.ask.fatigue,,Do you feel fatigued/immensely tired?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FATIGUE
+en.ask.fever,,Do you have a fever?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-FEVER
+en.ask.headaches,,Are you experiencing headaches?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HEADACHES
+en.ask.heartburn,,Are you experiencing heartburn?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HEARTBURN
+en.ask.hoarseness,,"Are you experiencing hoarseness/weak, scratchy, husky voice?",,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-HOARSENESS
+en.ask.legs_swell,,Are your leg/s swelling?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-LEGS_SWELL
+en.ask.mouth_pain,,Do you have pain in your mouth?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-MOUTH_PAIN
+en.ask.muscle_pain,,Do you have muscle pains?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-MUSCLE_PAIN
+en.ask.nausea,,Are you experiencing nausea?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NAUSEA
+en.ask.neck_shoulder_pain,,Do you have neck/shoulder pain?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_SHOULDER_PAIN
+en.ask.neck_swell,,Is your neck swelling?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_SWELL
+en.ask.neck_tight,,Does your neck feel tight?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-NECK_TIGHT
+en.ask.pale_sweat,,Are you pale and sweating?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PALE_SWEAT
+en.ask.phlegm_clear,,Is your phlegm clear?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_CLEAR
+en.ask.phlegm_green,,Is your phlegm green?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_GREEN
+en.ask.phlegm_red,,Is your phlegm red?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_RED
+en.ask.phlegm_white,,Is your phlehm white?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-PHLEGM_WHITE
+en.ask.r_infections,,Do you have frequent respiratory infections?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-R_INFECTIONS
+en.ask.sleep_hard,,Are you having difficulty sleeping?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-SLEEP_HARD
+en.ask.tachycardia,,Are you experiencing tachycardia (rapid heartbeat)?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-TACHYCARDIA
+en.ask.urine_blood,,Is blood present in your urine?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-URINE_BLOOD
+en.ask.weakness,,Have you been feeling weak recently?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEAKNESS
+en.ask.weightgain,,Have you gained weight?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTGAIN
+en.ask.weightloss,,Have you lost weight?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTLOSS
+en.ask.wheeze,,Have you been wheezing?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WHEEZE
+en.diagnose.copd,,COPD,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-COPD
+en.diagnose.asthma,,ASTHMA,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-ASTHMA
+en.diagnose.pneumonia,,PNEUMONIA,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-PNEUMONIA
+en.diagnose.lung_cancer,,LUNG CANCER,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-LUNG_CANCER
+en.diagnose.tuberculosis,,TUBERCULOSIS,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-TUBERCULOSIS
+en.diagnose.heart_failure,,HEART FAILURE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-HEART_FAILURE
+en.diagnose.hypertension,,HYPERTENSIOn,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-HYPERTENSION
+en.diagnose.coronary_artery_disease,,CORONARY ARTERY DISEASE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-CORONARY_ARTERY_DISEASE
+en.diagnose.arrhythmia,,ARRHYTHMIA,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-ARRHYTHMIA
+en.diagnose.valve_disease,,VALVE DISEASE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-VALVE_DISEASE
+en.diagnose.cardiomyopathy,,CARDIOMYOPATHY,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-CARDIOMYOPATHY
+en.diagnose.myocardial_infarction,,MYOCARDIAL INFARCTION,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-MYOCARDIAL_INFARCTION
+en.diagnose.aneurysm,,ANEURYSM,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-ANEURYSM

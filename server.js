@@ -6,6 +6,7 @@ const ff_test = require('./fulfillment/test.js');
 const ff_lang = require('./fulfillment/language.js');
 const ff_term = require('./fulfillment/terms.js');
 const ff_start = require('./fulfillment/start.js');
+const ff_symp = require('./fulfillment/symptoms.js');
 
 app.post('/webhook', express.json(), (req, res) => {
 	// Instantiate Agent
@@ -28,9 +29,10 @@ app.post('/webhook', express.json(), (req, res) => {
 	intentMap.set('en.start.checkup', ff_start.en_start_checkup);
 	intentMap.set('en.start.question', ff_start.en_start_question);
 
-	// intentMap.set('en.get.symptom.yes', ff.en_get_symptom_yes);
-	// intentMap.set('en.get.symptom.no', ff.en_get_symptom_no);
-
+	intentMap.set('en.get.symptom', ff_symp.en_get_symptom);
+	intentMap.set('en.get.symptom.yes', ff_symp.en_get_symptom_yes);
+	intentMap.set('en.get.symptom.no', ff_symp.en_get_symptom_no);
+	
 	agent.handleRequest(intentMap);
 });
 

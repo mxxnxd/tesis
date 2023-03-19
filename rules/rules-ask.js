@@ -1,7 +1,7 @@
 const ask_chest_pain = {
 	priority: 13,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.chest_pain == 0);
+		R.when(fact.user.symptoms.chest_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHEST_PAIN' : 'FI-ASK-CHEST_PAIN';
@@ -12,7 +12,7 @@ const ask_chest_pain = {
 const ask_fatigue = {
 	priority: 13,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.fatigue == 0);
+		R.when(fact.user.symptoms.fatigue === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FATIGUE' : 'FI-ASK-FATIGUE';
@@ -23,7 +23,7 @@ const ask_fatigue = {
 const ask_dyspnea = {
 	priority: 12,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.dyspnea == 0);
+		R.when(fact.user.symptoms.dyspnea === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-DYSPNEA' : 'FI-ASK-DYSPNEA';
@@ -34,7 +34,7 @@ const ask_dyspnea = {
 const ask_dizzy = {
 	priority: 9,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.dizzy == 0);
+		R.when(fact.user.symptoms.dizzy === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-DIZZY' : 'FI-ASK-DIZZY';
@@ -45,7 +45,7 @@ const ask_dizzy = {
 const ask_cough = {
 	priority: 8,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.cough == 0);
+		R.when(fact.user.symptoms.cough === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-COUGH' : 'FI-ASK-COUGH';
@@ -56,7 +56,7 @@ const ask_cough = {
 const ask_tachycardia = {
 	priority: 8,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.tachycardia == 0);
+		R.when(fact.user.symptoms.tachycardia === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-TACHYCARDIA' : 'FI-ASK-TACHYCARDIA';
@@ -67,7 +67,7 @@ const ask_tachycardia = {
 const ask_fever = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.fever == 0);
+		R.when(fact.user.symptoms.fever === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FEVER' : 'FI-ASK-FEVER';
@@ -78,7 +78,7 @@ const ask_fever = {
 const ask_headaches = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.headaches == 0);
+		R.when(fact.user.symptoms.headaches === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-HEADACHES' : 'FI-ASK-HEADACHES';
@@ -89,7 +89,7 @@ const ask_headaches = {
 const ask_legs_swell = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.legs_swell == 0);
+		R.when(fact.user.symptoms.legs_swell === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-LEGS_SWELL' : 'FI-ASK-LEGS_SWELL';
@@ -100,7 +100,7 @@ const ask_legs_swell = {
 const ask_pale_sweat = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.pale_sweat == 0);
+		R.when(fact.user.symptoms.pale_sweat === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PALE_SWEAT' : 'FI-ASK-PALE_SWEAT';
@@ -111,7 +111,7 @@ const ask_pale_sweat = {
 const ask_wheeze = {
 	priority: 6,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.wheeze == 0);
+		R.when(fact.user.symptoms.wheeze === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WHEEZE' : 'FI-ASK-WHEEZE';
@@ -122,7 +122,7 @@ const ask_wheeze = {
 const ask_belly_swell = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.belly_swell == 0);
+		R.when(fact.user.symptoms.belly_swell === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BELLY_SWELL' : 'FI-ASK-BELLY_SWELL';
@@ -133,7 +133,7 @@ const ask_belly_swell = {
 const ask_cyanosis = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.cyanosis == 0);
+		R.when(fact.user.symptoms.cyanosis === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CYANOSIS' : 'FI-ASK-CYANOSIS';
@@ -144,7 +144,7 @@ const ask_cyanosis = {
 const ask_dysphasia = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.dysphasia == 0);
+		R.when(fact.user.symptoms.dysphasia === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-DYSPHASIA' : 'FI-ASK-DYSPHASIA';
@@ -155,7 +155,7 @@ const ask_dysphasia = {
 const ask_faint = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.faint == 0);
+		R.when(fact.user.symptoms.faint === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FAINT' : 'FI-ASK-FAINT';
@@ -166,7 +166,7 @@ const ask_faint = {
 const ask_nausea = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.nausea == 0);
+		R.when(fact.user.symptoms.nausea === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NAUSEA' : 'FI-ASK-NAUSEA';
@@ -177,7 +177,7 @@ const ask_nausea = {
 const ask_phlegm_red = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_red == 0);
+		R.when(fact.user.symptoms.phlegm_red === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_RED' : 'FI-ASK-PHLEGM_RED';
@@ -188,7 +188,7 @@ const ask_phlegm_red = {
 const ask_weakness = {
 	priority: 5,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.weakness == 0);
+		R.when(fact.user.symptoms.weakness === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WEAKNESS' : 'FI-ASK-WEAKNESS';
@@ -199,7 +199,7 @@ const ask_weakness = {
 const ask_blurry = {
 	priority: 4,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.blurry == 0);
+		R.when(fact.user.symptoms.blurry === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BLURRY' : 'FI-ASK-BLURRY';
@@ -210,7 +210,7 @@ const ask_blurry = {
 const ask_colds = {
 	priority: 4,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.colds == 0);
+		R.when(fact.user.symptoms.colds === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-COLDS' : 'FI-ASK-COLDS';
@@ -221,7 +221,7 @@ const ask_colds = {
 const ask_weightloss = {
 	priority: 4,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.weightloss == 0);
+		R.when(fact.user.symptoms.weightloss === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WEIGHTLOSS' : 'FI-ASK-WEIGHTLOSS';
@@ -232,7 +232,7 @@ const ask_weightloss = {
 const ask_abdomen_pain = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.abdomen_pain == 0);
+		R.when(fact.user.symptoms.abdomen_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-ABDOMEN_PAIN' : 'FI-ASK-ABDOMEN_PAIN';
@@ -243,7 +243,7 @@ const ask_abdomen_pain = {
 const ask_anxiety = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.anxiety == 0);
+		R.when(fact.user.symptoms.anxiety === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-ANXIETY' : 'FI-ASK-ANXIETY';
@@ -254,7 +254,7 @@ const ask_anxiety = {
 const ask_appetite_loss = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.appetite_loss == 0);
+		R.when(fact.user.symptoms.appetite_loss === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-APPETITE_LOSS' : 'FI-ASK-APPETITE_LOSS';
@@ -265,7 +265,7 @@ const ask_appetite_loss = {
 const ask_tachypnea = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.tachypnea == 0);
+		R.when(fact.user.symptoms.tachypnea === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-TACHYPNEA' : 'FI-ASK-TACHYPNEA';
@@ -276,7 +276,7 @@ const ask_tachypnea = {
 const ask_chills = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.chills == 0);
+		R.when(fact.user.symptoms.chills === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHILLS' : 'FI-ASK-CHILLS';
@@ -287,7 +287,7 @@ const ask_chills = {
 const ask_confusion = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.confusion == 0);
+		R.when(fact.user.symptoms.confusion === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CONFUSION' : 'FI-ASK-CONFUSION';
@@ -298,7 +298,7 @@ const ask_confusion = {
 const ask_hoarseness = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.hoarseness == 0);
+		R.when(fact.user.symptoms.hoarseness === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-HOARSENESS' : 'FI-ASK-HOARSENESS';
@@ -309,7 +309,7 @@ const ask_hoarseness = {
 const ask_phlegm_clear = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_clear == 0);
+		R.when(fact.user.symptoms.phlegm_clear === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_CLEAR' : 'FI-ASK-PHLEGM_CLEAR';
@@ -320,7 +320,7 @@ const ask_phlegm_clear = {
 const ask_phlegm_green = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_green == 0);
+		R.when(fact.user.symptoms.phlegm_green === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_GREEN' : 'FI-ASK-PHLEGM_GREEN';
@@ -331,7 +331,7 @@ const ask_phlegm_green = {
 const ask_phlegm_white = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.phlegm_white == 0);
+		R.when(fact.user.symptoms.phlegm_white === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PHLEGM_WHITE' : 'FI-ASK-PHLEGM_WHITE';
@@ -342,7 +342,7 @@ const ask_phlegm_white = {
 const ask_weightgain = {
 	priority: 3,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.weightgain == 0);
+		R.when(fact.user.symptoms.weightgain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-WEIGHTGAIN' : 'FI-ASK-WEIGHTGAIN';
@@ -353,7 +353,7 @@ const ask_weightgain = {
 const ask_arm_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.arm_pain == 0);
+		R.when(fact.user.symptoms.arm_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-ARM_PAIN' : 'FI-ASK-ARM_PAIN';
@@ -364,7 +364,7 @@ const ask_arm_pain = {
 const ask_back_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.back_pain == 0);
+		R.when(fact.user.symptoms.back_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BACK_PAIN' : 'FI-ASK-BACK_PAIN';
@@ -375,7 +375,7 @@ const ask_back_pain = {
 const ask_bone_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.bone_pain == 0);
+		R.when(fact.user.symptoms.bone_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BONE_PAIN' : 'FI-ASK-BONE_PAIN';
@@ -386,7 +386,7 @@ const ask_bone_pain = {
 const ask_chest_tight = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.chest_tight == 0);
+		R.when(fact.user.symptoms.chest_tight === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHEST_TIGHT' : 'FI-ASK-CHEST_TIGHT';
@@ -397,7 +397,7 @@ const ask_chest_tight = {
 const ask_heartburn = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.heartburn == 0);
+		R.when(fact.user.symptoms.heartburn === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-HEARTBURN' : 'FI-ASK-HEARTBURN';
@@ -408,7 +408,7 @@ const ask_heartburn = {
 const ask_mouth_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.mouth_pain == 0);
+		R.when(fact.user.symptoms.mouth_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-MOUTH_PAIN' : 'FI-ASK-MOUTH_PAIN';
@@ -419,7 +419,7 @@ const ask_mouth_pain = {
 const ask_muscle_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.muscle_pain == 0);
+		R.when(fact.user.symptoms.muscle_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-MUSCLE_PAIN' : 'FI-ASK-MUSCLE_PAIN';
@@ -430,7 +430,7 @@ const ask_muscle_pain = {
 const ask_neck_shoulder_pain = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.neck_shoulder_pain == 0);
+		R.when(fact.user.symptoms.neck_shoulder_pain === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NECK_SHOULDER_PAIN' : 'FI-ASK-NECK_SHOULDER_PAIN';
@@ -441,7 +441,7 @@ const ask_neck_shoulder_pain = {
 const ask_neck_swell = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.neck_swell == 0);
+		R.when(fact.user.symptoms.neck_swell === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NECK_SWELL' : 'FI-ASK-NECK_SWELL';
@@ -452,7 +452,7 @@ const ask_neck_swell = {
 const ask_neck_tight = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.neck_tight == 0);
+		R.when(fact.user.symptoms.neck_tight === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NECK_TIGHT' : 'FI-ASK-NECK_TIGHT';
@@ -463,7 +463,7 @@ const ask_neck_tight = {
 const ask_r_infections = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.r_infections == 0);
+		R.when(fact.user.symptoms.r_infections === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-R_INFECTIONS' : 'FI-ASK-R_INFECTIONS';
@@ -474,7 +474,7 @@ const ask_r_infections = {
 const ask_sleep_hard = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.sleep_hard == 0);
+		R.when(fact.user.symptoms.sleep_hard === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-SLEEP_HARD' : 'FI-ASK-SLEEP_HARD';
@@ -485,7 +485,7 @@ const ask_sleep_hard = {
 const ask_urine_blood = {
 	priority: 2,
 	condition: (R, fact) => {
-		R.when(fact.user.symptoms.urine_blood == 0);
+		R.when(fact.user.symptoms.urine_blood === '');
 	},
 	consequence: (R, fact) => {
 		fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-URINE_BLOOD' : 'FI-ASK-URINE_BLOOD';
@@ -544,15 +544,3 @@ const applyRules = (R) => {
 module.exports = {
 	applyRules
 };
-
-
-// const askShortBreath = {
-// 	priority: 1,
-// 	condition: (R, fact) => {
-// 		R.when(fact.user.symptoms.fever == 0);
-// 	},
-// 	consequence: (R, fact) => {
-// 		fact.agent.next_action = (fact.user.language === 'EN') ? 'EN.ASK.FEVER' : 'FI.ASK.FEVER';
-// 		R.stop();
-// 	}
-// };

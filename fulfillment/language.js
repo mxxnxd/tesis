@@ -15,7 +15,7 @@ const en_get_language = async (agent) => {
 	const senderID = util.getSenderID(agent);
 	userLangMap.set(senderID, agent.parameters.language); 
 
-	agent.add(`Great! I see your selected language is ${agent.parameters.language} am I correct?`);
+	agent.add(`Great! I see your selected language is ${agent.parameters.language} am I correct?`);	
 };
 
 const en_get_language_yes = async (agent) => {

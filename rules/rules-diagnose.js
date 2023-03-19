@@ -272,7 +272,7 @@ const diagnose_valve_disease = {
 	}
 };
 
-const diagnose_cardiomyopathy= {
+const diagnose_cardiomyopathy = {
 	priority: rulePriority,
 	condition: (R, fact) => {
 		const S = fact.user.symptoms;
@@ -298,7 +298,7 @@ const diagnose_cardiomyopathy= {
 	}
 };
 
-const diagnose_myocardial_infarction= {
+const diagnose_myocardial_infarction = {
 	priority: rulePriority,
 	condition: (R, fact) => {
 		const S = fact.user.symptoms;

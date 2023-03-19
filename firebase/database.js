@@ -38,6 +38,11 @@ const updateUser = (id, json) => {
 	ref.update(json);
 };
 
+const updateSymptom = (id, json) => {
+	var ref = db.ref(`users/${id}/symptoms`);
+	ref.update(json);
+};
+
 const closeDB = () => {
 	db.goOffline();
 	app.delete();
@@ -55,6 +60,7 @@ module.exports = {
 	deleteUser,
 	updateUser,
 	createUser,
+	updateSymptom,
 	closeDB
 };
 
