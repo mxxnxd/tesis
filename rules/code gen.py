@@ -45,16 +45,28 @@ end = '}'
 with open('code.js', 'w') as f:
 
   for symp, num in sorted(list(zip(stuff, count)), key=lambda x: x[1], reverse=True):
-    f.write(f"const ask_{symp} = {start}\n")
-    f.write(f"\tpriority: {num + 1},\n")
-    f.write(f"\tcondition: (R, fact) => {start}\n")
-    f.write(f"\t\tR.when(fact.user.symptoms.{symp} == 0);\n")
-    f.write(f"\t{end},\n")
-    f.write(f"\tconsequence: (R, fact) => {start}\n")
+
+    f.write(f"const ask{symp.capitalize()} = (R, fact) => {start}\n")
+    f.write(f"\tconst S = fact.user.symptoms;\n")
+    f.write(f"\tconst G = fact.user.group;\n")
+    f.write(f"\n")
+    f.write(f"\tif (S.{symp} === '') {start}\n")
     f.write(f"\t\tfact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-{symp.upper()}' : 'FI-ASK-{symp.upper()}';\n")
-    f.write(f"\t\tR.stop();\n")
+    f.write(f"\t\treturn true;\n")
     f.write(f"\t{end}\n")
+    f.write(f"\treturn false;\n")
     f.write(f"{end};\n\n")
+
+    # f.write(f"const ask_{symp} = {start}\n")
+    # f.write(f"\tpriority: {num + 1},\n")
+    # f.write(f"\tcondition: (R, fact) => {start}\n")
+    # f.write(f"\t\tR.when(fact.user.symptoms.{symp} == 0);\n")
+    # f.write(f"\t{end},\n")
+    # f.write(f"\tconsequence: (R, fact) => {start}\n")
+    # f.write(f"\t\tfact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-{symp.upper()}' : 'FI-ASK-{symp.upper()}';\n")
+    # f.write(f"\t\tR.stop();\n")
+    # f.write(f"\t{end}\n")
+    # f.write(f"{end};\n\n")
 
   f.write(f"\n\n\n")
 
@@ -66,6 +78,19 @@ with open('code.js', 'w') as f:
 
   for symp in stuff:
     f.write(f"R.register(ask_{symp});\n")
+
+
+
+# const askChestPain = (R, fact) => {
+#   const S = fact.user.symptoms;
+#   const G = fact.user.group;
+
+#   if (S.chest_pain === '') {
+#     fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHEST_PAIN' : 'FI-ASK-CHEST_PAIN';
+#     return true;
+#   }
+#   return false;
+# };
 
 # const ask_fever = {
 #   priority: 1,

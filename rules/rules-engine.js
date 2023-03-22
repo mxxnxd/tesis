@@ -1,13 +1,13 @@
 const {RuleEngine} = require('node-rules');
-const rules_ask = require('./rules-ask'); 
 const rules_diagnose = require('./rules-diagnose'); 
 const rules_symptom = require('./rules-symptom');
+
+const prompt = require("prompt-sync")({ sigint: '' });
 
 // Rule Engine
 const R = new RuleEngine();
 
 // Ruleset
-rules_ask.applyRules(R);
 rules_diagnose.applyRules(R);
 rules_symptom.applyRules(R);
 
@@ -28,74 +28,132 @@ module.exports = {
 	getAction
 };
 
+
+// CLI MODE Rules Engine
 const main = async () => {
-	let fact = {
+	var req = {
 		user: {
 			name: 'Steven Castro',
-			language: 'EN',
+			language: 'ENGLISH',
 			symptoms: {
-				abdomen_pain: null, 
-				anxiety: null, 
-				appetite_loss: null, 
-				arm_pain: null, 
-				back_pain: null, 
-				belly_swell: null, 
-				blurry: null, 
-				bone_pain: null, 
-				tachypnea: null, 
-				chest_pain: false, 
-				chest_tight: null, 
-				chills: null, 
-				colds: true, 
-				confusion: null, 
-				cough: true, 
-				cyanosis: false, 
-				dizzy: true, 
-				dysphasia: null, 
-				dyspnea: true, 
-				faint: null, 
-				fatigue: true, 
-				fever: false, 
-				headaches: false, 
-				heartburn: null, 
-				hoarseness: null, 
-				legs_swell: null, 
-				mouth_pain: null, 
-				muscle_pain: null, 
-				nausea: null, 
-				neck_shoulder_pain: null, 
-				neck_swell: null, 
-				neck_tight: null, 
-				pale_sweat: null, 
-				phlegm_clear: false, 
-				phlegm_green: null, 
-				phlegm_red: null, 
-				phlegm_white: null, 
-				r_infections: null, 
-				sleep_hard: null, 
-				tachycardia: true, 
-				urine_blood: null,
-				weakness: null, 
-				weightgain: null, 
-				weightloss: null, 
-				wheeze: true 
+				abdomen_pain: '', 
+				anxiety: '', 
+				appetite_loss: '', 
+				arm_pain: '', 
+				back_pain: '', 
+				belly_swell: '', 
+				blurry: '', 
+				bone_pain: '', 
+				tachypnea: '', 
+				chest_pain: '', 
+				chest_tight: '', 
+				chills: '', 
+				colds: '', 
+				confusion: '', 
+				cough: '', 
+				cyanosis: '', 
+				dizzy: '', 
+				dysphasia: '', 
+				dyspnea: '', 
+				faint: '', 
+				fatigue: '', 
+				fever: '', 
+				headaches: '', 
+				heartburn: '', 
+				hoarseness: '', 
+				legs_swell: '', 
+				mouth_pain: '', 
+				muscle_pain: '', 
+				nausea: '', 
+				neck_shoulder_pain: '', 
+				neck_swell: '', 
+				neck_tight: '', 
+				pale_sweat: '', 
+				phlegm_clear: '', 
+				phlegm_green: '', 
+				phlegm_red: '', 
+				phlegm_white: '', 
+				r_infections: '', 
+				sleep_hard: '', 
+				tachycardia: '', 
+				urine_blood: '',
+				weakness: '', 
+				weightgain: '', 
+				weightloss: '', 
+				wheeze: '' 
 			},
 			diagnosis: {
-				illness: null,
-				severity: null
+				illness: '',
+				severity: ''
+			},
+			group: {
+				phlegm: ''
 			}
 		},
-		agent: {
-			prev_action: null,	
-			next_action: null
-		},
-		group: {
-			phlegm: false
+		agent: {	
+			next_action: ''
 		}
 	};
 
-	let res = await getAction(fact);
-	console.log(res);
+	var memory = '';
+	var auto = '';
+	var n = auto.length;
+
+	if (auto.length < 1) {
+		while (req.user.diagnosis.illness === '') {
+			var res = await getAction(req);
+			req = res;
+
+			var n = prompt(`${res.agent.next_action}: `);
+			if (res.agent.next_action === 'EN.DIAGNOSE.UNABLE_TO_DIAGNOSE') { break; }
+			var key = res.agent.next_action.split('-')[2].toLowerCase();
+
+			// Input
+			if (n === 'y') {
+				res['user']['symptoms'][	key] = true;
+				memory += 'y';
+			} else if (n === 'n') {
+				res['user']['symptoms'][key] = false;
+				memory += 'n';
+			} else {
+				break;
+			}
+
+			console.log(`> STATUS: ${res.agent.status} | ${res.user.diagnosis.illness} | ${res.user.diagnosis.severity}`)
+			req.agent.next_action = '';
+		}
+		console.log('===== ===== ===== ===== ===== ===== ===== ===== ===== =====')
+		console.log(memory);
+		console.log('===== ===== ===== ===== ===== ===== ===== ===== ===== =====')		
+	} else {
+		for (i = 0; i < n + 1; i++) {
+			var res = await getAction(req);
+			req = res;		
+
+			console.log(`${res.agent.next_action}: ${auto[i]}`)
+			if (res.agent.next_action === 'EN.DIAGNOSE.UNABLE_TO_DIAGNOSE') { break; }
+			var key = res.agent.next_action.split('-')[2].toLowerCase();
+			
+			// Input
+			if (auto[i] === 'y') {
+				res['user']['symptoms'][key] = true;
+				memory += 'y';
+			} else if (auto[i] === 'n') {
+				res['user']['symptoms'][key] = false;
+				memory += 'n';
+			} else {
+				break;
+			}
+
+			console.log(`> STATUS: ${res.agent.status} | ${res.user.diagnosis.illness} | ${res.user.diagnosis.severity}`)
+			req.agent.next_action = '';
+		}
+		console.log(`> STATUS: ${res.agent.status} | ${res.user.diagnosis.illness} | ${res.user.diagnosis.severity}`)
+		console.log('===== ===== ===== ===== ===== ===== ===== ===== ===== =====')
+		console.log(res.user.symptoms);
+	}
 };
 
-// main();
+main();
+
+// 'yynnyynnynynnnny'
