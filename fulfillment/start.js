@@ -69,7 +69,7 @@ const en_start_checkup = async (agent) => {
 
 	} else {
 		// Set Default Facts
-		await db.updateUser(senderID, {symptoms: default_symptoms, diagnosis: {illness: 0, severity: 0}, group: {phlegm: false}});
+		await db.updateUser(senderID, {symptoms: default_symptoms, diagnosis: {illness: 0, severity: 0}, group: {phlegm: '', swell: '', vertigo: '', hectic_fever: ''}});
 		util.triggerEvent(agent, 'EN-ASK-SYMPTOM');
 	}
 };

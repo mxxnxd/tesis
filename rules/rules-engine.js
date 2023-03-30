@@ -2,10 +2,14 @@ const {RuleEngine} = require('node-rules');
 const rules_diagnose = require('./rules-diagnose'); 
 const rules_symptom = require('./rules-symptom');
 
+
 const prompt = require("prompt-sync")({ sigint: '' });
 
 // Rule Engine
-const R = new RuleEngine();
+var R = new RuleEngine();
+R.ignoreFactChanges = true;
+
+
 
 // Ruleset
 rules_diagnose.applyRules(R);
@@ -31,6 +35,10 @@ module.exports = {
 
 // CLI MODE Rules Engine
 const main = async () => {
+	const db = require('../firebase/database.js'); // Database Manager
+
+
+
 	var req = {
 		user: {
 			name: 'Steven Castro',
@@ -87,17 +95,25 @@ const main = async () => {
 				severity: ''
 			},
 			group: {
-				phlegm: ''
+				phlegm: '',
+				hectic_fever: '',
+				vertigo: '',
+				swell: ''
 			}
 		},
 		agent: {	
 			next_action: ''
-		}
+		},
+		rules: await db.getDisease()
 	};
 
 	var memory = '';
 	var auto = '';
 	var n = auto.length;
+
+
+	// console.log(R);
+	// return;
 
 	if (auto.length < 1) {
 		while (req.user.diagnosis.illness === '') {

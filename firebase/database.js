@@ -43,17 +43,26 @@ const updateSymptom = (id, json) => {
 	ref.update(json);
 };
 
+const getDisease = () => {
+	var ref = db.ref(`diseases`);
+
+	return new Promise((resolve, reject) => {
+		ref.once('value', (snapshot) => {
+			resolve(snapshot.val());
+		});
+	});
+};
+
 const closeDB = () => {
 	db.goOffline();
 	app.delete();
 };
 
 const main = async () => {
-	var user = await getUser(111592548458632222);
-	// user.language = 'English';
-	// createUser(11159254843333, user);
-	console.log(user);
-};
+	// ref.set(diseases);
+	// var data = await getDisease('asthma');
+	// console.log(data);
+}
 
 module.exports = {
 	getUser,
@@ -61,7 +70,8 @@ module.exports = {
 	updateUser,
 	createUser,
 	updateSymptom,
-	closeDB
+	closeDB,
+	getDisease
 };
 
 // main();

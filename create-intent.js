@@ -1,8 +1,8 @@
 const manager = require('./intent-manager');
 
 const main = async () => {
-	const start = 64
-	const end = 65
+	const start = 77
+	const end = 78
 
 	// Load Intent Data
 	const intents = await manager.loadIntentCSV();

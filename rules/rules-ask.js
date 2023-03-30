@@ -26,6 +26,55 @@ const askPhlegm = (R, fact) => {
 	return false;
 };
 
+const askHecticFever = (R, fact) => {
+	const S = fact.user.symptoms;
+	const G = fact.user.group;
+
+	if (G.hectic_fever === '') { 
+		if (S.fever === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FEVER' : 'FI-ASK-FEVER';	
+		} else if (S.pale_sweat === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-PALE_SWEAT' : 'FI-ASK-PALE_SWEAT';
+		} else if (S.chills === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-CHILLS' : 'FI-ASK-CHILLS';
+		}
+		return true;
+	}
+	return false;
+};
+
+const askVertigo = (R, fact) => {
+	const S = fact.user.symptoms;
+	const G = fact.user.group;
+
+	if (G.vertigo === '') { 
+		if (S.dizzy === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-DIZZY' : 'FI-ASK-DIZZY';
+		} else if (S.nausea === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-NAUSEA' : 'FI-ASK-NAUSEA';	
+		} else if (S.faint === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-FAINT' : 'FI-ASK-FAINT';
+		}
+		return true;
+	}
+	return false;
+};
+
+const askSwell = (R, fact) => {
+	const S = fact.user.symptoms;
+	const G = fact.user.group;
+
+	if (G.swell === '') { 
+		if (S.legs_swell === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-LEGS_SWELL' : 'FI-ASK-LEGS_SWELL';
+		} else if (S.belly_swell === '') {
+			fact.agent.next_action = (fact.user.language === 'ENGLISH') ? 'EN-ASK-BELLY_SWELL' : 'FI-ASK-BELLY_SWELL';	
+		} 
+		return true;
+	}
+	return false;
+};
+
 const askChestPain = (R, fact) => {
 	const S = fact.user.symptoms;
 	const G = fact.user.group;
@@ -521,6 +570,59 @@ const askUrineBlood = (R, fact) => {
 	return false;
 };
 
+// Mapped Functions
+const questionMap = {
+	abdomen_pain: askAbdomenPain, 
+	anxiety: askAnxiety, 
+	appetite_loss: askAppetiteLoss, 
+	arm_pain: askArmPain, 
+	back_pain: askBackPain, 
+	belly_swell: askBellySwell, 
+	blurry: askBlurry, 
+	bone_pain: askBonePain, 
+	tachypnea: askTachypnea, 
+	chest_pain: askChestPain, 
+	chest_tight: askChestTight, 
+	chills: askChills, 
+	colds: askColds, 
+	confusion: askConfusion, 
+	cough: askCough, 
+	cyanosis: askCyanosis, 
+	dizzy: askDizzy, 
+	dysphasia: askDysphasia, 
+	dyspnea: askDyspnea, 
+	faint: askFaint,
+	fatigue: askFatigue, 
+	fever: askFever, 
+	headaches: askHeadaches, 
+	heartburn: askHeartburn,
+	hectic_fever: askHecticFever, 
+	hoarseness: askHoarseness, 
+	legs_swell: askLegsSwell, 
+	mouth_pain: askMouthPain, 
+	muscle_pain: askMusclePain, 
+	nausea: askNausea, 
+	neck_shoulder_pain: askNeckShoulderPain, 
+	neck_swell: askNeckSwell, 
+	neck_tight: askNeckTight, 
+	pale_sweat: askPaleSweat, 
+	phlegm: askPhlegm,
+	phlegm_clear: askPhlegmClear, 
+	phlegm_green: askPhlegmGreen, 
+	phlegm_red: askPhlegmRed, 
+	phlegm_white: askPhlegmWhite, 
+	r_infections: askRInfections, 
+	sleep_hard: askSleepHard, 
+	swell: askSwell,
+	tachycardia: askTachycardia, 
+	urine_blood: askUrineBlood,
+	vertigo: askVertigo,
+	weakness: askWeakness, 
+	weightgain: askWeightgain, 
+	weightloss: askWeightloss, 
+	wheeze: askWheeze 
+};
+
 module.exports = {
 	askPhlegm,
 	askChestPain,
@@ -569,5 +671,8 @@ module.exports = {
 	askSleepHard,
 	askUrineBlood,
 	askPhlegm,
-	askChestPain
+	askChestPain,
+	askVertigo,
+	askHecticFever,
+	questionMap
 };

@@ -9,13 +9,15 @@ const db = require('../firebase/database.js');
 /* ========== ========== ========== ========== ========== ========== ========== */
 
 var userSympMap = new Map();
+var diseaseRules;
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
 const en_get_symptom = async (agent) => {
 	const senderID = util.getSenderID(agent);
 	var user = await db.getUser(senderID);
-	var fact = {user: user, agent: {next_action: 0}};
+	diseaseRules = await db.getDisease();
+	var fact = {user: user, agent: {next_action: ''}, rules: diseaseRules};
 
 	// Get First Action from Rules-Engine
 	const res = await rule.getAction(fact);
@@ -35,8 +37,8 @@ const en_get_symptom_yes = async (agent) => {
 	await db.updateSymptom(senderID, edit);
 
 	var user = await db.getUser(senderID);
-	var fact = {user: user, agent: {next_action: 0}};
-
+	var fact = {user: user, agent: {next_action: ''}, rules: diseaseRules};
+ 	
 	// Get Next Action from Rules-Engine
 	const res = await rule.getAction(fact);
 
@@ -56,7 +58,7 @@ const en_get_symptom_no = async (agent) => {
 	await db.updateSymptom(senderID, edit);
 
 	var user = await db.getUser(senderID);
-	var fact = {user: user, agent: {next_action: 0}};
+	var fact = {user: user, agent: {next_action: ''}, rules: diseaseRules};
 
 	// Get Next Action from Rules-Engine
 	const res = await rule.getAction(fact);

@@ -76,3 +76,4 @@ en.diagnose.valve_disease,,VALVE DISEASE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-VALVE_DISE
 en.diagnose.cardiomyopathy,,CARDIOMYOPATHY,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-CARDIOMYOPATHY
 en.diagnose.myocardial_infarction,,MYOCARDIAL INFARCTION,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-MYOCARDIAL_INFARCTION
 en.diagnose.aneurysm,,ANEURYSM,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-ANEURYSM
+en.diagnose.unable_to_diagnose,,CAN'T DIAGNOSE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-UNABLE_TO_DIAGNOSE
