@@ -81,10 +81,8 @@ const en_start_question = async (agent) => {
 		util.triggerEvent(agent, 'EN-ASK-LANGUAGE');
 
 	} else {
-		util.triggerEvent(agent, 'EN-GET-QUESTION');
-
-		// QUERY LOGIC	
-
+		util.setContexts(agent, ['PH-QUERY'], [3]);
+		agent.add('Alright! what question do you have for me?');
 	}
 };
 

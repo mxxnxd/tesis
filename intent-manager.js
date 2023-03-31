@@ -204,21 +204,36 @@ const formatJSON = (json) => {
 	json.entity_phrases = json.entity_phrases.split(',');
     json.entity_phrases.forEach(phrase => {
     	if (phrase.length > 0) {
-    		let temp = phrase.split(':');
-    		let temp2 = (temp[1].includes('.')) ? (temp[1].split('.')) : (temp[1].split('-'));
-	        const part = {
-	        	text: temp[0],
-	        	entityType: `@${temp[1]}`,
-	        	alias: temp2[1], 
-	        	userDefined: true
-	        };
-	        const trainingPhrase = {
+   	        let trainingPhrase = {
             	type: 'EXAMPLE',
-            	parts: [part]
-        	};
+            	parts: [] //part
+        	}; 		
+
+        	let phrase_parts = phrase.split('/');
+        	phrase_parts.forEach(phrase_part => {
+        		// Check if Phrase (Part) is an Entity Parameter	
+        		if (phrase_part[0] === '@') {		
+        			let parameter = phrase_part.substring(1);
+        			let temp = parameter.split(':'); 
+        			let temp2 = (temp[1].includes('.')) ? (temp[1].split('.')) : (temp[1].split('-'));
+
+		        	const part = {
+			        	text: temp[0],
+			        	entityType: `@${temp[1]}`,
+			        	alias: temp2[1], 
+			        	userDefined: true
+			        };
+			        trainingPhrase.parts.push(part);
+        		} else {
+			        const part = {
+			        	text: phrase_part
+			        };
+			        trainingPhrase.parts.push(part);
+        		}
+        	});
         	trainingPhrases.push(trainingPhrase);
     	}
-    });	    
+    });	       
 
     // Training Phrases
     json.training_phrases = json.training_phrases.split(',');    

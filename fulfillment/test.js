@@ -12,9 +12,12 @@ const util = require('./utility.js');
 
 const dv_webhook = async (agent) => {
 
-	console.log(agent.request_.body.originalDetectIntentRequest.payload.data);
+	// console.log(agent.request_.body.originalDetectIntentRequest.payload.data);
 
-	util.triggerEvent(agent, 'EN-DIAGNOSE-UNABLE_TO_DIAGNOSE');
+	// util.triggerEvent(agent, 'EN-DIAGNOSE-UNABLE_TO_DIAGNOSE');
+
+
+	console.log(agent.parameters);
 
 	agent.add("Webhook!");
 };

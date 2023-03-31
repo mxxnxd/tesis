@@ -2,14 +2,9 @@ const {RuleEngine} = require('node-rules');
 const rules_diagnose = require('./rules-diagnose'); 
 const rules_symptom = require('./rules-symptom');
 
-
-const prompt = require("prompt-sync")({ sigint: '' });
-
 // Rule Engine
 var R = new RuleEngine();
 R.ignoreFactChanges = true;
-
-
 
 // Ruleset
 rules_diagnose.applyRules(R);
@@ -32,12 +27,10 @@ module.exports = {
 	getAction
 };
 
-
 // CLI MODE Rules Engine
 const main = async () => {
+	const prompt = require("prompt-sync")({ sigint: '' });
 	const db = require('../firebase/database.js'); // Database Manager
-
-
 
 	var req = {
 		user: {
@@ -111,10 +104,6 @@ const main = async () => {
 	var auto = '';
 	var n = auto.length;
 
-
-	// console.log(R);
-	// return;
-
 	if (auto.length < 1) {
 		while (req.user.diagnosis.illness === '') {
 			var res = await getAction(req);
@@ -170,6 +159,6 @@ const main = async () => {
 	}
 };
 
-main();
+// main();
 
 // 'yynnyynnynynnnny'

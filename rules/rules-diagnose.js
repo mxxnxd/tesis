@@ -28,8 +28,6 @@ const VALVEDISEASE = 'VALVE_DISEASE';
 const MYOCARDIALINFARCTION = 'MYOCARDIAL_INFARCTION';
 const ANEURYSM = 'ANEURYSM';
 
-
-
 const diagnoseCOPD = {
 	priority: priorityLevel,
 	condition: (R, fact) => {	
