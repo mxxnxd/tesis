@@ -8,6 +8,7 @@ const ff_term = require('./fulfillment/terms.js');
 const ff_start = require('./fulfillment/start.js');
 const ff_symp = require('./fulfillment/symptoms.js');
 const ff_query = require('./fulfillment/question.js');
+const ff_diag = require('./fulfillment/diagnose.js');
 
 app.post('/webhook', express.json(), (req, res) => {
 	// Instantiate Agent
@@ -35,6 +36,22 @@ app.post('/webhook', express.json(), (req, res) => {
 	intentMap.set('en.get.symptom.no', ff_symp.en_get_symptom_no);
 
 	intentMap.set('en.get.question', ff_query.en_get_question);
+
+	intentMap.set('en.diagnose.copd', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.asthma', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.pneumonia', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.lung_cancer', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.tuberculosis', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.heart_failure', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.hyptertension', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.coronary_artery_disease', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.arrhythmia', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.valve_disease', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.cardiomyopathy', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.myocardial_infarction', ff_diag.en_start_diagnose);
+	intentMap.set('en.diagnose.aneurysm', ff_diag.en_start_diagnose);
+
+	intentMap.set('en.give.diagnose', ff_diag.en_give_diagnose);
 	
 	agent.handleRequest(intentMap);
 });

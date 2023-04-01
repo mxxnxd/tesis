@@ -73,20 +73,20 @@ en.ask.weakness,,Have you been feeling weak recently?,,,"PH-CHECK:3, CX-CFM-SYMP
 en.ask.weightgain,,Have you gained weight?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTGAIN
 en.ask.weightloss,,Have you lost weight?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WEIGHTLOSS
 en.ask.wheeze,,Have you been wheezing?,,,"PH-CHECK:3, CX-CFM-SYMP:3",0,,,,EN-ASK-WHEEZE
-en.diagnose.copd,,COPD,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-COPD
-en.diagnose.asthma,,ASTHMA,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-ASTHMA
-en.diagnose.pneumonia,,PNEUMONIA,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-PNEUMONIA
-en.diagnose.lung_cancer,,LUNG CANCER,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-LUNG_CANCER
-en.diagnose.tuberculosis,,TUBERCULOSIS,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-TUBERCULOSIS
-en.diagnose.heart_failure,,HEART FAILURE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-HEART_FAILURE
-en.diagnose.hypertension,,HYPERTENSIOn,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-HYPERTENSION
-en.diagnose.coronary_artery_disease,,CORONARY ARTERY DISEASE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-CORONARY_ARTERY_DISEASE
-en.diagnose.arrhythmia,,ARRHYTHMIA,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-ARRHYTHMIA
-en.diagnose.valve_disease,,VALVE DISEASE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-VALVE_DISEASE
-en.diagnose.cardiomyopathy,,CARDIOMYOPATHY,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-CARDIOMYOPATHY
-en.diagnose.myocardial_infarction,,MYOCARDIAL INFARCTION,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-MYOCARDIAL_INFARCTION
-en.diagnose.aneurysm,,ANEURYSM,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-ANEURYSM
-en.diagnose.unable_to_diagnose,,CAN'T DIAGNOSE,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-UNABLE_TO_DIAGNOSE
+en.diagnose.copd,,,,,PH-DIAG:3,0,,,,EN-DIAGNOSE-COPD
+en.diagnose.asthma,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-ASTHMA
+en.diagnose.pneumonia,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-PNEUMONIA
+en.diagnose.lung_cancer,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-LUNG_CANCER
+en.diagnose.tuberculosis,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-TUBERCULOSIS
+en.diagnose.heart_failure,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-HEART_FAILURE
+en.diagnose.hypertension,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-HYPERTENSION
+en.diagnose.coronary_artery_disease,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-CORONARY_ARTERY_DISEASE
+en.diagnose.arrhythmia,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-ARRHYTHMIA
+en.diagnose.valve_disease,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-VALVE_DISEASE
+en.diagnose.cardiomyopathy,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-CARDIOMYOPATHY
+en.diagnose.myocardial_infarction,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-MYOCARDIAL_INFARCTION
+en.diagnose.aneurysm,,,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-ANEURYSM
+en.diagnose.unable_to_diagnose,,CAN'T DIAGNOSE,,,PH-DIAG:3,1,,,,EN-DIAGNOSE-UNABLE_TO_DIAGNOSE
 en.get.question,,,,PH-QUERY,PH-QUERY:3,1,"bot-disease, bot-query_type",?,"/@Common:bot-query_type/ symptoms of /@COPD:bot-disease,
 /@Other:bot-query_type/ symptoms of /@COPD:bot-disease,
 /@Severe:bot-query_type/ symptoms of /@COPD:bot-disease,
@@ -150,4 +150,69 @@ en.get.question,,,,PH-QUERY,PH-QUERY:3,1,"bot-disease, bot-query_type",?,"/@Comm
 /@What is:bot-query_type/ /@Cardiomyopathy:bot-disease,
 /@What is:bot-query_type/ /@Valve Disease:bot-disease,
 /@What is:bot-query_type/ /@Myocardial Infarction:bot-disease,
-/@What is:bot-query_type/ /@Aneurysm:bot-disease",
+/@What is:bot-query_type/ /@Aneurysm:bot-disease,
+/@What is:bot-query_type/ /@Abdomen Pain:bot-symptom,
+/@What is:bot-query_type/ /@Abodiminal Pain:bot-symptom,
+/@What is:bot-query_type/ /@AnxietyAppetite Loss:bot-symptom,
+/@What is:bot-query_type/ /@Loss of Appetite:bot-symptom,
+/@What is:bot-query_type/ /@Anorexia:bot-symptom,
+/@What is:bot-query_type/ /@Arm Pain:bot-symptom,
+/@What is:bot-query_type/ /@Back Pain:bot-symptom,
+/@What is:bot-query_type/ /@Belly Swelling:bot-symptom,
+/@What is:bot-query_type/ /@Belly Edema:bot-symptom,
+/@What is:bot-query_type/ /@Blurry:bot-symptom,
+/@What is:bot-query_type/ /@Blury Vision:bot-symptom,
+/@What is:bot-query_type/ /@Bone Pain:bot-symptom,
+/@What is:bot-query_type/ /@Chest Pain:bot-symptom,
+/@What is:bot-query_type/ /@Chest Tight:bot-symptom,
+/@What is:bot-query_type/ /@Chest Tightness:bot-symptom,
+/@What is:bot-query_type/ /@Colds:bot-symptom,
+/@What is:bot-query_type/ /@Confusion:bot-symptom,
+/@What is:bot-query_type/ /@Cough:bot-symptom,
+/@What is:bot-query_type/ /@Cyanosis:bot-symptom,
+/@What is:bot-query_type/ /@Dizzy:bot-symptom,
+/@What is:bot-query_type/ /@Dysphagia:bot-symptom,
+/@What is:bot-query_type/ /@Trouble Swallowing:bot-symptom,
+/@What is:bot-query_type/ /@Dyspnea:bot-symptom,
+/@What is:bot-query_type/ /@Shortness of Breath:bot-symptom,
+/@What is:bot-query_type/ /@Faint:bot-symptom,
+/@What is:bot-query_type/ /@Fainting:bot-symptom,
+/@What is:bot-query_type/ /@Syncope:bot-symptom,
+/@What is:bot-query_type/ /@Fatigue:bot-symptom,
+/@What is:bot-query_type/ /@Fever:bot-symptom,
+/@What is:bot-query_type/ /@Headaches:bot-symptom,
+/@What is:bot-query_type/ /@Heartburn:bot-symptom,
+/@What is:bot-query_type/ /@Hoarseness:bot-symptom,
+/@What is:bot-query_type/ /@Legs Swelling:bot-symptom,
+/@What is:bot-query_type/ /@Leg Edema:bot-symptom,
+/@What is:bot-query_type/ /@Mouth Pain:bot-symptom,
+/@What is:bot-query_type/ /@Muscle Pain:bot-symptom,
+/@What is:bot-query_type/ /@Myalgia:bot-symptom,
+/@What is:bot-query_type/ /@Neck Pain:bot-symptom,
+/@What is:bot-query_type/ /@Shoulder Pain:bot-symptom,
+/@What is:bot-query_type/ /@Neck and Shoulder Pain:bot-symptom,
+/@What is:bot-query_type/ /@Neck Swelling:bot-symptom,
+/@What is:bot-query_type/ /@Neck Edema:bot-symptom,
+/@What is:bot-query_type/ /@Neck Tightness:bot-symptom,
+/@What is:bot-query_type/ /@Pale Sweat:bot-symptom,
+/@What is:bot-query_type/ /@Cold Sweat:bot-symptom,
+/@What is:bot-query_type/ /@Clear Phlegm:bot-symptom,
+/@What is:bot-query_type/ /@Green Phlegm:bot-symptom,
+/@What is:bot-query_type/ /@White Phlegm:bot-symptom,
+/@What is:bot-query_type/ /@Red Phlegm:bot-symptom,
+/@What is:bot-query_type/ /@Respiratory Infections:bot-symptom,
+/@What is:bot-query_type/ /@Trouble Sleeping:bot-symptom,
+/@What is:bot-query_type/ /@Tachycardia:bot-symptom,
+/@What is:bot-query_type/ /@Rapid Heartbeat:bot-symptom,
+/@What is:bot-query_type/ /@Tachypnea:bot-symptom,
+/@What is:bot-query_type/ /@Rapid Breathing:bot-symptom,
+/@What is:bot-query_type/ /@Urine Blood:bot-symptom,
+/@What is:bot-query_type/ /@Bloody Urine:bot-symptom,
+/@What is:bot-query_type/ /@Weakness:bot-symptom,
+/@What is:bot-query_type/ /@Weightgain:bot-symptom,
+/@What is:bot-query_type/ /@Weigntloss:bot-symptom,
+/@What is:bot-query_type/ /@Wheeze:bot-symptom,
+/@What is:bot-query_type/ /@Wheezing:bot-symptom",
+en.thanks,,"Thank you, I will now determine your condition.",Ok,,"PH-DIAG:3, CX-GIV-ILL:3",0,,,,EN-THANKS
+en.start.diagnose,,,,,PH-DIAG:3,1,,,,
+en.give.diagnose,"Ok, Sure, Got It, Okay",,,"PH-DIAG, CX-GIV-ILL",PH-DIAG:3,1,,,,EN-GIVE-DIAGNOSE

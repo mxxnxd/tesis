@@ -14,10 +14,10 @@ const dv_webhook = async (agent) => {
 
 	// console.log(agent.request_.body.originalDetectIntentRequest.payload.data);
 
-	// util.triggerEvent(agent, 'EN-DIAGNOSE-UNABLE_TO_DIAGNOSE');
+	util.triggerEvent(agent, 'EN-DIAGNOSE-COPD');
 
 
-	console.log(agent.parameters);
+	// console.log(agent.parameters);
 
 	agent.add("Webhook!");
 };

@@ -1,15 +1,11 @@
 const util = require('./utility.js');
-const rule = require('../rules/rules-engine.js');
 const db = require('../firebase/database.js');
 
 /*
-	Webhook Functions: Symptom Extraction Intents
+	Webhook Functions: Question Extraction Intents
 */
 
 /* ========== ========== ========== ========== ========== ========== ========== */
-
-var userSympMap = new Map();
-var diseaseRules;
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
@@ -38,6 +34,7 @@ const en_get_question = async (agent) => {
 	} else {
 		var responses = await db.getSymptomResponse(agent.parameters.symptom.toLowerCase());
 		switch (agent.parameters.query_type) {
+			case '':
 			case 'DEFINITION':
 				agent.add(responses['ask_definition']);
 				break;
