@@ -1,2 +1,0 @@
-# Symptom-Checker-Chatbot
-Thesis

@@ -78,12 +78,14 @@ const closeDB = () => {
 	app.delete();
 };
 
-
-
-
 const main = async () => {
 	// const diseases = ['copd', 'asthma', 'pneumonia', 'lung_cancer', 'tuberculosis', 'heart_failure', 'hypertension', 'cad', 'arrhythmia', 'cardiomyopathy', 'valve_disease', 'myocardial_infarction', 'aneurysm']
 	// const symptoms = ['abdomen_pain', 'anxiety','appetite_loss', 'arm_pain', 'back_pain', 'belly_swell', 'blurry', 'bone_pain', 'chest_pain', 'chest_tight', 'chills', 'colds', 'confusion', 'cough', 'cyanosis', 'dizzy', 'dysphasia', 'dyspnea', 'faint', 'fatigue', 'fever', 'headaches', 'heartburn', 'hoarseness', 'legs_swell', 'mouth_pain', 'muscle_pain', 'nausea', 'neck_shoulder_pain', 'neck_swell', 'neck_tight', 'pale_sweat', 'phlegm_clear', 'phlegm_green', 'phlegm_red', 'phlegm_white', 'r_infections', 'sleep_hard', 'tachycardia', 'tachypnea', 'urine_blood', 'weakness', 'weightgain', 'weightloss', 'wheeze']
+
+	// diseases.forEach(disease => {
+	// 	var ref = db.ref(`diseases/${disease}/responses`);
+	// 	ref.update({ans_impression: ''});
+	// });
 }
 
 module.exports = {

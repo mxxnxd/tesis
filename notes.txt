@@ -1,0 +1,68 @@
+// Intent Naming Scheme
+{LANGUAGE}.{USER}.{ACTION}.{SUBJECT}
+
+EN.USER.QUESTION.COPD 
+EN.USER.CONFIRM.LANGUAGE
+EN.USER.CHOOSE.LANGUAGE
+EN.USER.ENUMERATE.SYMPTOMS
+
+EN.BOT.
+
+
+EN.USER.COMMAND.START 
+EN.USER.COMMAND.CHECKUP
+EN.USER.COMMAND.QUERY
+EN.USER.CONFIRM.START_INTRO 
+EN.USER.CHOOSE.LANGUAGE
+EN.USER.CONFIRM.LANGUAGE
+EN.USER.CONFIRM.TERMS
+
+EN.BOT.PUMP.LANGUAGE
+EN.BOT.REPEAT.LANGUAGE
+EN.BOT.PUMP.TERMS
+EN.BOT.REPEAT.TERMS
+
+
+
+Hello there
+
+
+
+
+>>> Types of User Dialogue Moves
+
+>> Command
+> User Questions 	(Query)
+> User Command   	(Check Up, Settings, Start)
+
+>> Answer
+> User Confirm 	  	(Yes/No)
+> User Choose     	(Choices)
+> user Enumerate  	(List)
+
+>> Story
+> User Elaborates 	(Topic)
+
+>> Silence
+> User Silence 		(No Moves)
+
+/* ===== ===== ===== ===== ===== */
+
+>>> Types of Bot Dialogue Moves
+
+>> Feedback
+> Bot Acknowledge  	(Accept Information)
+
+>> Pump
+> Bot Asks 			(Request Information)
+
+>> Hint
+> 
+
+>> Repeat
+
+>> Elaborate
+
+
+Bot ASK
+Bot ANS

@@ -1,0 +1,64 @@
+Yes, Sure, Yeah, Ok, Alright, Agree, Okay, Yep, Yup, Right, All right, By all means, of course, correct
+No, Nah, Nope, Disagree, By no means, No thanks, Absolutely not, Not at all, of course not, incorrect
+
+>>> CONFIRM LANGUAGE
+
+/@Yes:bot-bool/ , that's correct. English is my selected language.*
+That's /@right:bot-bool/ , English is what I'm set to use.*
+/@Absolutely:bot-bool/ , English is the language I'm currently using.*
+You are /@correct:bot-bool/ , English is my default language.*
+/@Yes:bot-bool/ , I'm set to communicate in English.*
+/@Yes:bot-bool/ , English is what I'm currently speaking.*
+You're /@right:bot-bool/ , English is my selected language.*
+/@Yes:bot-bool/ , English is the language I'm programmed to use.*
+/@Correct:bot-bool/ , I'm currently set to English as my language.*
+Actually, /@no:bot-bool/, English is not my selected language.*
+I'm sorry, but English is /@not:bot-bool/ the language I'm currently using.*
+/@No:bot-bool/, English is not what I'm set to communicate in.*
+Unfortunately, English is /@not:bot-bool/ my default language.*
+I'm afraid /@not:bot-bool/, I'm /@not:bot-bool/ currently using English.*
+Actually, I'm /@not:bot-bool/ speaking English right now.*
+/@No:bot-bool/, English is not the language I'm currently programmed to use.*
+Sorry, but I'm /@not:bot-bool/ set to use English.*
+Unfortunately /@not:bot-bool/, English is /@not:bot-bool/ the language I'm using.*
+/@No:bot-bool/, my selected language is not English.*
+/@Yes:bot-bool/ , that's correct. Filipino is my selected language.*
+That's /@right:bot-bool/ , Filipino is what I'm set to use.*
+/@Absolutely:bot-bool/ , Filipino is the language I'm currently using.*
+You are /@correct:bot-bool/ , Filipino is my default language.*
+/@Yes:bot-bool/ , I'm set to communicate in Filipino.*
+/@Yes:bot-bool/ , Filipino is what I'm currently speaking.*
+You're /@right:bot-bool/ , Filipino is my selected language.*
+/@Yes:bot-bool/ , Filipino is the language I'm programmed to use.*
+/@Correct:bot-bool/ , I'm currently set to Filipino as my language.*
+Actually, /@no:bot-bool/, Filipino is not my selected language.*
+I'm sorry, but Filipino is /@not:bot-bool/ the language I'm currently using.*
+/@No:bot-bool/, Filipino is not what I'm set to communicate in.*
+Unfortunately, Filipino is /@not:bot-bool/ my default language.*
+I'm afraid /@not:bot-bool/, I'm /@not:bot-bool/ currently using Filipino.*
+Actually, I'm /@not:bot-bool/ speaking Filipino right now.*
+/@No:bot-bool/, Filipino is not the language I'm currently programmed to use.*
+Sorry, but I'm /@not:bot-bool/ set to use Filipino.*
+Unfortunately /@not:bot-bool/, Filipino is /@not:bot-bool/ the language I'm using.*
+/@No:bot-bool/, my selected language is not Filipino.
+
+>>> CONFIRM START
+
+/@Sure:bot-bool/, go ahead and ask me anything you'd like.*
+/@Of course:bot-bool/, I'm happy to answer any questions you have.*
+/@Absolutely:bot-bool/, feel free to ask me anything you need to know.*
+/@Yes:bot-bool/, please ask away. I'm here to assist you.*
+/@Sure:bot-bool/ thing, I'm happy to answer your questions.*
+Actually, I'd prefer /@not:bot-bool/ to answer any questions right now.*
+I'm sorry, but I'm /@not:bot-bool/ comfortable answering questions at this time.*
+Unfortunately, I'm /@not:bot-bool/ able to answer any questions right now.*
+Sorry, but I don't feel comfortable answering any questions.*
+I'd rather /@not:bot-bool/ answer any questions right now, sorry.*
+I'm /@not:bot-bool/ in the mood to answer any questions at the moment, sorry.*
+Sorry, but I'd prefer /@not:bot-bool/ to answer any questions.*
+/@No:bot-bool/, I'm /@not:bot-bool/ really interested in answering any questions at this time.*
+Sorry, but I'm /@not:bot-bool/ able to answer any questions right now.*
+I'd rather /@not:bot-bool/, if that's okay with you.
+
+
+Yes, Sure, Yeah, Ok, Alright, Agree, Okay, Yep, Yup, Right, All right, By all means, of course,

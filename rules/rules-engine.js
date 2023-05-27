@@ -1,24 +1,27 @@
-const {RuleEngine} = require('node-rules');
-const rules_diagnose = require('./rules-diagnose'); 
-const rules_symptom = require('./rules-symptom');
 
-// Rule Engine
+// Libraries
+const { RuleEngine } = require('node-rules');
+
+const { Symptom, Action, Disease } = require('./class.js');
+
+// Rules definition
+const diseasesRuleset = require('./disease-rules.js');
+
+// Rules Engine
 var R = new RuleEngine();
 R.ignoreFactChanges = true;
 
-// Ruleset
-rules_diagnose.applyRules(R);
-rules_symptom.applyRules(R);
+// Apply rules
+diseasesRuleset.applyRules(R);
 
 /*
-	Determines the next agent action based on the user's current information
+	Updates facts with the next agent action based on current facts.
 */
-const getAction = (fact) => {
-	let new_fact = fact;
+const getAction = (inputFacts) => {
+	const facts = inputFacts;
 	return new Promise((resolve, reject) => {
-		R.execute(fact, (data) => {
-			new_fact = data;
-			resolve(new_fact);
+		R.execute(facts, (data) => {
+			resolve(data);
 		});
 	});
 };
@@ -27,138 +30,201 @@ module.exports = {
 	getAction
 };
 
-// CLI MODE Rules Engine
-const main = async () => {
-	const prompt = require("prompt-sync")({ sigint: '' });
-	const db = require('../firebase/database.js'); // Database Manager
-
-	var req = {
-		user: {
-			name: 'Steven Castro',
-			language: 'ENGLISH',
-			symptoms: {
-				abdomen_pain: '', 
-				anxiety: '', 
-				appetite_loss: '', 
-				arm_pain: '', 
-				back_pain: '', 
-				belly_swell: '', 
-				blurry: '', 
-				bone_pain: '', 
-				tachypnea: '', 
-				chest_pain: '', 
-				chest_tight: '', 
-				chills: '', 
-				colds: '', 
-				confusion: '', 
-				cough: '', 
-				cyanosis: '', 
-				dizzy: '', 
-				dysphasia: '', 
-				dyspnea: '', 
-				faint: '', 
-				fatigue: '', 
-				fever: '', 
-				headaches: '', 
-				heartburn: '', 
-				hoarseness: '', 
-				legs_swell: '', 
-				mouth_pain: '', 
-				muscle_pain: '', 
-				nausea: '', 
-				neck_shoulder_pain: '', 
-				neck_swell: '', 
-				neck_tight: '', 
-				pale_sweat: '', 
-				phlegm_clear: '', 
-				phlegm_green: '', 
-				phlegm_red: '', 
-				phlegm_white: '', 
-				r_infections: '', 
-				sleep_hard: '', 
-				tachycardia: '', 
-				urine_blood: '',
-				weakness: '', 
-				weightgain: '', 
-				weightloss: '', 
-				wheeze: '' 
-			},
-			diagnosis: {
-				illness: '',
-				severity: ''
-			},
-			group: {
-				phlegm: '',
-				hectic_fever: '',
-				vertigo: '',
-				swell: ''
-			}
+var facts = {
+	user: {
+		symptoms: {
+			// chest_pain: false,
+			cough: new Symptom('BOOL', 0.1)
+			// dyspnea: false,
+			// wheeze: false,
+			// phelgm: true
 		},
-		agent: {	
-			next_action: ''
-		},
-		rules: await db.getDisease()
-	};
-
-	var memory = '';
-	var auto = '';
-	var n = auto.length;
-
-	if (auto.length < 1) {
-		while (req.user.diagnosis.illness === '') {
-			var res = await getAction(req);
-			req = res;
-
-			var n = prompt(`${res.agent.next_action}: `);
-			if (res.agent.next_action === 'EN.DIAGNOSE.UNABLE_TO_DIAGNOSE') { break; }
-			var key = res.agent.next_action.split('-')[2].toLowerCase();
-
-			// Input
-			if (n === 'y') {
-				res['user']['symptoms'][	key] = true;
-				memory += 'y';
-			} else if (n === 'n') {
-				res['user']['symptoms'][key] = false;
-				memory += 'n';
-			} else {
-				break;
-			}
-
-			console.log(`> STATUS: ${res.agent.status} | ${res.user.diagnosis.illness} | ${res.user.diagnosis.severity}`)
-			req.agent.next_action = '';
-		}
-		console.log('===== ===== ===== ===== ===== ===== ===== ===== ===== =====')
-		console.log(memory);
-		console.log('===== ===== ===== ===== ===== ===== ===== ===== ===== =====')		
-	} else {
-		for (i = 0; i < n + 1; i++) {
-			var res = await getAction(req);
-			req = res;		
-
-			console.log(`${res.agent.next_action}: ${auto[i]}`)
-			if (res.agent.next_action === 'EN.DIAGNOSE.UNABLE_TO_DIAGNOSE') { break; }
-			var key = res.agent.next_action.split('-')[2].toLowerCase();
-			
-			// Input
-			if (auto[i] === 'y') {
-				res['user']['symptoms'][key] = true;
-				memory += 'y';
-			} else if (auto[i] === 'n') {
-				res['user']['symptoms'][key] = false;
-				memory += 'n';
-			} else {
-				break;
-			}
-
-			console.log(`> STATUS: ${res.agent.status} | ${res.user.diagnosis.illness} | ${res.user.diagnosis.severity}`)
-			req.agent.next_action = '';
-		}
-		console.log(`> STATUS: ${res.agent.status} | ${res.user.diagnosis.illness} | ${res.user.diagnosis.severity}`)
-		console.log('===== ===== ===== ===== ===== ===== ===== ===== ===== =====')
-		console.log(res.user.symptoms);
-	}
+		possible_diseases: {}
+	},
+	agent: {}
 };
 
-// main();
+const main = async (questions) => {
+	facts.agent['questions'] = questions;
 
-// 'yynnyynnynynnnny'
+	const prompt = require("prompt-sync")({ sigint: '' });
+
+	console.log(await getAction(facts));
+
+	// while (true) {
+	// 	delete facts.agent.next_action;
+	// 	// console.log(checkAllSymptoms(facts, 'asthma'));
+	// 	checkAllSymptoms(facts, 'asthma')
+	// 	let action = facts.agent.next_action;
+
+	// 	if (action === undefined) {
+	// 		break;
+	// 	}
+	// 	console.log(action.string());
+		
+	// 	let input = prompt(`>:`).toLowerCase();
+
+	// 	if (input === 'x') {
+	// 		break;
+	// 	} else {
+	// 		facts.user.symptoms[action.topic.toLowerCase()] = new Symptom(action.subtopic, parseFloat(input)); 
+	// 	}
+	// 	// console.log(facts.user.symptoms);	
+	// }
+	// console.log(facts);
+};
+
+const questions = {
+	copd: {
+		keys: {
+			cough: new Symptom('RATE'),
+			phelgm: new Symptom('RATE'),
+			chest_tightness: new Symptom('RATE'),
+			tachypnea: new Symptom('RATE'),
+			dyspnea: new Symptom('RATE'),
+			confidence: new Symptom('RATE'),
+			sleep: new Symptom('RATE'),
+			fatigue: new Symptom('RATE'),			
+		},
+		additional: {
+			dysphasia: new Symptom('BOOL'),
+			legs_edema: new Symptom('BOOL'),
+			weightloss: new Symptom('BOOL'),
+			colds: new Symptom('BOOL'),
+			wheeze: new Symptom('BOOL')		
+		},
+		severe: {
+			cyanosis: new Symptom('BOOL'),
+			dizzy: new Symptom('BOOL'),
+			fever: new Symptom('BOOL'),
+			confusion: new Symptom('BOOL'),
+			tachycardia: new Symptom('BOOL')
+		},
+		history: {}
+	},
+	asthma: {
+		keys: {
+			chest_tightness: new Symptom('BOOL'), 
+			tachypnea: new Symptom('RATE'),
+			dyspnea: new Symptom('RATE'),
+			wheeze: new Symptom('RATE'),
+			wake: new Symptom('RATE'),
+			sleep: new Symptom('RATE')
+		},
+		additional: {
+			colds: new Symptom('BOOL'),
+			headaches: new Symptom('BOOL'),
+			fatigue: new Symptom('BOOL')
+		},
+		severe: {
+			anxiety: new Symptom('BOOL'),
+			sweaty: new Symptom('BOOL'),
+			cyanosis: new Symptom('BOOL'),
+			tachypnea: new Symptom('BOOL'),
+			neck_tightness: new Symptom('BOOL')
+		},
+		history: {
+			brocholidator: new Symptom('RATE')
+		},
+	},
+	pneumonia: {
+		keys: {
+			chest_tightness: new Symptom('BOOL'),
+			cough: new Symptom('BOOL'),
+			phlegm: new Symptom('BOOL'),
+			confusion: new Symptom('BOOL'),
+			tachypnea: new Symptom('BOOL'),
+			fever: new Symptom('BOOL'),
+			tachycardia: new Symptom('BOOL')
+		},
+		additional: {
+			fatigue: new Symptom('BOOL'),
+			dyspnea: new Symptom('BOOL'),
+			colds: new Symptom('BOOL'),
+			nausea: new Symptom('BOOL'),
+			wheeze: new Symptom('BOOL')
+		},
+		severe: {
+			fever: new Symptom('BOOL'),
+			chest_tightness: new Symptom('BOOL'),
+			colds: new Symptom('BOOL'),
+			weakness: new Symptom('BOOL')
+		},
+		history: {
+			age: new Symptom('NUM'),
+			sex: new Symptom('SEX'),
+			nursing_home_resident: new Symptom('BOOL'),
+			liver_disease: new Symptom('BOOL'),
+			congestive_heart_failure: new Symptom('BOOL'),
+			renal_disease: new Symptom('BOOL'),
+			neoplastic_disease:  new Symptom('BOOL')
+		}
+	},	
+	template: {
+		keys: {},
+		additional: {},
+		severe: {},
+		history: {}
+	}
+}
+
+main(questions);
+
+function checkAllSymptoms(facts, disease) {
+	if (!checkSymptoms(facts, disease, 'keys')) {
+		return false;
+	}
+	// console.log('Key Symptoms: PASSED');
+
+	if (!checkSymptoms(facts, disease, 'additional')) {
+		return false;
+	}
+	// console.log('Additional Symptoms: PASSED');
+
+	if (!checkSymptoms(facts, disease, 'severe')) {
+		return false;
+	}
+
+	if (!checkSymptoms(facts, disease, 'history')) {
+		return false;
+	}
+	
+	return true;
+}
+
+function checkSymptoms(facts, disease, category) {
+	const current_symptoms = facts.user.symptoms;
+	const disease_symptoms = facts.agent.questions[disease];
+
+	// Check symptoms of this category
+	const category_symptoms = Object.keys(disease_symptoms[category]);
+	var false_key_symptoms = 0;
+	var threshhold = 4; 								// Atleast n symptoms, fetched from KB
+	var length = category_symptoms.length;
+						
+	for (i = 0; i <  length; i++) {
+		let symptom = category_symptoms[i];
+		
+		if (current_symptoms[symptom] === undefined) { 	// User has not determined this symptom. 					
+			facts.agent.next_action = new Action('ASK', symptom.toUpperCase(), disease_symptoms[category][symptom].type, 'INIT');
+			return false;
+
+		} else if (current_symptoms[symptom].value) {	// User has determined this symptom to be True.					
+			let current_type = current_symptoms[symptom].type;
+			let disease_type = disease_symptoms[category][symptom].type;
+
+			if (current_type !== disease_type && disease_type === 'RATE') {
+				facts.agent.next_action = new Action('ASK', symptom.toUpperCase(), disease_type, 'REDO');
+				return false;
+			} 
+		} else { 										// User has determined this symptom to be False.
+			false_key_symptoms++;
+
+			// Threshold to Pass?						// Find a Threshold
+			if (length - threshhold <= false_key_symptoms) {
+				return false;
+			}
+		}															
+	}
+	return true;
+}	

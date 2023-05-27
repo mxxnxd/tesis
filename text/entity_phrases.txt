@@ -1,0 +1,9 @@
+@BOT-BOOL PHRASES
+/@Yes:bot-bool/*/@Sure:bot-bool/*/@Yeah:bot-bool/*/@Ok:bot-bool/*/@Alright:bot-bool/*/@Agree:bot-bool/*/@Okay:bot-bool/*/@Yep:bot-bool/*/@Yup:bot-bool/*/@Go ahead:bot-bool/*/@Right:bot-bool/*/@All right:bot-bool/*/@By all means:bot-bool/*/@of course:bot-bool/*/@correct:bot-bool/*/@No:bot-bool/*/@Nah:bot-bool/*/@Nope:bot-bool/*/@Disagree:bot-bool/*/@By no means:bot-bool/*/@No thanks:bot-bool/*/@Absolutely not:bot-bool/*/@Not at all:bot-bool/*/@of course not:bot-bool/*/@incorrect:bot-bool/*
+
+@BOT-LANGUAGE PHRASES
+/@Tagalog:bot-language/*I pick /@Tagalog:bot-language/*I choose /@Tagalog:bot-language/*/@Tagalog:bot-language/ please*/@Filipino:bot-language/*I pick /@Filipino:bot-language/*I choose /@Filipino:bot-language/*/@Filipino:bot-language/ please*/@English:bot-language/*I pick /@English:bot-language/*I choose /@English:bot-language/*/@English:bot-language/ please*/@Ingles:bot-language/*I pick /@Ingles:bot-language/*I choose /@Ingles:bot-language/*/@Ingles:bot-language/ please*
+
+
+
+

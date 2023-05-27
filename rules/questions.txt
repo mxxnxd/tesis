@@ -1,0 +1,254 @@
+>>> Possible Questions
+
+>> COPD [COPD Assessment Test (CAT)]
+
+All of a scale of 1-5
+
+> Cough
+> Phlegm
+> Chest Tightness
+> Breathless       (rapid breath)
+> Activities       (Short Breath)
+> Confidence
+> Sleep
+> Energy
+
+4 Groups/Rank (Low, Mid, High, Very high)
+
+
+const questions = {
+	copd: {
+		key: {
+			cough: 'RATE',
+			phelgm: 'RATE',
+			chest_tightness: 'RATE',
+			tachypnea: 'RATE',
+			dyspnea: 'RATE',
+			confidence: 'RATE'
+			sleep: 'RATE',
+			fatigue: 'RATE'			
+		},
+		additional: {
+			dysphasia: 'BOOL',
+			legs_edema: 'BOOL',
+			weightloss: 'BOOL',
+			colds: 'BOOL',
+			wheeze: 'BOOL'		
+		},
+		severe: {
+			cyanosis: 'BOOL',
+			dizzy: 'BOOL',
+			fever: 'BOOL',
+			confusion: 'BOOL',
+			tachycardia: 'BOOL'
+		},
+		history: {}
+	},
+	asthma: {
+		keys: {
+			chest_tightness: 'BOOL', 
+			tachypnea: 'RATE',
+			dyspnea: 'RATE',
+			wheeze: 'RATE',
+			wake: 'RATE',
+			sleep: 'RATE',	
+		},
+		additional: {
+			colds: 'BOOL'
+			headaches: 'BOOL'
+			fatigue: 'BOOL'
+		},
+		severe: {
+			anxiety: 'BOOL',
+			sweaty: 'BOOL',
+			cyanosis: 'BOOL',
+			tachypnea: 'BOOL',
+			neck_tightness: 'BOOL'
+		},
+		history: {
+			brocholidator: 'RATE'
+		},
+	},
+	pneumonia: {
+		keys: {
+			chest_tightness: 'BOOL',
+			cough: 'BOOL',
+			phlegm: 'BOOL',
+			confusion: 'BOOL',
+			tachypnea: 'BOOL',
+			fever: 'BOOL',
+			tachycardia: 'BOOL'
+		},
+		additional: {
+			fatigue: 'BOOL',
+			dyspnea: 'BOOL',
+			colds: 'BOOL',
+			nausea: 'BOOL',
+			wheeze: 'BOOL'
+		},
+		severe: {
+			fever, 'BOOL',
+			chest_tightness: 'BOOL',
+			colds: 'BOOL',
+			weakness: 'BOOL'
+		},
+		history: {
+			age: 'NUM'
+			sex: 'SEX'
+			nursing_home_resident: 'BOOL'
+			liver_disease: 'BOOL'
+			congestive_heart_failure: 'BOOL'
+			renal_disease: 'BOOL'
+			neoplastic_disease: 'BOOL'
+		}
+	},	
+	template: {
+		keys: {},
+		additional: {},
+		severe: {},
+		history: {}
+	}
+}
+
+
+
+
+COPD: {
+	symptoms: {
+		key: {
+			cough: 0-5,
+			phlegm: 0-5,
+			chest_tightness: 0-5,  (pain/tight)
+			tachypnea: 0-5,
+			dyspnea: 0-5,
+			confidence? 0-5
+			sleep: 0-5,
+			fatigue: 0-5
+		},
+		additional: {
+			dysphasia: 0-1,
+			legs_edema: 0-1,
+			weightloss: 0-1,
+			colds: 0-1
+			wheeze: 0-1
+		},
+		severe: {
+			cyanosis: 0-1
+			dizzy: 0-1
+			fever: 0-1
+			confusion: 0-1
+			tachycardia: 0-1  (rapid heartbeat)
+		}
+	}
+};
+
+Asthma: {
+	symptoms: {
+		key: {
+			chest_tightness: 
+			tachypnea: 0-6 			(rapid breaht/breathless/activities)
+			dyspnea: 0-6
+			wheeze: 0-6
+			wake 0-6  				(feeling)
+			sleep 0-6				(awaken)
+			brocholidator: 0-6  (Asthma tool)
+		},
+		additional: {
+			colds
+			headaches
+			fatigue
+		},
+		severe: {
+			anxiety
+			sweaty
+			cyanosis
+			tachypnea
+			neck_tightness
+		}
+	}
+}
+
+Pneumonia: {
+	symptoms: {
+		key: {
+			chest_tightness,
+			cough,
+			phlegm,
+			confusion: 0-1,
+			tachypnea: 0-1, (respitartoy rate > 30)
+			fever: 0-1 (35-39degree),
+			tachycardia: 0-1 (above 125 beats)
+		},
+		additional: {
+			fatigue,
+			dyspnea,
+			colds,
+			nausea,
+			wheeze
+		},
+		severe: {
+			fever,
+			chest_tightness,
+			colds,
+			weakness,
+		},
+		history: {
+			age: 0-100,
+			sex: M/F,
+			nursing_home_resident: 0-1
+			liver_disease: 0-1,
+			congestive_heart_failure: 0-1,
+			renal_disease: 0-1,
+			neoplastic_disease: 0-1,
+			cerobrovascular_disease: 0-1,
+		}
+	}
+}
+
+
+
+
+user: {
+	symptoms: {
+
+	},
+	history: {
+		asthma: true,
+
+
+	}
+}
+
+
+
+
+>>> Simulation
+
+Hello
+
+Hey I want to have check up
+
+Sure lets start how have you been feeling?			
+
+I have been coughing for a while. 						EN.USER.ELABORATE.SYMPTOM
+
+Oh how long have you been coughing?  
+
+Around 2-3 weeks already.								EN.USER.CHOOSE.COUGH_SCALE
+
+Do you have phlegm in your chest? Sticky substacnes in your throat?
+
+Not at all  											EN.USER.CONFIRM.PHLEGM
+
+How much it do you think you have on it?
+
+pretty much												EN.USER.CHOOSE.PHLEGM_SCALE
+
+Any other symptoms I should know about?
+
+														EN.USER.ELABORATE.SYMPTOM
+
+enCoughScal
+
+
+I have asthma can you check my severity?

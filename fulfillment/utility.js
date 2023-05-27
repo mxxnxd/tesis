@@ -1,9 +1,8 @@
-/*
-	Utility functions for repetetive codes.
-*/
+// Libraries
+const { Payload } = require('dialogflow-fulfillment');
 
 /*
-	Utility function for setting multiple contexts.
+	Utility function for setting multiple contexts & lifespan.
 */
 const setContexts = (agent, contexts, lifespan) => {
 	contexts.forEach((context, index) => {
@@ -23,7 +22,7 @@ const triggerEvent = (agent, name) => {
 };
 
 /*	
-	Utility function for obtaining Facebook user ID
+	Utility function for obtaining Facebook user sender ID
 */
 const getSenderID = (agent) => {
 	return agent.request_.body.originalDetectIntentRequest.payload.data.sender.id;
@@ -37,9 +36,34 @@ const getEventToKey = (event) => {
 	return strings[2];
 };
 
+/*
+    Utility function for building Custom Quick Replies Payload JSON
+*/
+const buildQuickReplyPayload = (agent, message, inputQuickReplies) => {
+	const response = {
+		platform: 'FACEBOOK',
+		text: message,
+		quick_replies: []
+	};
+	inputQuickReplies.forEach(quickReply => {
+		var option = {
+			content_type: 'text',
+			title: quickReply,
+			payload: quickReply
+		};
+		response.quick_replies.push(option);
+	});
+
+	// Build Payload
+	var payload =	 new Payload(agent.FACEBOOK, response);
+	payload.sendAsMessage = true;
+	return payload;
+};
+
 module.exports = {
 	setContexts,
 	triggerEvent,
 	getSenderID,
+	buildQuickReplyPayload,
 	getEventToKey
 };
