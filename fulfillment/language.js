@@ -1,6 +1,7 @@
 const util = require('./utility.js');
 const db = require('../firebase/database.js');
-const stateManager = require('../model/state-manager.js'); 
+const { getUserState, setUserState } = require('../firebase/state.js');
+// const stateManager = require('../model/state-manager.js'); 
 
 /*
 	Webhook Functions: Language Selection Intents 
@@ -74,24 +75,20 @@ const enConfirmTerms = async (agent) => {
 	const bool = agent.parameters.bool;
 
 	if (bool === 'AFFIRM') {
-		const state = stateManager.getState(`${senderID}-COMMAND`);
-		console.log(state);
-
+		const state = getUserState(senderID).COMMAND;
+		
 		if (state === 'CHECKUP') {
 			// Response
 			agent.add(`Thanks! Let's get started then.'`);
 			agent.add('How have you been feeling?');
-
-			// Context
-			util.setContexts(agent, ['PHASE-INTRO', 'CONFIRM-TERMS'], [0, 0]); 		// TODO CHANGE
 		} else {
 			// Response
 			agent.add(`Thanks! Let's get started then.`);
 			agent.add('What would you like to ask me?');
-
-			// Context
-			util.setContexts(agent, ['PHASE-INTRO', 'CONFIRM-TERMS'], [0, 0]);    	// TODO CHANGE
 		}
+
+		// Context
+		util.setContexts(agent, ['PHASE-INTRO', 'CONFIRM-TERMS'], [0, 0]);    	// TODO CHANGE
 	} else {
 		// Response
 		agent.add('Aww :< you need to accept my terms & conditions to use my features.');
@@ -101,7 +98,7 @@ const enConfirmTerms = async (agent) => {
 		util.setContexts(agent, ['PHASE-INTRO', 'CONFIRM-TERMS'], [0, 0]);
 	}	
 	// States
-	stateManager.deleteState(`${senderID}-COMMAND`);
+	delUserState(senderID);
 };
 
 module.exports = {

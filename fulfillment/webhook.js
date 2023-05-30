@@ -16,14 +16,17 @@ const dvWebhook = async (agent) => {
 	// util.triggerEvent(agent, 'EN-DIAGNOSE-COPD');
 	// console.log(agent.parameters);
 
-	agent.add("WEB");
-	agent.add('HOOK');
+	console.log('Hook!');
+	let b = agent.parameters.bool;
 
-	console.log(new Payload('FACEBOOK', util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino'])));
+	agent.add(`Responding: ${b}`)
 
-	var payload = new Payload(agent.FACEBOOK, util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino']));
-	payload.sendAsMessage = true;
-	agent.add(payload);
+
+	// console.log(new Payload('FACEBOOK', util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino'])));
+
+	// var payload = new Payload(agent.FACEBOOK, util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino']));
+	// payload.sendAsMessage = true;
+	// agent.add(payload);
 };
 
 module.exports = {

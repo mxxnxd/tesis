@@ -62,3 +62,6 @@ I'd rather /@not:bot-bool/, if that's okay with you.
 
 
 Yes, Sure, Yeah, Ok, Alright, Agree, Okay, Yep, Yup, Right, All right, By all means, of course,
+
+
+/@do mind:bot-bool/*/@don't mind:bot-bool/*/@yes:bot-bool/*/@sure:bot-bool/*/@yeah:bot-bool/*/@ok:bot-bool/*/@alright:bot-bool/*/@agree:bot-bool/*/@okay:bot-bool/*/@yep:bot-bool/*/@yup:bot-bool/*/@go ahead:bot-bool/*/@right:bot-bool/*/@all right:bot-bool/*/@by all means:bot-bool/*/@of course:bot-bool/*/@correct:bot-bool/*/@no:bot-bool/*/@nah:bot-bool/*/@nope:bot-bool/*/@disagree:bot-bool/*/@by no means:bot-bool/*/@no thanks:bot-bool/*/@absolutely not:bot-bool/*/@not at all:bot-bool/*/@of course not:bot-bool/*/@incorrect:bot-bool/*
