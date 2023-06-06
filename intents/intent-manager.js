@@ -118,7 +118,7 @@ const formatIntent = (json) => {
         			const part = {
         				text: entityParts[0],
         				entityType: `@${entityParts[1]}`,
-        				alias: aliases[1],
+        				alias: aliases[1].trim(),
         				userDefined: true
         			};
         			trainingPhrase.parts.push(part);

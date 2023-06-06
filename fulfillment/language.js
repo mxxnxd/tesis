@@ -14,7 +14,7 @@ const { delUserState, getUserState, setUserState } = require('../firebase/state.
 
 const enConfirmIntroStart = async (agent) => {
 	const senderID = util.getSenderID(agent);
-	const bool = agent.parameters.bool;
+	const bool = agent.parameters.affirm;
 
 	if (bool === 'AFFIRM') {
 		// Response
@@ -47,7 +47,7 @@ const enChooseLanguage = async (agent) => {
 
 const enConfirmLanguage = async (agent) => {
 	const senderID = util.getSenderID(agent);
-	const bool = agent.parameters.bool;
+	const bool = agent.parameters.affirm;
 
 	if (bool === 'AFFIRM') {
 		// Response
@@ -71,7 +71,7 @@ const enConfirmLanguage = async (agent) => {
 
 const enConfirmTerms = async (agent) => {
 	const senderID = util.getSenderID(agent);
-	const bool = agent.parameters.bool;
+	const bool = agent.parameters.affirm;
 
 	if (bool === 'AFFIRM') {
 		const state = getUserState(senderID).COMMAND;
