@@ -77,7 +77,7 @@ const enConfirmTerms = async (agent) => {
 		const state = getUserState(senderID).COMMAND;
 		
 		if (state === 'CHECKUP') {
-			// Response
+			// Response	
 			agent.add(`Thanks! Let's get started then.'`);
 			agent.add('How have you been feeling?');
 		} else {
@@ -87,7 +87,7 @@ const enConfirmTerms = async (agent) => {
 		}
 
 		// Context
-		util.setContexts(agent, ['PHASE-INTRO', 'CONFIRM-TERMS'], [0, 0]);    	// TODO CHANGE
+		util.setContexts(agent, ['PHASE-INTRO', 'CONFIRM-TERMS', 'PHASE-CHECK'], [0, 0, 5]);    	// TODO CHANGE
 	} else {
 		// Response
 		agent.add('Aww :< you need to accept my terms & conditions to use my features.');

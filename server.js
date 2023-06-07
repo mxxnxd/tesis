@@ -8,6 +8,7 @@ const ffWebhook = require('./fulfillment/webhook.js');
 const ffLanguage = require('./fulfillment/language.js');
 const ffStart = require('./fulfillment/start.js');
 const ffCheckup = require('./fulfillment/checkup.js');
+const ffQuery = require('./fulfillment/query.js');
 
 // Routes
 app.post('/webhook', express.json(), (req, res) => {
@@ -29,9 +30,13 @@ app.post('/webhook', express.json(), (req, res) => {
 	intentMap.set('en.user.choose.language', ffLanguage.enChooseLanguage);
 	intentMap.set('en.user.confirm.terms', ffLanguage.enConfirmTerms);
 
-	intentMap.set('en.user.share.symptom.pos', ffCheckup.enShareSymptomPositive);
-	intentMap.set('en.user.share.symptom.neg', ffCheckup.enShareSymptomNegative);
+	intentMap.set('en.user.share.symptom.positive', ffCheckup.enShareSymptomPositive);
+	intentMap.set('en.user.share.symptom.negative', ffCheckup.enShareSymptomNegative);
 	intentMap.set('en.user.share.feeling', ffCheckup.enShareFeeling);
+
+	intentMap.set('en.user.query.disease.cause', ffQuery.enQueryDiseaseCause);
+	intentMap.set('en.user.query.disease.definition', ffQuery.enQueryDiseaseDefinition);
+	intentMap.set('en.user.query.disease.symptom', ffQuery.enQueryDiseaseSymptom);
 
 	// Handle Fulfillment
 	agent.handleRequest(intentMap);
