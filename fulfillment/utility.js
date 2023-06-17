@@ -60,10 +60,32 @@ const buildQuickReplyPayload = (agent, message, inputQuickReplies) => {
 	return payload;
 };
 
+/*
+    Utility function for building symptoms extracted from entities (Pain, Tight, Swell)
+*/
+const getSymptomCondition = (bodyPart, bodyCondition) => {
+	var symptom_name = `${bodyPart}_${bodyCondition}`.toUpperCase();
+	var listedSymptoms = ['BELLY_PAIN', 'ARM_PAIN', 'BACK_PAIN', 'BONE_PAIN', 'CHEST_PAIN', 
+						  'MOUTH_PAIN', 'MUSCLE_PAIN', 'NECK_PAIN', 'SHOULDER_PAIN', 'HEAD_PAIN',
+						  'BELLY_SWELL', 'LEGS_SWELL', 'NECK_SWELL', 'NECK_TIGHT', 'CHEST_TIGHT'];
+
+	if (listedSymptoms.includes(symptom_name)) {
+		switch (symptom_name) {
+			case 'HEAD_PAIN': 		return 'HEADACHES';
+			case 'BELLY_PAIN': 		return 'ABDOMEN_PAIN';
+			case 'NECK_PAIN':
+			case 'SHOULDER_PAIN': 	return 'NECK_SHOULDER_PAIN';
+			default:				return symptom_name;
+		}
+	}
+	return null;
+};
+
 module.exports = {
 	setContexts,
 	triggerEvent,
 	getSenderID,
 	buildQuickReplyPayload,
-	getEventToKey
+	getEventToKey,
+	getSymptomCondition
 };
