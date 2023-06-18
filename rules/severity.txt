@@ -1,0 +1,370 @@
+1. Heart Failure
+
+The New York Heart Association (NYHA) functional classification is a well-established system used by medical professionals worldwide to classify the extent of heart failure, based on subjective symptoms and physical limitations. The classification helps in assessing the severity of the disease, deciding on the most suitable treatment, and providing a prognosis. Here's a brief breakdown of the NYHA classification:
+
+Class I (Mild): Patients with cardiac disease but without resulting limitations of physical activity. Ordinary physical activity does not cause undue fatigue, palpitation, or dyspnea (shortness of breath).
+
+Class II (Mild): Patients with cardiac disease resulting in slight limitation of physical activity. They are comfortable at rest, but ordinary physical activity results in fatigue, palpitation, or dyspnea.
+
+Class III (Moderate): Patients with cardiac disease resulting in marked limitation of physical activity. They are comfortable at rest, but less than ordinary activity causes fatigue, palpitation, or dyspnea.
+
+Class IV (Severe): Patients with cardiac disease resulting in inability to carry on any physical activity without discomfort. Symptoms of cardiac insufficiency or of the anginal syndrome may be present even at rest. If any physical activity is undertaken, discomfort is increased.
+
+References:
+
+The Criteria Committee of the New York Heart Association. Nomenclature and Criteria for Diagnosis of Diseases of the Heart and Great Vessels. 9th ed. Boston, Mass: Little, Brown & Co; 1994:253-6.
+
+Dolgin M, Association NYH. Nomenclature and criteria for diagnosis of diseases of the heart and great vessels. Lippincott Williams & Wilkins; 1994.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Hypertension
+
+The American Heart Association (AHA) provides a widely recognized classification of blood pressure stages for hypertension. This classification is as follows:
+
+Normal: Systolic less than 120 mmHg and diastolic less than 80 mmHg.
+Elevated: Systolic between 120-129 mmHg and diastolic less than 80 mmHg.
+Hypertension Stage 1: Systolic between 130-139 mmHg or diastolic between 80-89 mmHg.
+Hypertension Stage 2: Systolic 140 mmHg or higher or diastolic 90 mmHg or higher.
+Hypertensive Crisis: Systolic over 180 mmHg and/or diastolic over 120 mmHg, with patients needing prompt changes in medication if there are no other indications of problems, or immediate hospitalization if there are signs of organ damage.
+These stages guide treatment strategies and provide an understanding of the risk level associated with a particular blood pressure range. It's important to note that readings should be based on an average of at least two readings on at least two different occasions.
+
+Reference:
+
+American Heart Association. Understanding blood pressure readings. Available at: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings. (Accessed in 2023)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Coronary Artery Disease (CAD)
+
+Gensini Score
+
+The Gensini Score is a scoring system used to quantify the severity of coronary artery disease (CAD). It was originally developed by Giuseppe Gensini in the 1980s. The scoring system is based on the angiographic extent of coronary atheroma (plaque formation), and it incorporates both the degree of luminal narrowing and the location of the narrowing within the coronary arterial tree.
+
+Scoring is as follows:
+
+For the degree of stenosis: 1 point is given for 1-25% stenosis, 2 points for 26-50% stenosis, 4 points for 51-75% stenosis, 8 points for 76-90% stenosis, 16 points for 91-99% stenosis, and 32 points for 100% stenosis (complete occlusion).
+
+For the location of the stenosis, a multiplier is applied based on the importance of the coronary artery segment affected. For instance, a lesion in the proximal left anterior descending artery (LAD) or left main coronary artery (LMCA) would have a higher multiplier (x5 for LMCA, x2.5 for proximal LAD) compared to a lesion in a less crucial area.
+
+The total Gensini Score is then calculated by summing the scores for all lesions.
+
+The Gensini Score can be helpful in determining the severity and prognosis of CAD. However, its use is limited by the requirement for invasive coronary angiography, and it does not account for factors such as patient symptoms, comorbidities, or plaque morphology.
+ 
+SYNTAX Score
+
+The SYNTAX score is another scoring system used to grade the complexity and severity of coronary artery disease. The name "SYNTAX" is an acronym for "SYNergy between percutaneous coronary intervention with TAXus and cardiac surgery". The score was derived from a clinical trial comparing coronary artery bypass grafting (CABG) and drug-eluting stents.
+
+The SYNTAX Score is calculated using an online calculator (www.syntaxscore.com) based on a detailed analysis of the patient's coronary angiogram. The score incorporates 12 angiographic variables including the number of lesions, their functional impact, location, characteristics, and the presence of calcification or thrombus.
+
+The SYNTAX Score is divided into three categories: Low (0–22), Intermediate (23–32), and High (≥33). A high SYNTAX Score indicates more complex or severe disease and is often associated with worse outcomes after percutaneous coronary intervention (PCI). It's primarily used to guide the choice between CABG and PCI, with CABG typically preferred for patients with high SYNTAX Scores.
+
+Like the Gensini Score, the SYNTAX Score requires invasive coronary angiography and does not account for patient symptoms or comorbidities. However, it does provide a more comprehensive assessment of the complexity and burden of CAD.
+
+References:
+
+Gensini GG. A more meaningful scoring system for determining the severity of coronary heart disease. Am J Cardiol. 1983;51(3):606.
+Sianos G, Morel MA, Kappetein AP, et al. The SYNTAX Score: an angiographic tool grading the complexity of coronary artery disease. EuroIntervention. 2005;1(2):219-27.
+Serruys PW, Morice MC, Kappetein AP, et al; SYNTAX Investigators. Percutaneous coronary intervention versus coronary-artery bypass grafting for severe coronary artery disease. N Engl J Med. 2009;360(10):961-72.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Arrhythmia
+
+CHADS2 Score
+
+The CHADS2 score is a clinical prediction rule for estimating the risk of stroke in patients with non-rheumatic atrial fibrillation (AF), a common and serious heart rhythm disturbance. This score is often used to determine whether or not treatment is required with anticoagulation therapy or antiplatelet therapy.
+
+The score is calculated based on the presence of the following conditions:
+
+Congestive heart failure (1 point)
+Hypertension (1 point)
+Age ≥75 years (1 point)
+Diabetes mellitus (1 point)
+Prior Stroke or transient ischemic attack (TIA) (2 points)
+The total score ranges from 0 to 6. Higher scores indicate a greater risk of stroke. Typically, a score of 2 or above necessitates the consideration for anticoagulation therapy.
+CHA2DS2-VASc Score
+
+Recognizing some limitations and areas for improvement in the CHADS2 scoring system, the CHA2DS2-VASc score was developed. It includes additional stroke risk factors and provides a more nuanced assessment of stroke risk.
+
+The CHA2DS2-VASc score is calculated based on:
+
+Congestive heart failure (1 point)
+Hypertension (1 point)
+Age ≥75 years (2 points)
+Diabetes mellitus (1 point)
+Prior Stroke or TIA or thromboembolism (2 points)
+Vascular disease (previous myocardial infarction, peripheral artery disease, or aortic plaque) (1 point)
+Age 65–74 years (1 point)
+Sex category (i.e., female sex) (1 point)
+The total score ranges from 0 to 9. Higher scores indicate a greater risk of stroke. Anticoagulation therapy is generally recommended for males with a score of 2 or more and females with a score of 3 or more.
+
+In general, the CHA2DS2-VASc score is now recommended over the CHADS2 score due to its greater accuracy and detail in assessing stroke risk in patients with atrial fibrillation.
+
+References:
+
+Gage BF, Waterman AD, Shannon W, Boechler M, Rich MW, Radford MJ. Validation of clinical classification schemes for predicting stroke: results from the National Registry of Atrial Fibrillation. JAMA. 2001;285(22):2864-70.
+
+Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the euro heart survey on atrial fibrillation. Chest. 2010;137(2):263-72.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. Valve Disease: "Echocardiography assessment in valve disease"
+
+Echocardiography is a diagnostic test that uses ultrasound waves to create images of the heart. This test is particularly useful in assessing the function and structure of the heart's valves and is often the first-line imaging modality for valve disease. Here's how echocardiography is used in valve disease assessment:
+
+Valve Morphology and Motion: Echocardiography provides detailed images of the heart's valves, revealing their size, shape, and motion. This can help diagnose various types of valve disease such as stenosis (narrowing of the valve), regurgitation (leaking of the valve), and prolapse (improper closing of the valve).
+
+Valve Area Measurement: In diseases like aortic or mitral stenosis, the echocardiogram can be used to estimate the valve area, which helps to determine the severity of stenosis.
+
+Pressure Gradients and Flow Velocity: Doppler echocardiography, a part of the standard echocardiogram, can measure the speed and direction of blood flow. This can estimate the pressure gradient across stenotic valves, which aids in determining disease severity.
+
+Regurgitant Volume and Fraction: In cases of valve regurgitation, echocardiography can help estimate the regurgitant volume (the amount of blood leaking back through the valve) and regurgitant fraction (the proportion of blood that is regurgitating). These measures help to quantify the severity of regurgitation.
+
+Left Ventricular Size and Function: Valve diseases can affect the heart's pumping efficiency. Echocardiography can assess the size and function of the left ventricle, which can provide important information about the impact of valve disease on heart function.
+
+Monitoring and Treatment Decisions: Echocardiography is valuable for monitoring disease progression over time and can inform decisions about timing of surgical intervention for valve repair or replacement.
+
+Post-operative Assessment: After surgical or percutaneous intervention, echocardiography is used to evaluate the success of the procedure and to monitor for potential complications.
+
+Sources:
+
+American Heart Association (https://www.heart.org)
+Mayo Clinic (https://www.mayoclinic.org)
+Braunwald's Heart Disease: A Textbook of Cardiovascular Medicine
+Otto CM, Bonow RO. Valvular Heart Disease: A Companion to Braunwald's Heart Disease. 5th ed. Philadelphia, PA: Elsevier; 2020.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+6. Cardiomyopathy
+
+Ejection fraction (EF) is a critical measure used in the evaluation and management of various types of heart conditions, including cardiomyopathy. Cardiomyopathy refers to diseases of the heart muscle that makes it harder for the heart to pump blood to the rest of the body. There are several types, including dilated, hypertrophic, and restrictive cardiomyopathy.
+
+Here's how EF comes into play:
+
+Definition of Ejection Fraction: EF is a percentage that describes the amount of blood pumped out of the heart's left ventricle with each heartbeat. It's a key indicator of the heart's performance. Normal EF ranges between 50% to 75%, indicating that between 50% and 75% of the blood in the ventricle is pumped out with each beat.
+
+Ejection Fraction in Cardiomyopathy: The measurement of EF plays a vital role in assessing the severity of cardiomyopathy:
+
+In dilated cardiomyopathy, the heart's chambers enlarge and weaken, reducing EF significantly, often below 40%.
+In hypertrophic cardiomyopathy, the heart muscle becomes thickened, and the EF might be normal or even higher than normal, but the heart's ability to relax and fill can be compromised.
+In restrictive cardiomyopathy, the ventricles become rigid and less elastic, limiting their ability to expand and fill. EF might remain normal, but the amount of blood the heart can pump is limited.
+Diagnostic and Therapeutic Implications: A low EF could suggest a more severe form of cardiomyopathy. The treatment plan, including medications, lifestyle modifications, potential need for devices like a pacemaker or defibrillator, and prognosis, could all be influenced by the patient's EF.
+
+Monitoring: EF can be used as a way of monitoring the progression of the disease or the effectiveness of treatment over time.
+
+Limitations: EF has some limitations, as it may not fully capture the complexity of some types of cardiomyopathy, especially those that primarily affect the heart's ability to relax and fill (diastolic function), like hypertrophic and restrictive cardiomyopathy.
+
+Sources:
+
+American Heart Association (https://www.heart.org)
+Mayo Clinic (https://www.mayoclinic.org)
+Braunwald's Heart Disease: A Textbook of Cardiovascular Medicine
+Mann DL, Zipes DP, Libby P, Bonow RO. Braunwald's Heart Disease: A Textbook of Cardiovascular Medicine. 10th ed. Philadelphia, PA: Elsevier Saunders; 2015.
+For the most up-to-date information, please consult recent scientific literature and clinical guidelines.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+7. Myocardial Infarction (Heart Attack)
+
+Killip classification is a system used to stratify risk in patients suffering from an acute myocardial infarction (heart attack), based on physical examination findings. This classification is useful because it aids in predicting the risk of mortality and possible complications following a heart attack. Here are the classifications:
+
+Killip Class I: There are no clinical signs of heart failure. Specifically, there is no evidence of pulmonary congestion on the physical exam. This class represents the lowest risk category with a lower associated mortality rate.
+
+Killip Class II: There are signs of mild to moderate heart failure. Specifically, rales (a type of abnormal respiratory sound) or crackles are heard in the lungs, and the patient may also have an S3 gallop (an extra heart sound) on examination. This class corresponds to an intermediate risk category.
+
+Killip Class III: There is evidence of acute or severe heart failure. This is typically identified by frank pulmonary edema (fluid accumulation in the lungs) which is a serious condition requiring immediate medical intervention. This class is considered high risk.
+
+Killip Class IV: This is the most severe class and is characterized by cardiogenic shock or hypotension (low blood pressure), and evidence of peripheral vasoconstriction such as oliguria (low urine output), cyanosis (bluish or purplish discoloration of the skin due to lack of oxygen), and sweating. This class carries the highest risk of mortality.
+
+The Killip Classification has been a cornerstone of risk stratification in acute myocardial infarction for several decades, aiding in clinical decision-making and prognostication. However, it's important to note that with the advent of modern diagnostic tools and therapeutics, the relevance of Killip classification has diminished somewhat, though it still serves a purpose in certain clinical situations.
+
+Sources:
+
+American Heart Association (https://www.heart.org)
+Mayo Clinic (https://www.mayoclinic.org)
+Braunwald's Heart Disease: A Textbook of Cardiovascular Medicine
+Mann DL, Zipes DP, Libby P, Bonow RO. Braunwald's Heart Disease: A Textbook of Cardiovascular Medicine. 10th ed. Philadelphia, PA: Elsevier Saunders; 2015.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Aneurysm
+
+The size of an aneurysm can indeed influence its risk of rupture, which is a serious, life-threatening event. The specific risk can vary based on factors like the aneurysm's location, the patient's overall health, and the presence of symptoms. Below are general guidelines based on abdominal aortic aneurysms (AAA), one of the most common types:
+
+Small AAA (3.0–4.4 cm): Generally, small aneurysms have a low risk of rupture. The risk of rupture is about 0–1% per year. Regular monitoring (every 2–3 years) is typically recommended.
+
+Medium AAA (4.5–5.4 cm): These aneurysms carry a moderate risk of rupture. The risk of rupture is about 1% per year. Close monitoring (every 6–12 months) is often recommended.
+
+Large AAA (5.5 cm or larger): Large aneurysms have a high risk of rupture. The risk of rupture varies greatly but can be as high as 10–20% per year. At this size, surgical repair is often recommended, unless the patient's health status makes surgery too risky.
+
+For cerebral (brain) aneurysms, the risks can vary more widely based on the aneurysm's size, location, and shape, as well as patient factors like age and history of subarachnoid hemorrhage. Decisions about treatment should always be made in consultation with a healthcare provider.
+
+References:
+
+Chaikof EL, Dalman RL, Eskandari MK, et al. The Society for Vascular Surgery practice guidelines on the care of patients with an abdominal aortic aneurysm. Journal of Vascular Surgery. 2018;67(1):2-77.e2.
+
+Thompson, Matthew M. et al. "Endovascular abdominal aortic aneurysm repair: nonrandomized comparison of early results with conventional open repair." Eur J Vasc Endovasc Surg 16,6 (1998): 485-91.
+
+Thompson, B G et al. “Guidelines for the management of patients with unruptured intracranial aneurysms: a guideline for healthcare professionals from the American Heart Association/American Stroke Association.” Stroke vol. 46,8 (2015): 2368-400.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+9.COPD
+
+Chronic Obstructive Pulmonary Disease (COPD): "GOLD staging in COPD"
+
+GOLD staging in COPD utilizes classification of patients into different grades/stages based on symptoms such as Forced expiratory volume (FEV-1), and questions on symptoms using the  COPD Assessment Test (CAT) or the Modified Medical Research Council (mMRC). CAT scores range from 0 to 40, while mMRC scores have five grades. All of these grades are based on the severity of the diseases.
+
+GOLD 1:
+FEV-1 is greater than or equal to 80%. The patients may experience some cough but often this is mild in nature.
+
+GOLD 2:
+FEV-1 is between 50% and 80%. The patients may experience shortness of breath and may feel more tired than usual after some exercise.
+
+GOLD 3:
+Air flow into and out of the lungs is severely limited, and FEV-1 is between 30% and 50%. Patient has been admitted to the hospital at least once.
+
+GOLD 4:
+It is extremely hard for the patient to breathe in or out. Lung function is very little and new flare-ups may be life threatening.
+
+Sources:
+https://goldcopd.org/
+https://www.webmd.com/lung/copd/gold-criteria-for-copd
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+10.Asthma
+
+Pediatric Asthma Severity Score (PASS) for Asthma Exacerbation Severity
+
+Asthma severity scales diagnose symptoms exhibited by the patient based on possible asthma symptoms.
+
+Wheezing is scored as either none/mild (+0), moderate(+1), or severe wheezing(+2).
+Work of breathing, or use of accessory muscles, and retractions, is scored as either none/mild (+0), moderate(+1), or severe(+2).
+Prolongation of exhalation and inhalation is scored as either normal/mildly prolonged (+0), moderately prolonged(+1), or severely prolonged(+2).
+
+All the scores are added and any score higher than or equal to 2 would suggest severe asthma.
+
+Sources:
+https://www.mdcalc.com/calc/3383/pediatric-asthma-severity-score-pass-asthma-exacerbation-severity
+
+
+GINA classification in asthma
+
+Classification of asthma using GINA guidelines is done according to severity of clinical features.
+
+Intermittent:
+
+Symptoms occur less than twice a week.
+Brief exacerbations, typically lasting a few hours to a few days.
+Patient wakes up at night due to asthma less than twice a month.
+Lung function is normal between exacerbations.
+
+Mild Persistent:
+
+Symptoms occur more than twice a week but not daily.
+Exacerbations may affect activity levels.
+Patient wakes up at night due to asthma more than twice a month but not every week.
+Lung function is normal between exacerbations.
+
+Moderate Persistent:
+
+Symptoms occur daily.
+Exacerbations may affect daily activities.
+Patient wakes up at night due to asthma more than once a week.
+Lung function may be reduced, but FEV-1 is more than 60%.
+
+Severe Persistent:
+
+Symptoms are continuous throughout the day.
+Frequent exacerbations significantly affect daily activities.
+Patient wakes up at night due to asthma often, or nightly.
+Lung function is significantly reduced, with FEV-1 less than 60%.
+
+Sources:
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2732074/
+https://ginasthma.org/gina-reports/
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. Pneumonia
+
+CURB-65
+
+CURB-65 is used to asses pneumonia severity and assess the risk of mortality. It consists of five different criteria, each assigned a score of 0 or 1.
+
+Confusion:
+
+0: No confusion
+1: Presence of confusion
+
+Urea:
+
+0: Blood urea nitrogen (BUN) level ≤ 7 mmol/L
+1: BUN level > 7 mmol/L
+
+
+Respiratory Rate:
+
+0: Respiratory rate < 30 breaths per minute
+1: Respiratory rate ≥ 30 breaths per minute
+
+
+Blood Pressure:
+
+0: Systolic blood pressure (SBP) ≥90 mmHg and diastolic blood pressure (DBP) >60 mmHg
+1: SBP <90 mmHg or DBP ≤60 mmHg
+
+Age:
+
+0: Age <65 years
+1: Age ≥65 years
+
+The scores are then added to produce the CURB-65 score of the patient.
+
+0-1: Low severity, suitable for home treatment.
+2: Moderate severity, consider hospitalization.
+3-5: Severe, hospitalization is often required.
+
+Sources:
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7255987/#:~:text=The%20CURB%2D65%20is%20a%20severity%20score%20for%20CAP%2C%20comprising,and%20age%20%E2%89%A565%20years.
+https://www.mdcalc.com/calc/324/curb-65-score-pneumonia-severity
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+12. Lung Cancer
+
+TNM staging
+
+TNM staging system for lung cancer evaluates three aspects: Tumor size and invasion (T), lymph node involvement (N), and the presence of distant metastasis (M). 
+
+Tumor Size and Invasion (T):
+
+TX: Main tumor cannot be measured.
+T0: Main tumor cannot be found.
+T1, T2, T3, T4: Refers to the size and/or extent of the main tumor. The higher the number after the T, the larger the tumor or the more it has grown into nearby tissues. T's may be further divided to provide more detail, such as T3a and T3b.
+
+Lymph Node Involvement (N):
+
+NX: Cancer in nearby lymph nodes cannot be measured.
+N0: There is no cancer in nearby lymph nodes.
+N1, N2, N3: Refers to the number and location of lymph nodes that contain cancer. The higher the number after the N, the more lymph nodes that contain cancer.
+
+
+Distant Metastasis (M):
+
+MX: Metastasis cannot be measured.
+M0: Cancer has not spread to other parts of the body.
+M1: Cancer has spread to other parts of the body.
+
+Once every test is done, a stage is given based on the three aspects.
+
+
+Sources:
+https://www.cancer.gov/about-cancer/diagnosis-staging/staging
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+13. Pulmonary Tubercolosis
+
+Pulmonary Tuberculosis severity assessment
+
+Pulmonary Tuberculosis severity assessment is done through evaluation of symptoms presented by the patient that is infected with Pulmonary Tubercolosis.
+
+Cough, Hemoptysis, Dyspnea, Chest pain and Night sweats are assessed and scored by 1 point each. Then, signs of tubercolosis which may include Anemia, Pulse, Positive finding at lung auscultation, Temperature, BMI, and MUAC are each also scored for one point, except for BMI and MUAC which are scored for 2. 
+
+This will end with a score of 0 to 13 to determine the severity of said tubercolosis.
+
+
+
+Sources:
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4032506/

@@ -1,0 +1,221 @@
+[
+	{
+		"disease": "copd",
+		"symptom": [
+			"fatigue",
+			"dyspnea",
+			"dizzy",
+			"tachycardia",
+			"cough",
+			"wheeze",
+			"fever",
+			"legs_swell",
+			"cyanosis",
+			"phlegm_red",
+			"dysphasia",
+			"weightloss",
+			"colds",
+			"confusion",
+			"hoarseness",
+			"phlegm_green",
+			"phlegm_white"
+		]
+	},
+	{
+		"disease": "asthma",
+		"symptom": [
+			"wheeze",
+			"chest_pain",
+			"pale_sweat",
+			"cyanosis",
+			"anxiety",
+			"tachypnea",
+			"chest_tight",
+			"neck_tight",
+			"dyspnea",
+			"sleep_hard",
+			"fatigue",
+			"headaches",
+			"cough",
+			"colds"
+		]
+	},
+	{
+		"disease": "pneumonia",
+		"symptom": [
+			"chest_pain",
+			"cough",
+			"colds",
+			"fever",
+			"fatigue",
+			"phlegm_red",
+			"chills",
+			"phlegm_clear",
+			"phlegm_green",
+			"phlegm_white",
+			"wheeze",
+			"pale_sweat",
+			"cyanosis",
+			"tachypnea",
+			"dyspnea",
+			"tachycardia",
+			"nausea",
+			"confusion"
+		]
+	},
+	{
+		"disease": "lung_cancer",
+		"symptom": [
+			"r_infections",
+			"chest_pain",
+			"weakness",
+			"blurry",
+			"dyspnea",
+			"cough",
+			"phlegm_red",
+			"hoarseness",
+			"wheeze",
+			"fatigue",
+			"headaches",
+			"fever",
+			"dysphasia",
+			"weightloss",
+			"appetite_loss",
+			"bone_pain",
+			"neck_swell"
+		]
+	},
+	{
+		"disease": "tuberculosis",
+		"symptom": [
+			"chest_pain",
+			"cough",
+			"phlegm_red",
+			"fatigue",
+			"fever",
+			"weightloss",
+			"appetite_loss",
+			"pale_sweat",
+			"chills"
+		]
+	},
+	{
+		"disease": "heart_failure",
+		"symptom": [
+			"weakness",
+			"chest_pain",
+			"dyspnea",
+			"tachycardia",
+			"fatigue",
+			"wheeze",
+			"legs_swell",
+			"faint",
+			"nausea",
+			"belly_swell",
+			"weightgain",
+			"dizzy",
+			"headaches",
+			"fever"
+		]
+	},
+	{
+		"disease": "hypertension",
+		"symptom": [
+			"dizzy",
+			"legs_swell",
+			"faint",
+			"chest_pain",
+			"fatigue",
+			"tachycardia",
+			"cyanosis",
+			"belly_swell",
+			"blurry",
+			"urine_blood",
+			"dyspnea",
+			"headaches"
+		]
+	},
+	{
+		"disease": "cad",
+		"symptom": [
+			"dizzy",
+			"nausea",
+			"muscle_pain",
+			"chest_pain",
+			"fatigue",
+			"dyspnea"
+		]
+	},
+	{
+		"disease": "arrhythmia",
+		"symptom": [
+			"blurry",
+			"dizzy",
+			"chest_pain",
+			"fatigue",
+			"dyspnea",
+			"faint",
+			"tachycardia",
+			"pale_sweat",
+			"anxiety"
+		]
+	},
+	{
+		"disease": "valve_disease",
+		"symptom": [
+			"fatigue",
+			"weakness",
+			"weightgain",
+			"dizzy",
+			"chest_pain",
+			"dyspnea",
+			"tachycardia",
+			"legs_swell",
+			"belly_swell"
+		]
+	},
+	{
+		"disease": "cardiomyopathy",
+		"symptom": [
+			"fatigue",
+			"dizzy",
+			"dyspnea",
+			"legs_swell",
+			"belly_swell",
+			"faint",
+			"cough",
+			"chest_pain"
+		]
+	},
+	{
+		"disease": "myocardial_infarction",
+		"symptom": [
+			"fatigue",
+			"weakness",
+			"tachycardia",
+			"pale_sweat",
+			"dysphasia",
+			"abdomen_pain",
+			"neck_shoulder_pain",
+			"dizzy",
+			"dyspnea",
+			"chest_pain",
+			"nausea",
+			"back_pain",
+			"heartburn",
+			"arm_pain",
+			"mouth_pain"
+		]
+	},
+	{
+		"disease": "aneurysm",
+		"symptom": [
+			"chest_pain",
+			"hoarseness",
+			"dysphasia",
+			"dyspnea",
+			"back_pain",
+			"cough"
+		]
+	}
+]
