@@ -12,9 +12,25 @@ const { delUserState, getUserState, setUserState } = require('../firebase/state.
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
+const default_user = {
+	user: {
+		positive_symptoms: [],
+		negative_symptoms: [],
+		start: true,
+		terms: false,
+		language: false,
+	},
+	agent: {
+		next_action: false,
+	},
+}
+
 const enConfirmIntroStart = async (agent) => {
 	const senderID = util.getSenderID(agent);
 	const bool = agent.parameters.affirm;
+
+	// Create User
+	db.createUser(senderID, default_user);
 
 	if (bool === 'AFFIRM') {
 		// Response
@@ -36,6 +52,9 @@ const enConfirmIntroStart = async (agent) => {
 const enChooseLanguage = async (agent) => {
 	const senderID = util.getSenderID(agent);
 	const language = agent.parameters.language;
+
+	// Update User
+	db.updateUser(senderID, {language: language});
 
 	// Response
 	agent.add('Great!');
@@ -64,6 +83,9 @@ const enConfirmLanguage = async (agent) => {
 		agent.add('My apologies :<');
 		agent.add(util.buildQuickReplyPayload(agent, 'Let me ask again, what is your preferred langauge?', ['English', 'Filipino']));
 
+		// Update User
+		db.updateUser(senderID, {language: false});
+
 		// Context
 		util.setContexts(agent, ['PHASE-INTRO', 'CHOOSE-LANG'], [5, 3]);
 	}
@@ -85,6 +107,9 @@ const enConfirmTerms = async (agent) => {
 			agent.add(`Thanks! Let's get started then.`);
 			agent.add('What would you like to ask me?');
 		}
+
+		// Update User
+		db.updateUser(senderID, {terms: true});
 
 		// Context
 		util.setContexts(agent, ['PHASE-INTRO', 'CONFIRM-TERMS', 'PHASE-CHECK'], [0, 0, 5]);    	// TODO CHANGE

@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // Parse Symptom-Disease 
-const jsonData = fs.readFileSync('../fulfillment/disease-symptom.json', 'utf8');
+const jsonData = fs.readFileSync('./fulfillment/disease-symptom.json', 'utf8');
 const disease_symptom = JSON.parse(jsonData);
 
 /* ===== ===== ===== ===== ===== ===== ===== */

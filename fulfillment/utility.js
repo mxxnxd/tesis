@@ -29,6 +29,13 @@ const getSenderID = (agent) => {
 };
 
 /*	
+	Utility function for obtaining Message Sentiment Score
+*/
+const getSentimentScore = (agent) => {
+	return agent.alternativeQueryResults[0].sentimentAnalysisResult.queryTextSentiment.score;
+}
+
+/*	
 	Utility function for obtaining symptom key from event name
 */
 const getEventToKey = (event) => {
@@ -85,6 +92,7 @@ module.exports = {
 	setContexts,
 	triggerEvent,
 	getSenderID,
+	getSentimentScore,
 	buildQuickReplyPayload,
 	getEventToKey,
 	getSymptomCondition

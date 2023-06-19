@@ -21,7 +21,7 @@ const dvWebhook = async (agent) => {
 
 	agent.add(`Responding: ${b}`)
 
-
+	console.log(agent.alternativeQueryResults[0].sentimentAnalysisResult);
 	// console.log(new Payload('FACEBOOK', util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino'])));
 
 	// var payload = new Payload(agent.FACEBOOK, util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino']));

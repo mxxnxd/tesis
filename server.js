@@ -31,12 +31,15 @@ app.post('/webhook', express.json(), (req, res) => {
 	intentMap.set('en.user.confirm.terms', ffLanguage.enConfirmTerms);
 
 	intentMap.set('en.user.share.symptom.positive', ffCheckup.enShareSymptomPositive);
+	intentMap.set('en.user.confirm.symptom', ffCheckup.enConfirmSymptom);
 	intentMap.set('en.user.share.symptom.negative', ffCheckup.enShareSymptomNegative);
 	intentMap.set('en.user.share.feeling', ffCheckup.enShareFeeling);
 
 	intentMap.set('en.user.query.disease.cause', ffQuery.enQueryDiseaseCause);
 	intentMap.set('en.user.query.disease.definition', ffQuery.enQueryDiseaseDefinition);
 	intentMap.set('en.user.query.disease.symptom', ffQuery.enQueryDiseaseSymptom);
+	intentMap.set('en.user.query.disease.treatment', ffQuery.enQueryDiseaseTreatment);
+	intentMap.set('en.user.query.symptom.definition', ffQuery.enQuerySymptomDefinition);
 
 	// Handle Fulfillment
 	agent.handleRequest(intentMap);

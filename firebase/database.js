@@ -34,43 +34,13 @@ const deleteUser = (id) => {
 };
 
 const updateUser = (id, json) => {
-	var ref = db.ref(`users/${id}`);
+	var ref = db.ref(`users/${id}/user`);
 	ref.update(json);
 };
 
-const updateSymptom = (id, json) => {
-	var ref = db.ref(`users/${id}/symptoms`);
+const updateAgent = (id, json) => {
+	var ref = db.ref(`users/${id}/agent`);
 	ref.update(json);
-};
-
-const getDisease = () => {
-	var ref = db.ref(`diseases`);
-
-	return new Promise((resolve, reject) => {
-		ref.once('value', (snapshot) => {
-			resolve(snapshot.val());
-		});
-	});
-};
-
-const getDiseaseResponse= (id) => {
-	var ref = db.ref(`diseases/${id}/responses`);
-
-	return new Promise((resolve, reject) => {
-		ref.once('value', (snapshot) => {
-			resolve(snapshot.val());
-		});
-	});
-};
-
-const getSymptomResponse= (id) => {
-	var ref = db.ref(`symptoms/${id}/responses`);
-
-	return new Promise((resolve, reject) => {
-		ref.once('value', (snapshot) => {
-			resolve(snapshot.val());
-		});
-	});
 };
 
 const closeDB = () => {
@@ -87,18 +57,19 @@ const main = async () => {
 	// 	var ref = db.ref(`diseases/${disease}/responses`);
 	// 	ref.update({ans_impression: ''});
 	// });
+
+	var ref = db.ref(`symptoms`);
+	
+
 }
 
 module.exports = {
 	getUser,
 	deleteUser,
 	updateUser,
+	updateAgent,
 	createUser,
-	updateSymptom,
 	closeDB,
-	getDisease,
-	getDiseaseResponse,
-	getSymptomResponse
 };
 
 main();

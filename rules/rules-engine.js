@@ -2,7 +2,6 @@
 // Libraries
 const { RuleEngine } = require('node-rules');
 const fs = require('fs');
-// const { getUserState, setUserState } = require('../firebase/state.js');
 
 // Rules definition
 const diseasesRuleset = require('./disease-rules.js');
@@ -45,7 +44,7 @@ module.exports = {
 
 // Determine which disease to focus on after initial input
 const determineInitialDisease = (facts) => {
-	const jsonData = fs.readFileSync('../fulfillment/disease-symptom.json', 'utf8');
+	const jsonData = fs.readFileSync('./fulfillment/disease-symptom.json', 'utf8');
 	const disease_symptom = JSON.parse(jsonData);
 
 	const matches = [];
@@ -64,13 +63,14 @@ const determineInitialDisease = (facts) => {
 const main = async () => {
 	var facts = {
 		user: {
-			positive_symptoms: ['blurry'],
+			positive_symptoms: ['cough'],
 			negative_symptoms: [],
 			previous_symptoms: [],
 			start: true,
 		},
 		agent: {}
 	};
+	
 
 	if (facts.user.previous_symptoms.length === 0) {
 		facts.user.start = true;
@@ -103,4 +103,4 @@ const main = async () => {
 	}
 };
 
-main();
+// main();
