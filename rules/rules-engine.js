@@ -63,9 +63,10 @@ const determineInitialDisease = (facts) => {
 const main = async () => {
 	var facts = {
 		user: {
-			positive_symptoms: ['cough'],
+			positive_symptoms: ['fatigue', 'dyspnea', 'cyanosis'],
 			negative_symptoms: [],
 			previous_symptoms: [],
+			severity: {},
 			start: true,
 		},
 		agent: {}

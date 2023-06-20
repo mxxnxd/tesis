@@ -1,9 +1,12 @@
 const fs = require('fs');
 
 // Parse Symptom-Disease 
-const jsonData = fs.readFileSync('./fulfillment/disease-symptom.json', 'utf8');
-const disease_symptom = JSON.parse(jsonData);
+const disease_symptom_json = fs.readFileSync('./fulfillment/disease-symptom.json', 'utf8');
+const disease_symptom = JSON.parse(disease_symptom_json);
 
+// Parse Symptom-Disease 
+const disease_severity_json = fs.readFileSync('./rules/severity.json', 'utf8');
+const disease_severity = JSON.parse(disease_severity_json);
 /* ===== ===== ===== ===== ===== ===== ===== */
 
 const PRIORITY = 100;
@@ -25,6 +28,7 @@ const registerDiseaseRules = (R) => {
 				var positive = 0, negative = 0;
 				var threshold = symptom_rules.length / 2;
 				var hasAction = false;
+				var includedSymptoms = 0;
 
 				var positive_symptoms = facts.user.positive_symptoms; 
 				var negative_symptoms = facts.user.negative_symptoms;  
@@ -104,12 +108,82 @@ const diagnoseNone = {
 	}
 };
 
+const pneumoniaSeverityRule = {
+	id: 'pneumonia_severity',
+	priority: 50, // change?
+	condition: (R, facts) => {
+		console.log('in condition')
+		var hasAction = false;
+		const disease = disease_severity.find(data => data.disease === "pneumonia");
+
+		var positive_symptoms = facts.user.positive_symptoms; 
+		var negative_symptoms = facts.user.negative_symptoms;  
+
+		// check if the criteria is in positive_symptoms/negative_symptoms and update facts
+		var symptom = disease.criteria[0];
+		if (positive_symptoms.includes(symptom)) {
+			facts.user.severity[symptom] = true;
+		} else if (negative_symptoms.includes(symptom)) {
+			facts.user.severity[symptom] = false;
+		}
+
+		for (i = 0; i < disease.criteria.length; i++) {
+			var investigated_criteria = disease.criteria[i];
+
+			if (hasAction) {
+				break;
+			}
+
+			if (!facts.user.severity[investigated_criteria]) {
+				facts.agent.next_action = `SEVERITY-${disease.disease.toUpperCase()}-ASK-${investigated_criteria.toUpperCase()}`;
+				hasAction = true;
+				R.stop();
+			}
+		}
+		// If all the criteria is not undefined
+		R.when(facts.user.severity.confusion && facts.user.severity.urea && 
+			facts.user.severity.respiratoryRate && facts.user.severity.bloodPressure && 
+			facts.user.severity.age);
+	},
+	consequence: (R, facts) => {
+		const { confusion, urea, respiratoryRate, bloodPressure, age } = facts.user.severity;
+		facts.user.severity.score = 0;
+		// calculate the score
+		if (confusion) {
+			facts.user.severity.score += 1;
+		}
+		if (urea > 7) {
+			facts.user.severity.score += 1;
+		}
+		if (respiratoryRate >= 30) {
+			facts.user.severity.score += 1;
+		}
+		if (bloodPressure[0] < 90 && bloodPressure[1] <= 60) {
+			facts.user.severity.score += 1;
+		}
+		if (age >= 65) {
+			facts.user.severity.score += 1;
+		}
+
+		if (facts.user.severity.score <= 1) { // Low severity, suitable for home treatment.
+			facts.user.severity.final = 'LOW';
+		} else if (facts.user.severity.score === 2) { // Moderate severity, consider hospitalization.
+			facts.user.severity.final = 'MODERATE';
+		} else if (facts.user.severity.score >= 3) { // Severe, hospitalization is often required.
+			facts.user.severity.final = 'SEVERE';
+		}
+
+		R.stop();
+	}
+}
+
 const applyRules = (R) => {
 	//R.register(prioritizeDiseasesRules);
 	R.register(recallSymptoms);
 	R.register(hasAction);
 	R.register(diagnoseNone);
 	registerDiseaseRules(R);
+	R.register(pneumoniaSeverityRule);
 };
 
 module.exports = {

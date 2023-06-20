@@ -1,0 +1,12 @@
+[
+	{
+		"disease": "pneumonia",
+		"criteria": [
+			"confusion",
+			"urea",
+			"respiratory_rate",
+			"blood_pressure",
+			"age"
+		]
+	}
+]
