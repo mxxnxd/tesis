@@ -35,9 +35,11 @@ const enConfirmSymptom = async (agent) => {
 		// Add User Positive Symptoms
 		facts.user.positive_symptoms = Array.from(new Set(facts.user.positive_symptoms.concat([investigated_symptom])));
 		
-	} else {
+	} else if (bool === 'NEGATE') {
 		// Add User Negative Symptoms
 		facts.user.negative_symptoms = Array.from(new Set(facts.user.negative_symptoms.concat([investigated_symptom])));
+	} else {
+		agent.add("I did not quite get that? Do you have the symptom?");
 	}
 
 	// Get Next Agent Action
@@ -45,19 +47,17 @@ const enConfirmSymptom = async (agent) => {
 		delete facts.agent.next_action;
 	}
 
-	console.log(facts);
-
 	// Response
 	const res = await rule.getAction(facts);
-	handleAgentAction(agent, res.agent.next_action);
-
+	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	console.log(res);
 
 	// Update User Data
 	db.updateUser(senderID, {positive_symptoms: res.user.positive_symptoms});
 	db.updateUser(senderID, {negative_symptoms: res.user.negative_symptoms});
-	db.updateUser(senderID, {start: res.user.start});
+	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
+	// db.updateUser(senderID, {start: res.user.start});
 	db.updateAgent(senderID, {next_action: res.agent.next_action});
 };
 
@@ -92,11 +92,12 @@ const enShareSymptomPositive = async (agent) => {
 	const res = await rule.getAction(facts);
 
 	// Response
-	handleAgentAction(agent, res.agent.next_action);
+	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	// Update User Data
 	db.updateUser(senderID, {positive_symptoms: res.user.positive_symptoms});
-	db.updateUser(senderID, {start: res.user.start});
+	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
+	// db.updateUser(senderID, {start: res.user.start});
 	db.updateAgent(senderID, {next_action: res.agent.next_action});
 };
 
@@ -131,20 +132,21 @@ const enShareSymptomNegative = async (agent) => {
 	const res = await rule.getAction(facts);
 
 	// Response
-	handleAgentAction(agent, res.agent.next_action);
+	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	// Update User Data
 	db.updateUser(senderID, {negative_symptoms: res.user.negative_symptoms});
-	db.updateUser(senderID, {start: res.user.start});
+	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
+	// db.updateUser(senderID, {start: res.user.start});
 	db.updateAgent(senderID, {next_action: res.agent.next_action});
 };
 
-const enShareFeeling = async (agent) => {
+const enShareFeeling = async (agent) => {										// Add Variations
 	if (util.getSentimentScore > 0.5) {
-		agent.add(':o could you share some symptoms you are experiencing?');
+		agent.add('Oh ok, could you share some symptoms you are experiencing?');
 	} else {
 		agent.add('Aww :<');
-		agent.add('Could some symptoms that is making you feel bad?');
+		agent.add('could you share some symptoms that is making you feel bad?');
 	}
 };
 
@@ -155,20 +157,31 @@ module.exports = {
 	enShareFeeling,
 };
 
-function handleAgentAction(agent, action) {
-
+function handleAgentAction(agent, action, positive_symptoms) {
+	
 	// Response
-	if (action.startsWith('ASK') || action.startsWith('RECALL')) {				// Change Dialogue for RECALL
-		const response = responses[action.toLowerCase().split('-')[1]];
+	if (action.startsWith('ASK')) {				
+		const response = responses[action.toLowerCase().split('-')[1]].ask_symptom;
 		agent.add(response[Math.floor(Math.random() * response.length)]);
 		util.setContexts(agent,['PHASE-CHECK'], [5]);
+		return; 
+	}
+
+	if (action.startsWith('RECALL')) {
+		const response = responses[action.toLowerCase().split('-')[1]].recall_symptom;
+		agent.add(response[Math.floor(Math.random() * response.length)]);
+		util.setContexts(agent,['PHASE-CHECK'], [5]);
+		return; 
 	}
 
 	if (action.startsWith('DIAGNOSE')) {
 		agent.add(action);
-		util.setContexts(agent,['PHASE-CHECK'], [0]);
-	};
+		util.setContexts(agent, ['PHASE-CHECK'], [0]);
 
+		const senderID = util.getSenderID(agent);
+		db.updateUser(senderID, {previous_symptoms: positive_symptoms});
+		return;
+	};
 }
 
 function cleanFacts(facts) {

@@ -1,46 +1,178 @@
 {
-    "abdomen_pain": ["Have you been experiencing pain in your stomach?", "Does your stomach or abdomen hurt from time to time?"],
-    "anxiety": ["Do you feel anxious sometimes?", "Do you have experience feelings of anxiety?"],
-    "appetite_loss": ["Have you lost your appetite recently?", "Do you feel like you don't have the motivation to eat?"],
-    "arm_pain": ["Does your arm hurt?", "Do you feel pain in your arms?", "Is there frequent in your arms?"],
-    "back_pain": ["Does your back hurt?", "Have you experiencing back pain?"],
-    "belly_swell": ["Is your belly swelling?", "Does your stomach look more bloated than usual?", "Do you feel like there is a buildup in your belly?"],
-    "blurry": ["Does your vision feel blurry recently?", "Do you experience blurry vision?", "Is your eyesight blurry?"],
-    "bone_pain": ["Do you feel pain in your bones frequently?", "Have you experience pain in your bones recently that is not related to physical injury?"],
-    "tachypnea": ["Have you been breathing rapidly lately?", "Did you expereince cases where you breath rapidly recently?", "Do you feel like you have been abnormally breathing really fast?"],
-    "chest_pain": ["Does your chest hurt?", "Have you expereince any form of pain in your chest region recently?"],
-    "chills": ["Do you feel usually chilly?", "Do you feel random chills in your body even though the environment is warm?"],
-    "colds": ["Do you have cold?", "Are you down with a cold?", "Do you have a runny nose?"],
-    "confusion": ["Do you sometimes feel confused out of nowhere from time to time?", "Do you feel foggy frequently? where you're suddenly forgetful.", "Do you feel like you have a lack focus or mental clarity lately?"],
-    "cough": ["Have you been coughing?", "Do you have a cough?"],
-    "cyanosis": ["Are your finger tips bluish?", "Do you show signs of cyanosis? where your finger tips have a shade of blue?"],
-    "dizzy": ["Do you feel dizzy?", "Have you felt dizzy recently?"],
-    "dysphagia": ["Have you been experiencing trouble swallowing food?", "Do you expereince disconformfort when swallowing?"],
-    "dyspnea": ["Do you feel breathless from time to time?", "Do you feel like you are running out of breath?", "Have you been experiencing feelings of breathlessness? where you feel like your body is suffocating from the lack of air."],
-    "faint": ["Have you already fainted?", "Have you fainted recently?"],   
-    "fatigue": ["Do you feel tired for no reason?", "Do you feel like you lack energy?", "Have you felt fatigued?"],
-    "fever": ["Do you have a fever?", "Have been experiencing a fever?"],
-    "headaches": ["Do you have a headache?", "Does your head hurt like a headache or migraine?"],
-    "heartburn": ["Have you experience a hurtburn recently?", "Have you felt an uncomfortable burning senssation in your chest region recently? also known as heartburn."],
-    "hoarseness": ["Do you have a hoarse or weak scratchy voice lately?", "Do you have a scratchy husky voice that is not your normal voice?"],
-    "legs_swell": ["Do you feel like your legs are swelling?", "Do you feel bloated on your legs?", "Are your legs swelling?", "Do you feel like something is building up inside your legs making it swell?"],
-    "mouth_pain": ["Do you feel pain in your mouth unrelated to physical injury?", "Do you have mouth pain?"],
-    "muscle_pain": ["Does your muscle hurts out of the blue that is not caused by physical injury?", "Do your muscles hurt recently?"],
-    "nausea": ["Do you feel nauseas?", "Have you felt nauseas that you feel like vomiting?", "Have you vomitted recently?"],
-    "neck_shoulder_pain": ["Does you neck hurt?", "Does your shoulder hurt?", "Do you experience pain in your neck or shoulder?", "Have you felt pain in your neck and shoudlers?"],
-    "neck_swell": ["Is your neck swelling?", "Do you feel like your neck is swelling?", "Do you feel bloating on your neck?"],
-    "neck_tight": ["Does your neck feel tight?", "Does your neck feel stiff?"],
-    "pale_sweat": ["Have you woken up with a cold sweat?", "Do you look pale and sweaty?"],
-    "phlegm_clear": ["Do you phlegmIs your phlegm clear?"],
-    "phlegm_green": ["Is your phlegm green?"],
-    "phlegm_red": ["Is your phlegm red?"],
-    "phlegm_white": ["Is your phlehm white?"],
-    "r_infections": ["Do you have a history with respiratory infections?"],
-    "sleep_hard": ["Do you have trouble sleeping lately?", "Do you struggle to sleep recently?"],
-    "tachycardia": ["Are you experiencing tachycardia (rapid heartbeat)?"],
-    "urine_blood": ["Is there blood present in your urine recently?", "Do you have bloody urine?"],
-    "weakness": ["Do you feel physically weak than usual?", "Do you feel weak even with a full night sleep?"],
-    "weightgain": ["Have you gained weight?"],
-    "weightloss": ["Have you lost weight?"],
-    "wheeze": ["Have you experience wheezing recently?", "Have you been wheezing?"]
+    "abdomen_pain": {
+        "ask_symptom": ["Have you been experiencing pain in your stomach?", "Does your stomach or abdomen hurt from time to time?"],
+        "recall_symptom": ["Do you still experience stomach pains?"]
+    },
+    "anxiety": {
+        "ask_symptom": ["Do you feel anxious sometimes?", "Have you experience feelings of anxiety recently?"],
+        "recall_symptom": ["Do you still feel anxious?"]
+    },
+    "appetite_loss": {
+        "ask_symptom": ["Have you lost your appetite recently?", "Do you feel like you don't have the motivation to eat?"],
+        "recall_symptom": ["Are you still eating less?", "Do you still not have an appetite?"]
+    },
+    "arm_pain": {
+        "ask_symptom": ["Does your arm hurt?", "Do you feel pain in your arms?", "Is there frequent in your arms?"],
+        "recall_symptom": ["Does you arm still hurt?", "Is your arm feeling pain still?"]
+    },
+    "back_pain": {
+        "ask_symptom": ["Does your back hurt?", "Have you experiencing back pain?"],
+        "recall_symptom": ["Does your back still hurt?", "Is your back still aching?"]
+    },
+    "belly_swell": {
+        "ask_symptom": ["Is your belly swelling?", "Does your stomach look more bloated than usual?", "Do you feel like there is a buildup in your belly?"],
+        "recall_symptom": ["Do you still feel bloated in your stomach?", "Is there still swelling in your belly?"]
+    },
+    "blurry": {
+        "ask_symptom": ["Does your vision feel blurry recently?", "Do you experience blurry vision?", "Is your eyesight blurry?"],
+        "recall_symptom": ["Do you still have blurry vision?"]
+    },
+    "bone_pain": {
+        "ask_symptom": ["Do you feel pain in your bones frequently?", "Have you experience pain in your bones recently that is not related to physical injury?"],
+        "recall_symptom": ["Does you bone hurts still?", "Do you still feel pain in your bones since last time?"]
+    },
+    "tachypnea": {
+        "ask_symptom": ["Have you been breathing rapidly lately?", "Did you expereince cases where you breath rapidly recently?", "Do you feel like you have been abnormally breathing really fast?"],
+        "recall_symptom": ["Last session you mentioned that you been breathing rapidly. Do you still experience rapid breaths?"]
+    },
+    "chest_pain": {
+        "ask_symptom": ["Does your chest hurt?", "Have you expereince any form of pain in your chest region recently?"],
+        "recall_symptom": ["Does your chest still hurt?", "Does your chest still hurt since last time?"]
+    },
+    "chills": {
+        "ask_symptom": ["Do you feel usually chilly?", "Do you feel random chills in your body even though the environment is warm?"],
+        "recall_symptom": ["You felt chilly last time, do you still do?"]
+    },
+    "colds": {
+        "ask_symptom": ["Do you have cold?", "Are you down with a cold?", "Do you have a runny nose?"],
+        "recall_symptom": ["Do you still have a cold?", "Are you still down with a cold?"]
+    },
+    "confusion": {
+        "ask_symptom": ["Do you sometimes feel confused out of nowhere from time to time?", "Do you feel foggy frequently? where you're suddenly forgetful.", "Do you feel like you have a lack focus or mental clarity lately?"],
+        "recall_symptom": ["You mentioned that you felt confused or foggy at times. Does you still feel like that recently?"]
+    },
+    "cough": {
+        "ask_symptom": ["Have you been coughing?", "Do you have a cough?"],
+        "recall_symptom": ["You mentioned that you were coughing last time. Do you still have a cough now?"]
+    },
+    "cyanosis": {
+        "ask_symptom": ["Are your finger tips bluish?", "Do you show signs of cyanosis? where your finger tips have a shade of blue?"],
+        "recall_symptom": ["Does your finger tips still have a bluish shade?"]
+    },
+    "dizzy": {
+        "ask_symptom": ["Do you feel dizzy?", "Have you felt dizzy recently?"],
+        "recall_symptom": ["Do you still feel dizzy out of nowhere?"]
+    },
+    "dysphagia": {
+        "ask_symptom": ["Have you been experiencing trouble swallowing food?", "Do you expereince disconformfort when swallowing?"],
+        "recall_symptom": ["Are you still strunggling to swallow food?"]
+    },
+    "dyspnea": {
+        "ask_symptom": ["Do you feel breathless from time to time?", "Do you feel like you are running out of breath?", "Have you been experiencing feelings of breathlessness? where you feel like your body is suffocating from the lack of air."],
+        "recall_symptom": ["Do you still run out of breath quickly?"]
+    },
+    "faint": {
+        "ask_symptom": ["Have you already fainted?", "Have you fainted recently?"],
+        "recall_symptom": ["Have you fainted since last session?"]   
+    },
+    "fatigue": {
+        "ask_symptom": ["Do you feel tired for no reason?", "Do you feel like you lack energy?", "Have you felt fatigued?"],
+        "recall_symptom": ["Do you still feel tired for no reason?", "Do you still feel like you lack energy?"]
+    },
+    "fever": {
+        "ask_symptom": ["Do you have a fever?", "Have been experiencing a fever?"],
+        "recall_symptom": ["Do you still have a fever?"]
+    },
+    "headaches": {
+        "ask_symptom": ["Do you have a headache?", "Does your head hurt like a headache or migraine?"],
+        "recall_symptom": ["Does your head still ache?", "Do you still have a headache?"]
+    },
+    "heartburn": {
+        "ask_symptom": ["Have you experience a hurtburn recently?", "Have you felt an uncomfortable burning senssation in your chest region recently? also known as heartburn."],
+        "recall_symptom": ["Have you experience hurtburns since last session?"]
+    },
+    "hoarseness": {
+        "ask_symptom": ["Do you have a hoarse or weak scratchy voice lately?", "Do you have a scratchy husky voice that is not your normal voice?"],
+        "recall_symptom": ["Is your voice still hoarse? Like it is weak and scratchy."]
+    },
+    "legs_swell": {
+        "ask_symptom": ["Do you feel like your legs are swelling?", "Do you feel bloated on your legs?", "Are your legs swelling?", "Do you feel like something is building up inside your legs making it swell?"],
+        "recall_symptom": ["Are your legs still swelling?", "Are you legs still bloated?"]
+    },
+    "mouth_pain": {
+        "ask_symptom": ["Do you feel pain in your mouth unrelated to physical injury?", "Do you have mouth pain?"],
+        "recall_symptom": ["Do you still feell pain in your mouth", "Do you still have mouth pain?"]
+    },
+    "muscle_pain": {
+        "ask_symptom": ["Does your muscle hurts out of the blue that is not caused by physical injury?", "Do your muscles hurt recently?"],
+        "recall_symptom": ["Not related to physical injuries, does your muscle still hurt?"]
+    },
+    "nausea": {
+        "ask_symptom": ["Do you feel nauseas?", "Have you felt nauseas that you feel like vomiting?", "Have you vomitted recently?"],
+        "recall_symptom": ["Do you still feel nauseas?"]
+    },
+    "neck_shoulder_pain": {
+        "ask_symptom": ["Does you neck hurt?", "Does your shoulder hurt?", "Do you experience pain in your neck or shoulder?", "Have you felt pain in your neck and shoudlers?"],
+        "recall_symptom": ["Does your neck or shoulder still hurt?"]
+    },
+    "neck_swell": {
+        "ask_symptom": ["Is your neck swelling?", "Do you feel like your neck is swelling?", "Do you feel bloating on your neck?"],
+        "recall_symptom": ["Is your neck still swelling?"]
+    },
+    "neck_tight": {
+        "ask_symptom": ["Does your neck feel tight?", "Does your neck feel stiff?"],
+        "recall_symptom": ["Is your neck stiff still?"]
+    },
+    "pale_sweat": {
+        "ask_symptom": ["Have you woken up with a cold sweat?", "Do you look pale and sweaty?"],
+        "recall_symptom": ["have you been still waking up with a cold sweat?", "Do you still look pale and sweaty?"]
+    },
+    "phlegm_clear": {
+        "ask_symptom": ["Is your phlegm clear?"],
+        "recall_symptom": ["Is your phlegm still clear?"]
+    },
+    "phlegm_green": {
+        "ask_symptom": ["Is your phlegm green?"],
+        "recall_symptom": ["Is your phlegm still clear?"]
+    },
+    "phlegm_red": {
+        "ask_symptom": ["Is your phlegm red?"],
+        "recall_symptom": ["Is your phlegm still red?"]
+    },
+    "phlegm_white": {
+        "ask_symptom": ["Is your phlehm white?"],
+        "recall_symptom": ["Is your phlehm still white?"]
+    },
+    "r_infections": {
+        "ask_symptom": ["Do you have a history with respiratory infections?"],      
+        "recall_symptom": ["RECALL R INFECTIONS?"]
+    },
+    "sleep_hard": {
+        "ask_symptom": ["Do you have trouble sleeping lately?", "Do you struggle to sleep recently?"],
+        "recall_symptom": ["Do you still have trouble sleeping lately?"]
+    },
+    "tachycardia": {
+        "ask_symptom": ["Is your heart beating rapidly?", "Do you have tachycardia? where you're heart is beating rapidly."],
+        "recall_symptom": ["Is your heart still beating rapidly"]
+    },
+    "urine_blood": {
+        "ask_symptom": ["Is there blood present in your urine recently?", "Do you have bloody urine?"],
+        "recall_symptom": ["Is there blood still present in your urine since last session?"]
+    },
+    "weakness": {
+        "ask_symptom": ["Do you feel physically weak than usual?", "Do you feel weak even with a full night sleep?"],
+        "recall_symptom": ["Do you still feel physically weak than usual?"]
+    },
+    "weightgain": {
+        "ask_symptom": ["Have you gained weight?"],
+        "recall_symptom": ["Have you gained weight again?"]
+    },
+    "weightloss": {
+        "ask_symptom": ["Have you lost weight?"],
+        "recall_symptom": ["Have you lost weight again?"]
+    },
+    "wheeze": {
+        "ask_symptom": ["Have you experience wheezing recently?", "Have you been wheezing?"],
+        "recall_symptom": ["Are you still wheezing?"]
+    }
 }
