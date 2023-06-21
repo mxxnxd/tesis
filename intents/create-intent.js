@@ -6,8 +6,8 @@
 const manager = require('./intent-manager.js');
 
 const main = async () => {
-	const str = 16; // Excel Row -2
-	const end = 17; // Excel Row -1
+	const str = 17; // Excel Row -2
+	const end = 18; // Excel Row -1
 
 	// Load Intent Data
 	const intents = manager.loadIntentExcel();

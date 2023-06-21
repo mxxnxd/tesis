@@ -43,6 +43,11 @@ const updateAgent = (id, json) => {
 	ref.update(json);
 };
 
+const updateUserSeverity = (id, json) => {
+	var ref = db.ref(`users/${id}/user/severity`);
+	ref.update(json);
+};
+
 const closeDB = () => {
 	db.goOffline();
 	app.delete();
@@ -68,6 +73,7 @@ module.exports = {
 	deleteUser,
 	updateUser,
 	updateAgent,
+	updateUserSeverity,
 	createUser,
 	closeDB,
 };

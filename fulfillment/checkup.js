@@ -150,11 +150,64 @@ const enShareFeeling = async (agent) => {										// Add Variations
 	}
 };
 
+const enShareBloodPressure = async (agent) => {
+	const senderID = util.getSenderID(agent);
+
+	const blood_pressure = agent.parameters.number;
+	const systolic = blood_pressure[0];
+	const diastolic = blood_pressure[1];
+
+	db.updateUserSeverity(senderID, {blood_pressure: {
+		systolic: systolic,
+		diastolic: diastolic
+	}});
+
+	agent.add('GOT IT');
+	util.setContexts(agent,['PHASE-CHECK'], [5]);
+};
+
+const enShareAge = async (agent) => {
+	const senderID = util.getSenderID(agent);
+
+	const age = agent.parameters.age;
+	db.updateUserSeverity(senderID, {age: age});
+
+	agent.add('GOT IT');
+	util.setContexts(agent,['PHASE-CHECK'], [5]);
+};
+
+const enShareGender = async (agent) => {
+	const senderID = util.getSenderID(agent);
+
+	const gender = agent.parameters.bot_gender;
+	db.updateUserSeverity(senderID, {gender: gender});
+
+	agent.add('GOT IT');
+	util.setContexts(agent,['PHASE-CHECK'], [5]);
+};
+
+const enShareWeight = async (agent) => {
+	const senderID = util.getSenderID(agent);
+
+	const weight = agent.parameters.weight;
+	db.updateUserSeverity(senderID, {weight: {
+		weight: weight.amount,
+		unit: weight.unit
+	}});	
+
+	agent.add('GOT IT');
+	util.setContexts(agent,['PHASE-CHECK'], [5]);
+};
+
 module.exports = {
 	enConfirmSymptom,
 	enShareSymptomPositive,
 	enShareSymptomNegative,
 	enShareFeeling,
+	enShareBloodPressure,
+	enShareAge,
+	enShareGender,
+	enShareWeight,
 };
 
 function handleAgentAction(agent, action, positive_symptoms) {
