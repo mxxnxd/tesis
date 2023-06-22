@@ -12,13 +12,13 @@
 			"legs_swell",
 			"cyanosis",
 			"phlegm_red",
-			"dysphagia",
+			"phlegm_green",
+			"phlegm_white",			
+			"dysphasia",
 			"weightloss",
 			"colds",
 			"confusion",
-			"hoarseness",
-			"phlegm_green",
-			"phlegm_white"
+			"hoarseness"
 		]
 	},
 	{
