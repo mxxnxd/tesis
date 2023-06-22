@@ -19,6 +19,7 @@ const default_user = {
 		start: true,
 		terms: false,
 		language: false,
+		recall: false,
 	},
 	agent: {
 		next_action: false,

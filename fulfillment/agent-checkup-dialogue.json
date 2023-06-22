@@ -39,6 +39,10 @@
         "ask_symptom": ["Does your chest hurt?", "Have you expereince any form of pain in your chest region recently?"],
         "recall_symptom": ["Does your chest still hurt?", "Does your chest still hurt since last time?"]
     },
+    "chest_tight": {
+        "ask_symptom": ["Does your chest feel tight?", "Have you expereince any form of tightness or stiffness in your chest region recently?"],
+        "recall_symptom": ["Is your chest still tight or stiff?"]
+    },
     "chills": {
         "ask_symptom": ["Do you feel usually chilly?", "Do you feel random chills in your body even though the environment is warm?"],
         "recall_symptom": ["You felt chilly last time, do you still do?"]
@@ -101,7 +105,7 @@
     },
     "mouth_pain": {
         "ask_symptom": ["Do you feel pain in your mouth unrelated to physical injury?", "Do you have mouth pain?"],
-        "recall_symptom": ["Do you still feell pain in your mouth", "Do you still have mouth pain?"]
+        "recall_symptom": ["Do you still feel pain in your mouth", "Do you still have mouth pain?"]
     },
     "muscle_pain": {
         "ask_symptom": ["Does your muscle hurts out of the blue that is not caused by physical injury?", "Do your muscles hurt recently?"],
@@ -174,5 +178,44 @@
     "wheeze": {
         "ask_symptom": ["Have you experience wheezing recently?", "Have you been wheezing?"],
         "recall_symptom": ["Are you still wheezing?"]
-    }
+    },
+    "aneurysm": {
+		"response_impression": ["Based on your symptoms, my impression is that you show signs of a developing aneurysm."]
+	},
+	"arrhythmia": {
+		"response_impression": ["I believe you show signs of arrhythmia based on your symptoms."]
+	},
+	"asthma": {
+		"response_impression": ["You seem to show symptoms of asthma."]
+	},
+	"cad": {
+		"response_impression": ["I see signs of coronary artery disease (CAD) based on your symptoms."]
+	},
+	"cardiomyopathy": {
+		"response_impression": ["My medical impression is that you have cardiomyopathy."]
+	},
+	"copd": {
+		"response_impression": ["You show signs of a chronic obstructive pulmonary disease (COPD)."]
+	},
+	"heart_failure": {
+		"response_impression": ["I think you are developing heart failure."]
+	},
+	"hypertension": {
+		"response_impression": ["I believe you have hypertension also known as high blood pressure."]
+	},
+	"lung_cancer": {
+		"response_impression": ["You show some potential signs of lung cancer."]
+	},
+	"myocardial_infarction": {
+		"response_impression": ["You show early signs of a developing myocardial infarction (Heart Attack)."]
+	},
+	"pneumonia": {
+		"response_impression": ["I think you have pneumonia."]
+	},
+	"tuberculosis": {
+		"response_impression": ["I think you have tuberculosis."]
+	},
+	"valve_disease": {
+		"response_impression": ["My impression is that you show signs of valve disease."]
+	}
 }

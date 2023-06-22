@@ -11,19 +11,20 @@ const { send } = require('process');
 */
 
 /* ========== ========== ========== ========== ========== ========== ========== */
-
-
+// agent-query-response-dialogue -> agent-query-dialogue
+// agent-query-question-dialogue -> agent-checkup-dialogue
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
 // JSON
-const jsonData = fs.readFileSync('./fulfillment/agent-query-question-dialogue.json', 'utf8');
+const jsonData = fs.readFileSync('./fulfillment/agent-checkup-dialogue.json', 'utf8');
 const responses = JSON.parse(jsonData);
 
 const enConfirmSymptom = async (agent) => {
 	// Get User
 	const senderID = util.getSenderID(agent);
 	var facts = await db.getUser(senderID);
+	facts = await fetchPreviousSymptoms(senderID, facts);
 	
 	// Get Parameters
 	const bool = agent.parameters.affirm;
@@ -49,9 +50,8 @@ const enConfirmSymptom = async (agent) => {
 
 	// Response
 	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
-
-	console.log(res);
 
 	// Update User Data
 	db.updateUser(senderID, {positive_symptoms: res.user.positive_symptoms});
@@ -65,6 +65,7 @@ const enShareSymptomPositive = async (agent) => {
 	// Get User
 	const senderID = util.getSenderID(agent);
 	var facts = await db.getUser(senderID);
+	facts = await fetchPreviousSymptoms(senderID, facts);
 	
 	// Get Parameters
 	const symptoms = agent.parameters.symptom;
@@ -75,7 +76,7 @@ const enShareSymptomPositive = async (agent) => {
 	var acquired_symptoms = [];
 	symptoms.forEach(symptom => acquired_symptoms.push(symptom.toLowerCase()));
 	body_parts.forEach(part => {
-		const body_symptom = util.getSymptomCondition(part, body_condition);
+		const body_symptom = util.getSymptomCondition(part, body_condition).toLowerCase();
 		if (body_symptom != null) {
 			acquired_symptoms.push(body_symptom);
 		}
@@ -90,6 +91,7 @@ const enShareSymptomPositive = async (agent) => {
 		delete facts.agent.next_action;
 	}
 	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
 
 	// Response
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
@@ -105,6 +107,7 @@ const enShareSymptomNegative = async (agent) => {
 	// Get User
 	const senderID = util.getSenderID(agent);
 	var facts = await db.getUser(senderID);
+	facts = await fetchPreviousSymptoms(senderID, facts);
 	
 	// Get Parameters
 	const symptoms = agent.parameters.symptom;
@@ -115,7 +118,7 @@ const enShareSymptomNegative = async (agent) => {
 	var acquired_symptoms = [];
 	symptoms.forEach(symptom => acquired_symptoms.push(symptom.toLowerCase()));
 	body_parts.forEach(part => {
-		const body_symptom = util.getSymptomCondition(part, body_condition);
+		const body_symptom = util.getSymptomCondition(part, body_condition).toLowerCase();
 		if (body_symptom != null) {
 			acquired_symptoms.push(body_symptom);
 		}
@@ -130,6 +133,7 @@ const enShareSymptomNegative = async (agent) => {
 		delete facts.agent.next_action;
 	}
 	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
 
 	// Response
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
@@ -211,6 +215,7 @@ module.exports = {
 };
 
 function handleAgentAction(agent, action, positive_symptoms) {
+	const senderID = util.getSenderID(agent);
 	
 	// Response
 	if (action.startsWith('ASK')) {				
@@ -228,13 +233,36 @@ function handleAgentAction(agent, action, positive_symptoms) {
 	}
 
 	if (action.startsWith('DIAGNOSE')) {
-		agent.add(action);
+		const response = responses[action.toLowerCase().split('-')[1]].response_impression;
+		agent.add(response[Math.floor(Math.random() * response.length)]);
+
+		agent.add('I advise you to make an appointment with your doctor to get a more detailed and official diagnosis of your condition.')
 		util.setContexts(agent, ['PHASE-CHECK'], [0]);
 
-		const senderID = util.getSenderID(agent);
-		db.updateUser(senderID, {previous_symptoms: positive_symptoms});
+		const timestamp = Math.floor(Date.now() / 1000);
+		db.updateUser(senderID, {latest_session: timestamp, recall: true});
+		db.createSession(senderID, timestamp, {previous_symptoms: positive_symptoms})
 		return;
 	};
+
+	if (action.startsWith('NO-DIAGNOSIS')) {
+		agent.add('You seem fine but if present symptoms worsen please contact your physician or try again.');
+		util.setContexts(agent, ['PHASE-CHECK'], [0]);
+
+		const timestamp = Math.floor(Date.now() / 1000);
+		db.updateUser(senderID, {latest_session: timestamp, recall: true});
+		db.createSession(senderID, timestamp, {previous_symptoms: positive_symptoms})
+	}
+}
+
+async function fetchPreviousSymptoms(senderID, facts) {
+	// Load Previous Symptoms if there is any
+	if (facts.user.recall) {
+		const session = await db.getSession(senderID, facts.user.latest_session);
+		facts.user.previous_symptoms = session.previous_symptoms;
+		db.updateUser(senderID, {recall: false});
+	} 
+	return facts;
 }
 
 function cleanFacts(facts) {
