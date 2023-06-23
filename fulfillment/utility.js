@@ -78,11 +78,11 @@ const getSymptomCondition = (bodyPart, bodyCondition) => {
 
 	if (listedSymptoms.includes(symptom_name)) {
 		switch (symptom_name) {
-			case 'HEAD_PAIN': 		return 'HEADACHES';
-			case 'BELLY_PAIN': 		return 'ABDOMEN_PAIN';
+			case 'HEAD_PAIN': 		return 'headaches';
+			case 'BELLY_PAIN': 		return 'abdomen_pain';
 			case 'NECK_PAIN':
-			case 'SHOULDER_PAIN': 	return 'NECK_SHOULDER_PAIN';
-			default:				return symptom_name;
+			case 'SHOULDER_PAIN': 	return 'neck_shoulder_pain';
+			default:				return symptom_name.toLowerCase();
 		}
 	}
 	return null;

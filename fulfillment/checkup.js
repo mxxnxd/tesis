@@ -74,7 +74,7 @@ const enShareSymptomPositive = async (agent) => {
 	var acquired_symptoms = [];
 	symptoms.forEach(symptom => acquired_symptoms.push(symptom.toLowerCase()));
 	body_parts.forEach(part => {
-		const body_symptom = util.getSymptomCondition(part, body_condition).toLowerCase();
+		const body_symptom = util.getSymptomCondition(part, body_condition);
 		if (body_symptom != null) {
 			acquired_symptoms.push(body_symptom);
 		}

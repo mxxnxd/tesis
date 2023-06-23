@@ -78,7 +78,7 @@
 			"fatigue",
 			"headaches",
 			"fever",
-			"dysphagia",
+			"dysphasia",
 			"weightloss",
 			"appetite_loss",
 			"bone_pain",
@@ -194,7 +194,7 @@
 			"weakness",
 			"tachycardia",
 			"pale_sweat",
-			"dysphagia",
+			"dysphasia",
 			"abdomen_pain",
 			"neck_shoulder_pain",
 			"dizzy",
@@ -212,7 +212,7 @@
 		"symptom": [
 			"chest_pain",
 			"hoarseness",
-			"dysphagia",
+			"dysphasia",
 			"dyspnea",
 			"back_pain",
 			"cough"
