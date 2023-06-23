@@ -11,8 +11,6 @@ const { send } = require('process');
 */
 
 /* ========== ========== ========== ========== ========== ========== ========== */
-// agent-query-response-dialogue -> agent-query-dialogue
-// agent-query-question-dialogue -> agent-checkup-dialogue
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
@@ -216,7 +214,8 @@ module.exports = {
 
 function handleAgentAction(agent, action, positive_symptoms) {
 	const senderID = util.getSenderID(agent);
-	
+	console.log(`Handing Action: ${action}`)
+
 	// Response
 	if (action.startsWith('ASK')) {				
 		const response = responses[action.toLowerCase().split('-')[1]].ask_symptom;

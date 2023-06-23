@@ -67,7 +67,7 @@
         "ask_symptom": ["Do you feel dizzy?", "Have you felt dizzy recently?"],
         "recall_symptom": ["Do you still feel dizzy out of nowhere?"]
     },
-    "dysphagia": {
+    "dysphasia": {
         "ask_symptom": ["Have you been experiencing trouble swallowing food?", "Do you expereince disconformfort when swallowing?"],
         "recall_symptom": ["Are you still strunggling to swallow food?"]
     },

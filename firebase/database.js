@@ -70,8 +70,11 @@ const closeDB = () => {
 
 const main = async () => {
 
+	
+
 	console.log('!');
-	console.log(await getSession(6636659469693773, 1687431118));
+	console.log(await getUser(6636659469693773));
+	// console.log(await getSession(6636659469693773, 1687431118));
 };
 
 module.exports = {
@@ -86,7 +89,7 @@ module.exports = {
 	closeDB,
 };
 
-//  main();
+ main();
 
 
 
