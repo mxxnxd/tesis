@@ -8,7 +8,7 @@ const diseasesRuleset = require('./disease-rules.js');
 
 // Rules Engine
 var R = new RuleEngine();
-R.ignoreFactChanges = true;
+R.ignoreFactChanges = false;
 
 // Apply rules
 diseasesRuleset.applyRules(R);
@@ -61,15 +61,25 @@ const determineInitialDisease = (facts) => {
 
 // Testing
 const main = async () => {
+	// console.log(R.activeRules)
 	var facts = {
 		user: {
 			positive_symptoms: ['fatigue', 'dyspnea', 'cyanosis'],
 			negative_symptoms: [],
 			previous_symptoms: [],
 			severity: {},
+			group: {
+				phlegmNeeded: false
+			},
 			start: true,
 		},
-		agent: {}
+		agent: {
+			currentDisease: '',
+			needsRestart: false,
+			initialPhlegmActionDone: false,
+			initialWeightActionDone: false,
+			weightNeeded: false
+		}
 	};
 	
 
@@ -79,6 +89,7 @@ const main = async () => {
 
 	var prompter = require("prompt-sync")({ sigint: '' });
 	while (true) {
+		console.log(`rules engine start: `)
 		var output = await getAction(facts);
 		console.log(output.agent.next_action);
 
@@ -91,17 +102,24 @@ const main = async () => {
 
 		var input = prompter(`>:`).toLowerCase();
 		if (input === 'y') {
-			output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
+			if (output.agent.next_action === 'ASK-PHLEGM') {
+				output.user.group.phlegmNeeded = true;
+			} else {
+				output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
+			}
 		} else if (input === 'n') {
-			output.user.negative_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
+			if (output.agent.next_action !== 'ASK-PHLEGM') {
+				output.user.negative_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
+			}
 		} else {
 			console.log('Exit');
 			break;
 		}
 
 		facts = output;
+		console.log(`rules engine facts.user end: `)
 		console.log(facts.user);
 	}
 };
 
-// main();
+main();
