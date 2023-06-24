@@ -107,10 +107,13 @@ const registerDiseaseRules = (R) => {
 								facts.agent.initialWeightActionDone = true;
 								hasAction = true;
 								R.stop();
-							} else if (!facts.agent.weightNeeded && facts.agent.initialWeightActionDone) { // trigger R.restart()
+							} else if (!facts.agent.weightNeeded && facts.agent.initialWeightActionDone && (facts.user.positive_symptoms.includes('weightloss') || facts.user.positive_symptoms.includes('weightgain'))) { // trigger R.restart()
 								facts.agent.weightNeeded = true;
 								facts.agent.needsRestart = true;
 								hasAction = true;
+							} else {
+								facts.agent.initialWeightActionDone = false; // do nothing when user says no to weightgain/weightloss
+								R.stop()
 							}
 						} else {
 							hasAction = true;
