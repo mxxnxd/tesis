@@ -152,17 +152,21 @@ const recallSymptoms = {
 	},
 	consequence: (R, facts) => { 
 		var previous_symptoms = facts.user.previous_symptoms;
-		var investigated_symptom = previous_symptoms.shift();
-		facts.previous_symptoms = previous_symptoms;
 
-		if (investigated_symptom === `r_infections`) {
-			facts.user.positive_symptoms.push(investigated_symptom);
-			investigated_symptom = previous_symptoms.shift();
+		while (facts.previous_symptoms.length != 0) {
+			var investigated_symptom = previous_symptoms.shift();
 			facts.previous_symptoms = previous_symptoms;
+
+			if (investigated_symptom === `r_infections`) {
+				facts.user.positive_symptoms.push(investigated_symptom);
+			} 
+			
+			if (!facts.user.positive_symptoms.includes(investigated_symptom)) {
+				break;
+			}
 		}
 
 		facts.agent.next_action = `RECALL-${investigated_symptom.toUpperCase()}`;
-
 		R.stop();
 	}
 }

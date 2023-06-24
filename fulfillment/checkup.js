@@ -19,27 +19,8 @@ const jsonData = fs.readFileSync('./fulfillment/agent-checkup-dialogue.json', 'u
 const responses = JSON.parse(jsonData);
 
 const enConfirmSymptom = async (agent) => {
-	// Get User
 	const senderID = util.getSenderID(agent);
-	var facts = await db.getUser(senderID);
-	facts = await fetchPreviousSymptoms(senderID, facts);
-	
-	// Get Parameters
-	const bool = agent.parameters.affirm;
-	facts = cleanFacts(facts);
-
-	const investigated_symptom = facts.agent.next_action.toLowerCase().split('-')[1];
-
-	if (bool === 'AFFIRM') {
-		// Add User Positive Symptoms
-		facts.user.positive_symptoms = Array.from(new Set(facts.user.positive_symptoms.concat([investigated_symptom])));
-		
-	} else if (bool === 'NEGATE') {
-		// Add User Negative Symptoms
-		facts.user.negative_symptoms = Array.from(new Set(facts.user.negative_symptoms.concat([investigated_symptom])));
-	} else {
-		agent.add("I did not quite get that? Do you have the symptom?");
-	}
+	var facts = await handleAgentParameters(agent, 'AFFIRM');
 
 	// Get Next Agent Action
 	if (facts.agent.next_action) {
@@ -56,91 +37,49 @@ const enConfirmSymptom = async (agent) => {
 	db.updateUser(senderID, {negative_symptoms: res.user.negative_symptoms});
 	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
 	// db.updateUser(senderID, {start: res.user.start});
-	db.updateAgent(senderID, {next_action: res.agent.next_action});
+	db.updateAgent(senderID, {next_action: res.agent.next_action, phlegmNeeded: res.agent.phlegmNeeded});
 };
 
 const enShareSymptomPositive = async (agent) => {
-	// Get User
 	const senderID = util.getSenderID(agent);
-	var facts = await db.getUser(senderID);
-	facts = await fetchPreviousSymptoms(senderID, facts);
-	
-	// Get Parameters
-	const symptoms = agent.parameters.symptom;
-	const body_parts = agent.parameters.body_part;
-	const body_condition = agent.parameters.body_condition;
-
-	// Get All Symptoms Mentioned
-	var acquired_symptoms = [];
-	symptoms.forEach(symptom => acquired_symptoms.push(symptom.toLowerCase()));
-	body_parts.forEach(part => {
-		const body_symptom = util.getSymptomCondition(part, body_condition);
-		if (body_symptom != null) {
-			acquired_symptoms.push(body_symptom);
-		}
-	});
-
-	// Add User Positive Symptoms
-	facts = cleanFacts(facts);
-	facts.user.positive_symptoms = Array.from(new Set(facts.user.positive_symptoms.concat(acquired_symptoms)));
+	var facts = await handleAgentParameters(agent, 'POSITIVE');
 
 	// Get Next Agent Action
 	if (facts.agent.next_action) {
 		delete facts.agent.next_action;
 	}
-	const res = await rule.getAction(facts);
-	console.log(`${senderID}: ${res.agent.next_action}`);
 
 	// Response
+	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	// Update User Data
 	db.updateUser(senderID, {positive_symptoms: res.user.positive_symptoms});
 	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
 	// db.updateUser(senderID, {start: res.user.start});
-	db.updateAgent(senderID, {next_action: res.agent.next_action});
+	db.updateAgent(senderID, {next_action: res.agent.next_action, phlegmNeeded: res.agent.phlegmNeeded});
 };
 
 const enShareSymptomNegative = async (agent) => {
-	// Get User
 	const senderID = util.getSenderID(agent);
-	var facts = await db.getUser(senderID);
-	facts = await fetchPreviousSymptoms(senderID, facts);
+	var facts = await handleAgentParameters(agent, 'NEGATIVE');
 	
-	// Get Parameters
-	const symptoms = agent.parameters.symptom;
-	const body_parts = agent.parameters.body_part;
-	const body_condition = agent.parameters.body_condition;
-
-	// Get All Symptoms Mentioned
-	var acquired_symptoms = [];
-	symptoms.forEach(symptom => acquired_symptoms.push(symptom.toLowerCase()));
-	body_parts.forEach(part => {
-		const body_symptom = util.getSymptomCondition(part, body_condition).toLowerCase();
-		if (body_symptom != null) {
-			acquired_symptoms.push(body_symptom);
-		}
-	});
-
-	// Add User Positive Symptoms
-	facts = cleanFacts(facts);
-	facts.user.negative_symptoms = Array.from(new Set(facts.user.negative_symptoms.concat(acquired_symptoms)));
-
 	// Get Next Agent Action
 	if (facts.agent.next_action) {
 		delete facts.agent.next_action;
 	}
-	const res = await rule.getAction(facts);
-	console.log(`${senderID}: ${res.agent.next_action}`);
 
 	// Response
+	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	// Update User Data
 	db.updateUser(senderID, {negative_symptoms: res.user.negative_symptoms});
 	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
 	// db.updateUser(senderID, {start: res.user.start});
-	db.updateAgent(senderID, {next_action: res.agent.next_action});
+	db.updateAgent(senderID, {next_action: res.agent.next_action, phlegmNeeded: res.agent.phlegmNeeded});
 };
 
 const enShareFeeling = async (agent) => {										// Add Variations
@@ -212,6 +151,69 @@ module.exports = {
 	enShareWeight,
 };
 
+
+async function handleAgentParameters(agent, type) {
+	// Fetch Data
+	const senderID = util.getSenderID(agent);
+	var facts = await db.getUser(senderID);
+	facts = await fetchPreviousSymptoms(senderID, facts);
+
+	// Get Parameter Data
+	const bool = agent.parameters.affirm;
+	const symptoms = agent.parameters.symptom;
+	const body_parts = agent.parameters.body_part;
+	const body_condition = agent.parameters.body_condition;
+
+	// Clean Facts
+	facts = cleanFacts(facts);
+
+	// Get Symptoms
+	var acquired_symptoms = [];
+
+	if (type === 'AFFIRM') {
+		const investigated_symptom = facts.agent.next_action.toLowerCase().split('-')[1];
+
+		if (bool === 'AFFIRM') {
+			facts.agent.phlegmNeeded = (investigated_symptom === 'phlegm');
+
+			// Add User Positive Symptoms
+			if (!facts.agent.phlegmNeeded ) {
+				facts.user.positive_symptoms = Array.from(new Set(facts.user.positive_symptoms.concat([investigated_symptom])));
+			}
+		} else if (bool === 'NEGATE') {
+			// Add User Negative Symptoms
+			facts.user.negative_symptoms = Array.from(new Set(facts.user.negative_symptoms.concat([investigated_symptom])));
+		} else {
+			agent.add("I did not quite get that? Do you have the symptom?");
+		}
+
+	} else if (type === 'POSITIVE' || type === 'NEGATIVE') {
+		symptoms.forEach(symptom => {
+			facts.agent.phlegmNeeded = (type === 'POSITIVE' && symptom === 'PHLEGM');
+
+			if (!facts.agent.phlegmNeeded) {
+				acquired_symptoms.push(symptom.toLowerCase());
+			}
+		});
+		body_parts.forEach(part => {
+			const body_symptom = util.getSymptomCondition(part, body_condition);
+			if (body_symptom != null) {
+				acquired_symptoms.push(body_symptom);
+			}
+		});
+
+		if (type === 'POSITIVE') {
+			facts.user.positive_symptoms = Array.from(new Set(facts.user.positive_symptoms.concat(acquired_symptoms)));
+		} else if (type === 'NEGATIVE') {
+			facts.user.negative_symptoms = Array.from(new Set(facts.user.negative_symptoms.concat(acquired_symptoms)));
+		}
+	} 
+
+	console.log(facts);
+
+	return facts;
+};
+
 function handleAgentAction(agent, action, positive_symptoms) {
 	const senderID = util.getSenderID(agent);
 	console.log(`Handing Action: ${action}`)
@@ -274,5 +276,8 @@ function cleanFacts(facts) {
 	if (!facts.user.previous_symptoms) {
 		facts.user.previous_symptoms = [];
 	}
-	return facts;
+	if (!facts.agent.phlegmNeeded) {
+		facts.agent.phlegmNeeded = false;
+	}
+	return facts;	
 }
