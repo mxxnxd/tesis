@@ -28,6 +28,12 @@ const clean_facts = {
 		if (!facts.user.previous_symptoms) {
 			facts.user.previous_symptoms = [];
 		}
+		if (!facts.user.severity) {
+			facts.user.severity = {};
+			if (!facts.user.severity.weight) {
+				facts.user.severity.weight = 0;
+			}
+		}
 		if (!facts.agent.currentDisease) {
 			facts.agent.currentDisease = '';
 		}
@@ -95,6 +101,29 @@ const clean_facts = {
 	}
 };
 
+const filter_negative_symptoms = {
+	id: 'filter_negative_symptoms',
+	priority: PRIORITY + 51, // 149,
+	condition: (R, facts) => {
+		var negative_symptoms = facts.user.negative_symptoms.filter(symptom => symptom.startsWith('phlegm_'));
+		console.log(negative_symptoms)
+		R.when(negative_symptoms.length > 0);
+	},
+	consequence: (R, facts) => {
+		var negative_symptoms = facts.user.negative_symptoms
+		for (i = negative_symptoms.length - 1; i >= 0; i--) {
+			if (negative_symptoms[i].startsWith('phlegm_')) {
+				facts.agent.group.phlegms.push(negative_symptoms[i]);
+				facts.user.negative_symptoms.splice(i, 1);
+			}
+		}
+		if (facts.agent.group.phlegms === facts.agent.currentPhlegmCount) {
+			facts.user.negative_symptoms.push('phlegms');
+		}
+		R.next();
+	}
+}
+
 const phlegm_rule = {
 	id: 'phlegm',
 	priority: PRIORITY + 50, // 150
@@ -134,7 +163,7 @@ const phlegm_rule = {
 
 const weight_rule = {
 	id: 'weight',
-	priority: PRIORITY + 49, // 149
+	priority: PRIORITY + 48, // 148
 	condition: (R, facts) => {
 		R.when(facts.agent.weightNeeded && !facts.user.severity.weight);
 	},
@@ -347,6 +376,7 @@ const pneumoniaSeverityRule = {
 
 const applyRules = (R) => {
 	R.register(clean_facts);
+	R.register(filter_negative_symptoms);
 	R.register(phlegm_rule);
 	R.register(weight_rule);
 	registerDiseaseRules(R);

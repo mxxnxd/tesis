@@ -114,11 +114,6 @@ const main = async () => {
 			}
 		} else if (input === 'n') {
 			if (output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) { // if phlegm_color, dont push to negative symptoms
-				output.agent.group.phlegms.push(output.agent.next_action.split('-')[1].toLowerCase());
-				if (output.agent.currentPhlegmCount === output.agent.group.phlegms.length) {
-					output.user.negative_symptoms.push('phlegm');
-				}
-			} else if (!output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) {
 				output.user.negative_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 			}
 		} else {
