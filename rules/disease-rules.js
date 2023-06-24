@@ -30,9 +30,35 @@ const clean_facts = {
 		}
 		if (!facts.user.severity) {
 			facts.user.severity = {};
+			if (!facts.user.severity.final) {
+				facts.user.severity.final = '';
+			}
+			if (!facts.user.severity.score) {
+				facts.user.severity.score = 0;
+			}
+			if (!facts.user.severity.confusion) {
+				facts.user.severity.confusion = false;
+			}
+			if (!facts.user.severity.urea) {
+				facts.user.severity.urea = 0;
+			}
+			if (!facts.user.severity.respiratoryRate) {
+				facts.user.severity.respiratoryRate = 0;
+			}
 			if (!facts.user.severity.weight) {
 				facts.user.severity.weight = 0;
 			}
+			if (!facts.user.severity.age) {
+				facts.user.severity.age = 0;
+			}
+			if (!facts.user.severity.bloodPressure) {
+				facts.user.severity.weight = [];
+			}
+
+			
+		R.when(facts.user.severity.confusion && facts.user.severity.urea && 
+			facts.user.severity.respiratoryRate && facts.user.severity.bloodPressure && 
+			facts.user.severity.age);
 		}
 		if (!facts.agent.currentDisease) {
 			facts.agent.currentDisease = '';
@@ -368,6 +394,48 @@ const pneumoniaSeverityRule = {
 			facts.user.severity.final = 'MODERATE';
 		} else if (facts.user.severity.score >= 3) { // Severe, hospitalization is often required.
 			facts.user.severity.final = 'SEVERE';
+		}
+
+		R.stop();
+	}
+}
+
+const hypertensionSeverityRule = {
+	id: 'hypertension_severity',
+	priority: PRIORITY - 51, // 50 // change?
+	condition: (R, facts) => {
+		var hasAction = false;
+		const disease = disease_severity.find(data => data.disease === "hypertension");
+
+		for (i = 0; i < disease.criteria.length; i++) {
+			var investigated_criteria = disease.criteria[i];
+
+			if (hasAction) {
+				break;
+			}
+
+			if (!facts.user.severity[investigated_criteria]) {
+				facts.agent.next_action = `SEVERITY-${disease.disease.toUpperCase()}-ASK-${investigated_criteria.toUpperCase()}`;
+				hasAction = true;
+				R.stop();
+			}
+		}
+		// If all the criteria is not undefined
+		R.when(facts.user.severity.bloodPressure);
+	},
+	consequence: (R, facts) => {
+		const { bloodPressure } = facts.user.severity;
+
+		if (bloodPressure[0] < 90 && bloodPressure[1] <= 60) {
+			facts.user.severity.final = 'NORMAL';
+		} else if (bloodPressure[0] < 120 && bloodPressure[1] < 80) {
+			facts.user.severity.final = 'ELEVATED';
+		} else if ((bloodPressure[0] >= 120 && bloodPressure[0] <= 129) && bloodPressure[1] < 80) {
+			facts.user.severity.final = 'STAGE_1';
+		} else if ((bloodPressure[0] >= 130 && bloodPressure[0] <= 139) && (bloodPressure[0] >= 80 && bloodPressure[0] <= 89)) {
+			facts.user.severity.final = 'STAGE_2';
+		} else if (bloodPressure[0] > 180 && bloodPressure[1] <= 120) {
+			facts.user.severity.final = 'HYPERTENSIVE_CRISIS';
 		}
 
 		R.stop();
