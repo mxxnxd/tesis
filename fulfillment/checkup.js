@@ -33,11 +33,9 @@ const enConfirmSymptom = async (agent) => {
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	// Update User Data
-	db.updateUser(senderID, {positive_symptoms: res.user.positive_symptoms});
-	db.updateUser(senderID, {negative_symptoms: res.user.negative_symptoms});
-	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
+	db.updateUser(senderID, res.user);
+	db.updateAgent(senderID, res.agent);
 	// db.updateUser(senderID, {start: res.user.start});
-	db.updateAgent(senderID, {next_action: res.agent.next_action, phlegmNeeded: res.agent.phlegmNeeded});
 };
 
 const enShareSymptomPositive = async (agent) => {
@@ -55,10 +53,9 @@ const enShareSymptomPositive = async (agent) => {
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	// Update User Data
-	db.updateUser(senderID, {positive_symptoms: res.user.positive_symptoms});
-	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
+	db.updateUser(senderID, res.user);
+	db.updateAgent(senderID, res.agent);
 	// db.updateUser(senderID, {start: res.user.start});
-	db.updateAgent(senderID, {next_action: res.agent.next_action, phlegmNeeded: res.agent.phlegmNeeded});
 };
 
 const enShareSymptomNegative = async (agent) => {
@@ -76,10 +73,9 @@ const enShareSymptomNegative = async (agent) => {
 	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
 	// Update User Data
-	db.updateUser(senderID, {negative_symptoms: res.user.negative_symptoms});
-	db.updateUser(senderID, {previous_symptoms: res.user.previous_symptoms});
+	db.updateUser(senderID, res.user);
+	db.updateAgent(senderID, res.agent);
 	// db.updateUser(senderID, {start: res.user.start});
-	db.updateAgent(senderID, {next_action: res.agent.next_action, phlegmNeeded: res.agent.phlegmNeeded});
 };
 
 const enShareFeeling = async (agent) => {										// Add Variations
@@ -275,9 +271,6 @@ function cleanFacts(facts) {
 	}
 	if (!facts.user.previous_symptoms) {
 		facts.user.previous_symptoms = [];
-	}
-	if (!facts.agent.phlegmNeeded) {
-		facts.agent.phlegmNeeded = false;
 	}
 	return facts;	
 }

@@ -12,6 +12,62 @@ const disease_severity = JSON.parse(disease_severity_json);
 const PRIORITY = 100;
 /* ===== ===== ===== ===== ===== ===== ===== */
 
+const clean_facts = {
+	id: 'clean',
+	priority: PRIORITY + 100, // 200
+	condition: (R, facts) => {
+		R.when(true);
+	},
+	consequence: (R, facts) => {
+		if (!facts.user.positive_symptoms) {
+			facts.user.positive_symptoms = [];
+		}
+		if (!facts.user.negative_symptoms) {
+			facts.user.negative_symptoms = [];
+		}		
+		if (!facts.user.previous_symptoms) {
+			facts.user.previous_symptoms = [];
+		}
+
+		/*
+			I recommend refactoring these fields under a subfield of Agent,
+			so you could just check one field instead of every one of them.
+			This is only applicable since all of the fields are new and not used on old setups.
+			
+			if (!facts.agent.TEMP_NAME) {
+				facts.agent.TEMP_NAME = {
+					phlegmNeeded = false,
+					group: {
+						phlegms: []
+					},
+					etc...
+				}
+			}
+		*/
+		
+		// if (!facts.agent.phlegmNeeded) {
+		// 	facts.agent.phlegmNeeded = false;
+		// }
+		// if (!facts.agent.group) {
+		// 	facts.agent.phlegmNeeded = {
+		// 		phlegms: []
+		// 	}
+		// }
+
+		// currentDisease: '',
+		// needsRestart: false,
+		// group: {
+		// 	phlegms: []
+		// },
+		// initialPhlegmActionDone: false,
+		// phlegmNeeded: false,
+		// currentPhlegmCount: 0,
+		// initialWeightActionDone: false,
+		// weightNeeded: false
+
+		R.next();
+	}
+};
 
 const phlegm_rule = {
 	id: 'phlegm',
@@ -264,6 +320,7 @@ const pneumoniaSeverityRule = {
 }
 
 const applyRules = (R) => {
+	R.register(clean_facts);
 	R.register(phlegm_rule);
 	R.register(weight_rule);
 	registerDiseaseRules(R);
