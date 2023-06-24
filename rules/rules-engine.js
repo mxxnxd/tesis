@@ -64,19 +64,21 @@ const main = async () => {
 	// console.log(R.activeRules)
 	var facts = {
 		user: {
-			positive_symptoms: ['fatigue', 'dyspnea', 'cyanosis'],
-			negative_symptoms: [],
+			positive_symptoms: ['fatigue', 'dyspnea', 'colds', 'wheeze', 'legs_swell'],
+			negative_symptoms: ['dizzy', 'tachycardia', 'cough', 'fever', 'cyanosis'],
 			previous_symptoms: [],
 			severity: {},
-			group: {
-				phlegmNeeded: false
-			},
 			start: true,
 		},
 		agent: {
 			currentDisease: '',
 			needsRestart: false,
+			group: {
+				phlegms: []
+			},
 			initialPhlegmActionDone: false,
+			phlegmNeeded: false,
+			currentPhlegmCount: 0,
 			initialWeightActionDone: false,
 			weightNeeded: false
 		}
@@ -89,7 +91,6 @@ const main = async () => {
 
 	var prompter = require("prompt-sync")({ sigint: '' });
 	while (true) {
-		console.log(`rules engine start: `)
 		var output = await getAction(facts);
 		console.log(output.agent.next_action);
 
@@ -101,23 +102,36 @@ const main = async () => {
 		}
 
 		var input = prompter(`>:`).toLowerCase();
+
 		if (input === 'y') {
 			if (output.agent.next_action === 'ASK-PHLEGM') {
-				output.user.group.phlegmNeeded = true;
+				output.agent.phlegmNeeded = true;
+			} else if (output.agent.phlegmNeeded && output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) {
+				output.agent.phlegmNeeded = false;
+				output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 			} else {
 				output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 			}
 		} else if (input === 'n') {
-			if (output.agent.next_action !== 'ASK-PHLEGM') {
+			if (output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) {
+				output.agent.group.phlegms.push(output.agent.next_action.split('-')[1].toLowerCase());
+				if (output.agent.currentPhlegmCount === output.agent.group.phlegms.length) {
+					output.user.negative_symptoms.push('phlegm');
+				}
+			} else if (!output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) {
 				output.user.negative_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 			}
 		} else {
-			console.log('Exit');
-			break;
+			if (output.agent.next_action === 'ASK-WEIGHT') {
+				output.user.severity.weight = input;
+			} else {
+				console.log('Exit');
+				break;
+			}
+			
 		}
 
 		facts = output;
-		console.log(`rules engine facts.user end: `)
 		console.log(facts.user);
 	}
 };

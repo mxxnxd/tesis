@@ -17,31 +17,31 @@ const phlegm_rule = {
 	id: 'phlegm',
 	priority: PRIORITY + 50, // 150
 	condition: (R, facts) => {
-		console.log(facts.user.group.phlegmNeeded)
-		if (facts.user.group.phlegmNeeded) {
-			console.log('phlegm_rule - condition - phlegm is needed')
+		var hasAction = false;
+		if (facts.agent.phlegmNeeded) {
+			// get all symptoms that starts with `phlegm_`
 			disease = disease_symptom.find(disease => disease.disease === facts.agent.currentDisease);
 			phlegms = disease.symptom.filter(symptom => symptom.startsWith('phlegm_'));
-			var hasAction = false;
-			for (i = 0; i < phlegms.length; i++) {
+			facts.agent.currentPhlegmCount = phlegms.length;
+			for (i = 0; i < phlegms.length; i++) { // get action for each of the phlegm color
 				if (hasAction) {
-					console.log('phlegm_rule - condition - breakloop')
 					break;
 				}
-				if (!facts.user.positive_symptoms.includes(phlegms[i]) && !facts.user.negative_symptoms.includes(phlegms[i])) {
+				if (!facts.user.positive_symptoms.includes(phlegms[i]) && !facts.agent.group.phlegms.includes(phlegms[i])) {
 					facts.agent.next_action = `ASK-${phlegms[i].toUpperCase()}`;
 					hasAction = true;
 					R.stop()
 				}
 			}
 			if (!hasAction) {
-				facts.user.group.phlegmNeeded = false;
+				facts.agent.phlegmNeeded = false;
 			}
 		}
-		R.when(facts.user.group.phlegmNeeded && !hasAction);
+		R.when(facts.agent.phlegmNeeded && !hasAction);
 	},
 	consequence: (R, facts) => {
-		facts.user.group.phlegmNeeded = false;
+		facts.agent.phlegmNeeded = false;
+		facts.agent.group.phlegms = [];
 		if (facts.user.positive_symptoms.length >= facts.agent.threshold || facts.user.negative_symptoms.length >= facts.agent.threshold + 1) {
 			facts.agent.next_action = `DIAGNOSE-${facts.agent.currentDisease.toUpperCase()}`;
 		}
@@ -49,29 +49,17 @@ const phlegm_rule = {
 	}
 
 }
-// still not done
+
 const weight_rule = {
 	id: 'weight',
-	priority: PRIORITY + 49, // 150
+	priority: PRIORITY + 49, // 149
 	condition: (R, facts) => {
-		console.log('weight needed = ' + facts.agent.weightNeeded)
-		var hasAction = false;
-		if (facts.agent.weightNeeded) {
-			console.log('weight_rule - condition - weight is needed')
-			facts.agent.next_action = `ASK-WEIGHT`;
-			hasAction = true;
-		}
-		if (!hasAction) {
-			facts.agent.weightNeeded = false;
-		}
-
-		R.when(facts.agent.weightNeeded);
+		R.when(facts.agent.weightNeeded && !facts.user.severity.weight);
 	},
 	consequence: (R, facts) => {
+		facts.agent.next_action = `ASK-WEIGHT`;
+		facts.agent.initialWeightActionDone = false;
 		facts.agent.weightNeeded = false;
-		if (facts.user.positive_symptoms.length >= facts.agent.threshold || facts.user.negative_symptoms.length >= facts.agent.threshold + 1) {
-			facts.agent.next_action = `DIAGNOSE-${facts.agent.currentDisease.toUpperCase()}`;
-		}
 		R.stop();
 	}
 }
@@ -89,25 +77,23 @@ const registerDiseaseRules = (R) => {
 				facts.agent.currentDisease = id;
 				var hasAction = false;
 				for (j = 0; j < symptoms.length; j++) {
-					let symptom = symptoms[j];
+					let investigated_symptom = symptoms[j];
 					if (hasAction) {
-						console.log('registerDiseaseRules - condition - break loop')
 						break;
 					}
-					if (!facts.user.positive_symptoms.includes(symptom) && !facts.user.negative_symptoms.includes(symptom)) {
-						if (symptom.startsWith('phlegm')) {
+					if (!facts.user.positive_symptoms.includes(investigated_symptom) && !facts.user.negative_symptoms.includes(investigated_symptom)) { // if symptom is not in 
+						if (investigated_symptom.startsWith('phlegm')) {
 							var phlegms = symptoms.filter(symptom => symptom.startsWith('phlegm_'));
 							facts.agent.threshold = (symptoms.length - phlegms.length - 1) / 2;
 							
-							if (!facts.agent.initialPhlegmActionDone) {
+							if (!facts.agent.initialPhlegmActionDone) { // flag to trigger initial phlegm question
 								facts.agent.next_action = `ASK-PHLEGM`;
 								facts.agent.initialPhlegmActionDone = true;
 								hasAction = true;
 								R.stop();
 							} else {
-								if (facts.user.group.phlegmNeeded) {
-									console.log(`registerDiseaseRules - condition - ${symptom} --- proceed to restart`)
-									facts.user.group.phlegmNeeded = true;
+								if (facts.agent.phlegmNeeded) { // trigger R.restart()
+									facts.agent.phlegmNeeded = true;
 									facts.agent.needsRestart = true;
 									hasAction = true;
 								}
@@ -115,22 +101,20 @@ const registerDiseaseRules = (R) => {
 									continue;
 								}
 							}
-						} else if (symptom.startsWith('weight')) {	// still not done
+						} else if (investigated_symptom.startsWith('weight') || facts.agent.initialWeightActionDone) { // flag to trigger weight question
 							if (!facts.agent.initialWeightActionDone) {
-								facts.agent.next_action = `ASK-${symptom.toUpperCase()}`;
+								facts.agent.next_action = `ASK-${investigated_symptom.toUpperCase()}`;
 								facts.agent.initialWeightActionDone = true;
 								hasAction = true;
 								R.stop();
-							} else {
-								console.log(`registerDiseaseRules - condition - ${symptom} --- proceed to restart`)
-								facts.agent.needsRestart = true;
+							} else if (!facts.agent.weightNeeded && facts.agent.initialWeightActionDone) { // trigger R.restart()
 								facts.agent.weightNeeded = true;
+								facts.agent.needsRestart = true;
 								hasAction = true;
 							}
 						} else {
-							console.log(`registerDiseaseRules - condition - ${symptom} is not in positive/negative symptoms`)
 							hasAction = true;
-							facts.agent.next_action = `ASK-${symptom.toUpperCase()}`;
+							facts.agent.next_action = `ASK-${investigated_symptom.toUpperCase()}`;
 							R.stop()
 						}
 					}
@@ -138,9 +122,8 @@ const registerDiseaseRules = (R) => {
 				R.when(hasAction)
 			},
 			consequence: (R, facts) => {
-				if (facts.agent.needsRestart){
+				if (facts.agent.needsRestart){	// restart rule engine
 					facts.agent.needsRestart = false;
-					console.log('restart')
 					R.restart();
 				} else {
 					if (facts.user.positive_symptoms.length >= facts.agent.threshold || facts.user.negative_symptoms.length >= facts.agent.threshold + 1) {
@@ -209,7 +192,6 @@ const pneumoniaSeverityRule = {
 	id: 'pneumonia_severity',
 	priority: PRIORITY - 50, // 50 // change?
 	condition: (R, facts) => {
-		console.log('in condition')
 		var hasAction = false;
 		const disease = disease_severity.find(data => data.disease === "pneumonia");
 
@@ -275,14 +257,13 @@ const pneumoniaSeverityRule = {
 }
 
 const applyRules = (R) => {
-	//R.register(prioritizeDiseasesRules);
-	R.register(recallSymptoms);
-	R.register(hasAction);
-	R.register(diagnoseNone);
-	registerDiseaseRules(R);
-	R.register(pneumoniaSeverityRule);
 	R.register(phlegm_rule);
 	R.register(weight_rule);
+	registerDiseaseRules(R);
+	R.register(recallSymptoms);
+	R.register(pneumoniaSeverityRule);
+	R.register(hasAction);
+	R.register(diagnoseNone);
 };
 
 module.exports = {
