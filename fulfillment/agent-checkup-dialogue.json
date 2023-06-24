@@ -131,6 +131,10 @@
         "ask_symptom": ["Have you woken up with a cold sweat?", "Do you look pale and sweaty?"],
         "recall_symptom": ["have you been still waking up with a cold sweat?", "Do you still look pale and sweaty?"]
     },
+    "phlegm": {
+        "ask_symptom": ["Does your throat have phlegm or sputum?"],
+        "recall_symptom": ["Do you still have phlegm or sputum?"]
+    },
     "phlegm_clear": {
         "ask_symptom": ["Is your phlegm clear?"],
         "recall_symptom": ["Is your phlegm still clear?"]
