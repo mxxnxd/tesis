@@ -28,7 +28,33 @@ const clean_facts = {
 		if (!facts.user.previous_symptoms) {
 			facts.user.previous_symptoms = [];
 		}
-
+		if (!facts.agent.currentDisease) {
+			facts.agent.currentDisease = '';
+		}
+		if (!facts.agent.needsRestart) {
+			facts.agent.needsRestart = false;
+		}
+		if (!facts.agent.initialPhlegmActionDone) {
+			facts.agent.initialPhlegmActionDone = false;
+		}
+		if (!facts.agent.currentPhlegmCount) {
+			facts.agent.currentPhlegmCount = false;
+		}
+		if (!facts.agent.currentPhlegmCount) {
+			facts.agent.currentPhlegmCount = 0;
+		}
+		if (!facts.agent.initialWeightActionDone) {
+			facts.agent.initialWeightActionDone = false;
+		}
+		if (!facts.agent.weightNeeded) {
+			facts.agent.weightNeeded = false;
+		}
+		if (!facts.agent.group) {
+			facts.agent.group = {}
+			if (!facts.agent.group.phlegms) {
+				facts.agent.group.phlegms = [];
+			}
+		}
 		/*
 			I recommend refactoring these fields under a subfield of Agent,
 			so you could just check one field instead of every one of them.
