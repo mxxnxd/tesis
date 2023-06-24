@@ -107,13 +107,13 @@ const main = async () => {
 			if (output.agent.next_action === 'ASK-PHLEGM') {
 				output.agent.phlegmNeeded = true;
 			} else if (output.agent.phlegmNeeded && output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) {
-				output.agent.phlegmNeeded = false;
+				output.agent.phlegmNeeded = false; // dont proceed with other colors if 1 is already in positive_symptoms
 				output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 			} else {
 				output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 			}
 		} else if (input === 'n') {
-			if (output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) {
+			if (output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) { // if phlegm_color, dont push to negative symptoms
 				output.agent.group.phlegms.push(output.agent.next_action.split('-')[1].toLowerCase());
 				if (output.agent.currentPhlegmCount === output.agent.group.phlegms.length) {
 					output.user.negative_symptoms.push('phlegm');
