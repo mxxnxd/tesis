@@ -9,7 +9,7 @@ const { delUserState, getUserState, setUserState } = require('../firebase/state.
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
-const jsonData = fs.readFileSync('./fulfillment/agent-query-response-dialogue.json', 'utf8');
+const jsonData = fs.readFileSync('./fulfillment/agent-query-dialogue.json', 'utf8');
 const responses = JSON.parse(jsonData);
 
 /* ========== ========== ========== ========== ========== ========== ========== */

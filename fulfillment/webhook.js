@@ -10,23 +10,19 @@ const { Payload } = require('dialogflow-fulfillment');
 
 
 /* ========== ========== ========== ========== ========== ========== ========== */
+const fs = require('fs');
+
+const jsonData = fs.readFileSync('./fulfillment/agent-checkup-dialogue.json', 'utf8');
+const responses = JSON.parse(jsonData);
 
 const dvWebhook = async (agent) => {
-	// console.log(agent.request_.body.originalDetectIntentRequest.payload.data);
-	// util.triggerEvent(agent, 'EN-DIAGNOSE-COPD');
-	// console.log(agent.parameters);
 
-	console.log('Hook!');
-	let b = agent.parameters.bool;
+	const action = 'ASK-DYSPHASIA';
 
-	agent.add(`Responding: ${b}`)
-
-	console.log(agent.alternativeQueryResults[0].sentimentAnalysisResult);
-	// console.log(new Payload('FACEBOOK', util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino'])));
-
-	// var payload = new Payload(agent.FACEBOOK, util.buildQuickReplyPayload('What language do you prefer that I use?', ['English', 'Filipino']));
-	// payload.sendAsMessage = true;
-	// agent.add(payload);
+	console.log('Webhook!');
+	const response = responses[action.toLowerCase().split('-')[1]].ask_symptom;
+	console.log(response[Math.floor(Math.random() * response.length)])
+	agent.add('Webhook!');
 };
 
 module.exports = {

@@ -1,91 +1,78 @@
 {
 	"diseases": {
 		"aneurysm": {
-			"response_impression": "You show signs of aneurysm",
 			"response_definition": "An aneurysm is an abnormal bulge that can occur in an artery or blood vessel wall. This bulging can happen when the pressure of blood passing through weak points in the artery or blood vessel causes it to balloon outwards. If the aneurysm ruptures, it can result in internal bleeding and potentially be fatal.",
 			"response_symptoms": "Aneurysms can cause a range of symptoms that may include chest pain, shortness of breath, coughing, difficulty swallowing, hoarseness, and back pain. It's important to seek medical attention if you experience any of these symptoms, as aneurysms can be a serious condition that require prompt diagnosis and treatment.",
 			"response_cause": "Usual causes of aneurysm is high blood pressure over many years resulting in damage of the blood vessels.",
 			"response_treatment": "While medication can be a part of the treatment plan for aneurysms, the specific approach will depend on the individual case. In some cases, medications may be prescribed to improve blood flow, lower blood pressure, and manage cholesterol levels. However, for larger or more severe aneurysms, surgery or other procedures may be necessary to repair or remove the affected blood vessel."
 		},
 		"arrhythmia": {
-			"response_impression": "You show signs of arrhythmia.",
 			"response_symptoms": "Arrhythmia can cause a range of symptoms that may include fatigue, shortness of breath, dizziness, and tachycardia (fast heart rate). It's important to seek medical attention if you experience any of these symptoms, as arrhythmias can be a serious condition that require prompt diagnosis and treatment.",
 			"response_definition": "Arrhythmia is a condition where the heartbeat becomes irregular, and can feel like skipped or added beats, fluttering, or a too fast or too slow beat. This happens when the electrical signals that coordinate heartbeats malfunction, causing the heart to beat irregularly, too fast (known as tachycardia), or too slow (known as bradycardia). Arrhythmias can be caused by a variety of factors, such as age, genetics, underlying heart disease, or lifestyle factors",
 			"response_cause": "Arrhythmia is most commonly caused by heart disease, but other causes includes diabetes and high blood pressure",
 			"response_treatment": "The treatment approach for arrhythmia can vary depending on the specific type and severity of the condition. In some cases, medications may be prescribed to manage symptoms and regulate the heart rhythm. Additionally, non-invasive treatments such as vagal maneuvers or cardioversion may be used to restore normal heart rhythm."
 		},
 		"asthma": {
-			"response_impression": "You show signs of asthma.",
 			"response_symptoms": "Asthma can cause a range of symptoms, with the most common being chest pain, shortness of breath, wheezing, and a tight chest. These symptoms can vary in severity and frequency and may be triggered by certain allergens or environmental factors.",
 			"response_definition": "Asthma is a chronic respiratory condition caused by the inflammation and narrowing of the airways. This inflammation is often triggered by irritants such as particulate matter, and can lead to the production of excess mucus in the bronchial tubes. This combination of inflammation and excess mucus can cause a blockage in the airways, making it difficult to breathe and leading to symptoms such as wheezing, coughing, and shortness of breath.",
 			"response_cause": "Asthma has all sort of factors such as genetics and environmental factors, but it most commonly triggered by allergens, exercise, and strong emotions.",
 			"response_treatment": "Asthma treatment typically involves the use of medications, such as inhaled bronchodilators or corticosteroids, to help manage symptoms and prevent flare-ups. These medications can be delivered through inhalers, nebulizers, or tablets, depending on the severity of the condition and the individual's specific needs. In addition to medication, other treatments may be recommended, such as avoiding triggers that can worsen symptoms, monitoring lung function with a peak flow meter, and developing an asthma action plan with your healthcare provider."
 		},
 		"cad": {
-			"response_impression": "I think you have coronary artery disease (CAD).",
 			"response_symptoms": "The most common symptoms of CAD include chest pain or discomfort, muscle pain, fatigue, dyspnea (shortness of breath), and vertigo. These symptoms can be caused by a variety of factors, including the buildup of plaque in the arteries, which can limit blood flow to the heart and lead to decreased oxygen supply to the heart muscle.",
 			"response_definition": "Coronary artery disease (CAD) is a common condition caused by the buildup of plaque, a fatty substance, in the walls of the arteries that supply blood to the heart. This process, known as atherosclerosis, can cause the arteries to become narrow or blocked, reducing blood flow to the heart muscle and increasing the risk of heart attack or stroke.",
 			"response_cause": "Coronary Artery Disease (CAD) is a condition caused by a buildup of plaque in the arteries. Common causes that contributes to this are high blood pressure, diabetes, smokingm, and high cholesterol.",
 			"response_treatment": "Treatment for coronary artery disease (CAD) may include lifestyle changes, medications, and surgery, depending on the severity of the condition."
 		},
 		"cardiomyopathy": {
-			"response_impression": "You show signs of cardiomyopathy",
 			"response_symptoms": "Cardiomyopathy can cause a range of symptoms, including fatigue, shortness of breath (also known as dyspnea), dizziness, swelling, and a feeling of faintness. These symptoms may vary depending on the type and severity of the cardiomyopathy, and can sometimes be subtle or easily mistaken for other conditions.",
 			"response_definition": "Cardiomyopathy is a condition that affects the heart muscle, and can cause the heart to have difficulty pumping blood efficiently throughout the body. This can lead to a range of symptoms, as well as potential complications if left untreated.",
 			"response_cause": "Cardiomyopathy is usually caused by heavy alcohol uses, inherited conditions meaning passed down through genetics, or infections.",
 			"response_treatment": "he treatment for cardiomyopathy depends on the underlying cause and severity of the condition, but may include medications, ablation procedures, or in severe cases, a heart transplant. Medications may be used to manage symptoms, improve heart function, or prevent complications. Ablation procedures involve using a catheter to destroy small areas of heart tissue that may be contributing to abnormal heart rhythms."
 		},
 		"copd": {
-			"response_impression": "You are suffering from early signs of COPD.",
 			"response_symptoms": " Chronic cough is one of the primary symptoms of COPD, along with shortness of breath, wheezing, and tightness in the chest.",
 			"response_definition": "COPD, or chronic obstructive pulmonary disease, is a long-term lung condition that can make it difficult for a person to breathe. It is actually an umbrella term that encompasses several different lung diseases, including emphysema, chronic bronchitis, and chronic obstructive asthma. These conditions all share some common symptoms, such as coughing, wheezing, and shortness of breath. COPD is often caused by long-term exposure to irritants such as cigarette smoke or air pollution, and is typically progressive over time.",
 			"response_cause": "Smoking is the most common cause of COPD, it is responsible for 80% of all COPD cases. Another cause would be prolonged exposure to dust and particulants.",
 			"response_treatment": "Treatment for COPD is typically aimed at reducing symptoms, slowing disease progression, and improving overall quality of life. This can involve a variety of approaches, including medications such as bronchodilators and inhaled corticosteroids, pulmonary rehabilitation programs, and oxygen therapy."
 		},
 		"heart_failure": {
-			"response_impression": "I believe you are experiencing signs of heart failure.",
 			"response_symptoms": " Some of the most common symptoms of heart failure include shortness of breath, fatigue, weakness, and dizziness or lightheadedness (also known as vertigo). n addition, some people with heart failure may experience swelling in the legs, ankles, or feet, and a persistent cough or wheezing.",
 			"response_definition": "Heart failure, also known as congestive heart failure, occurs when the heart muscle becomes less effective at pumping blood, leading to a slower blood flow and increased pressure in the heart. This can cause fluid to build up in the lungs, resulting in symptoms such as shortness of breath and coughing.",
 			"response_cause": "Common causes of heart failure are other heart diseases such as cardiomyopathy and valve disease. Other than are factors such as high blood pressure and age.",
 			"response_treatment": "Treatment for heart failure often involves a combination of medications and lifestyle modifications. Some of the medications that may be used to treat heart failure include ACE inhibitors, beta blockers, and loop diuretics. These medications work in different ways to help improve heart function, lower blood pressure, and reduce fluid buildup in the body."
 		},
 		"hypertension": {
-			"response_impression": "I think you show signs of hypertension (high blood pressure).",
 			"response_symptoms": "The most common symptoms of hypertension, or high blood pressure, are usually asymptomatic, meaning there are no noticeable signs or symptoms. However, when symptoms do occur, they can include headaches, dizziness, fatigue, shortness of breath, and blurry vision. Some people with high blood pressure may also experience chest pain, but this is less common.",
 			"response_definition": "Hypertension, or high blood pressure, is a condition where the force of blood against the walls of your arteries is consistently too high. This can be caused by a number of factors, including genetics, lifestyle habits (such as diet and physical activity levels), and underlying health conditions. When left untreated, high blood pressure can lead to a variety of serious health problems, such as heart disease, stroke, and kidney damage.",
 			"response_cause": "Hypertension is often caused by poor diet such as obesity and high salt intake. Other factors include alcohol and tobacco use, age, and genetics.",
 			"response_treatment": "There are several medications available that can be used to treat hypertension, some commonly used medications for hypertension include diuretics, ACE inhibitors, angiotensin II receptor blockers, beta blockers, and calcium channel blockers. In addition to medications, lifestyle modifications such as maintaining a healthy weight, exercising regularly, limiting alcohol intake, and reducing sodium intake can also help to lower blood pressure."
 		},
 		"lung_cancer": {
-			"response_impression": "You show signs of lung cancer.",
 			"response_symptoms": "Lung cancer is a condition that can cause a range of symptoms. Some of the most common ones include chest pain, persistent fatigue, coughing, recurrent respiratory infections, shortness of breath, coughing up blood, and unexplained weight loss. These symptoms can occur at any stage of lung cancer and may vary in intensity and frequency depending on the individual.",
 			"response_definition": "Lung cancer is a condition where the cells in the lungs start to grow uncontrollably, forming tumors and potentially spreading to other parts of the body. It is one of the most common types of cancer worldwide.",
 			"response_cause": "Lung cancer is very broad in",
 			"response_treatment": "Treatment options for lung cancer depend on the stage of the cancer and the patient's overall health. Surgery is often used to remove the tumor, while radiation therapy and chemotherapy are used to destroy cancer cells. Stereotactic body radiotherapy is a type of radiation therapy that delivers high doses of radiation to small, well-defined tumors."
 		},
 		"myocardial_infarction": {
-			"response_impression": "I believe you are experiencing signs of myocardial infarction (heart attack).",
 			"response_symptoms": "Myocardial infarction, commonly known as a heart attack, occurs when the blood flow to a part of the heart is blocked, resulting in damage or death of heart muscle tissue.  The most common symptom of a heart attack is chest pain or discomfort, which can feel like pressure, squeezing, fullness, or pain that may come and go. Other symptoms may include shortness of breath, fatigue, weakness, dizziness or lightheadedness, nausea, vomiting, and sweating.",
 			"response_definition": "A heart attack, or myocardial infarction, happens when the blood flow to the heart muscle is reduced or blocked, usually by the buildup of fatty deposits in the arteries. This can lead to damage or death of the heart muscle, and it requires prompt medical attention.",
-			"response_cause": "",
+			"response_cause": "Common causes of heart attack are existing cardiovascular diseases, as well as poor diet the contributes to high cholesterol.",
 			"response_treatment": "Treatment for myocardial infarction (heart attack) typically involves a combination of medications, such as aspirin, thrombolytics (clot-busting drugs), beta-blockers, and ACE inhibitors, to prevent further damage to the heart and improve blood flow. In some cases, surgical procedures such as angioplasty or coronary artery bypass grafting may be necessary to restore blood flow to the heart. Cardiac rehabilitation, including lifestyle changes like regular exercise and a heart-healthy diet, can also be an important part of recovery."
 		},
 		"pneumonia": {
-			"response_impression": "You show signs of pneumonia.",
 			"response_symptoms": "Some common symptoms of pneumonia include chest pain, coughing, rapid breathing (known as tachypnea), and producing phlegm.",
 			"response_definition": "Pneumonia is a type of lung infection that causes inflammation in a person's air sacs, also known as alveoli. This inflammation leads to the air sacs filling up with fluid and pus, which can make it difficult for the person to breathe and deliver enough oxygen to the body.",
-			"response_cause": "",
+			"response_cause": "Common causes of pneumonia are viruses that infect your lungs and airways. Examples are the flu (influenza virus) and the common cold (rhinovirus).",
 			"response_treatment": "The treatment for pneumonia typically involves taking antibiotics to fight the infection, as well as cough medicines to help alleviate coughing, and fever reducers or pain relievers to manage any discomfort or fever."
 		},
 		"tuberculosis": {
-			"response_impression": "You show signs of tuberculosis.",
 			"response_symptoms": "Common symptoms of tuberculosis can include chest pain, fatigue, coughs, and producing phlegms.",
 			"response_definition": "Tuberculosis (TB) is a bacterial infection caused by a bacterium called Mycobacterium tuberculosis. Tuberculosis can affect any part of the body, but it most commonly affects the lungs.",
 			"response_cause": "The most common cause of pneumonia in adults is bacteria, while the most common cause in children is a virus.",
 			"response_treatment": "Treatment for tuberculosis typically involves the use of antibiotics to fight the bacterium."
 		},
 		"valve_disease": {
-			"response_impression": "I think you have valve disease.",
 			"response_symptoms": "Common symptoms of valve disease include chest pain, fatigue, dyspnea (shortness of breath), dizziness, and tachycardia (fast heart rate).",
 			"response_definition": "Valve Disease or heart valve disease occurs when valves of the heart do not work properly. In some cases, one or more of the valves don't open or close properly. This can cause the blood flow through your heart to your body to be disrupted.",
 			"response_cause": "There are many causes for Valve Disease, but if I have to give an example. Age, infections, and drugs are one of many possible causes for Valve Disease.",

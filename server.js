@@ -35,6 +35,11 @@ app.post('/webhook', express.json(), (req, res) => {
 	intentMap.set('en.user.share.symptom.negative', ffCheckup.enShareSymptomNegative);
 	intentMap.set('en.user.share.feeling', ffCheckup.enShareFeeling);
 
+	intentMap.set('en.user.share.blood_pressure', ffCheckup.enShareBloodPressure);
+	intentMap.set('en.user.share.gender', ffCheckup.enShareGender);
+	intentMap.set('en.user.share.age', ffCheckup.enShareAge);
+	intentMap.set('en.user.share.weight', ffCheckup.enShareWeight);
+
 	intentMap.set('en.user.query.disease.cause', ffQuery.enQueryDiseaseCause);
 	intentMap.set('en.user.query.disease.definition', ffQuery.enQueryDiseaseDefinition);
 	intentMap.set('en.user.query.disease.symptom', ffQuery.enQueryDiseaseSymptom);

@@ -43,6 +43,26 @@ const updateAgent = (id, json) => {
 	ref.update(json);
 };
 
+const updateUserSeverity = (id, json) => {
+	var ref = db.ref(`users/${id}/user/severity`);
+	ref.update(json);
+};
+
+const createSession = (id, timestamp, json) => {
+	var ref = db.ref(`sessions/${id}/${timestamp}`);
+	ref.set(json);
+};
+
+const getSession = (id, timestamp) => {
+	var ref = db.ref(`sessions/${id}/${timestamp}`);
+
+	return new Promise((resolve, reject) => {
+		ref.once('value', (snapshot) => {
+			resolve(snapshot.val());
+		});
+	});
+};
+
 const closeDB = () => {
 	db.goOffline();
 	app.delete();
@@ -50,29 +70,26 @@ const closeDB = () => {
 
 const main = async () => {
 
-	// const diseases = ['copd', 'asthma', 'pneumonia', 'lung_cancer', 'tuberculosis', 'heart_failure', 'hypertension', 'cad', 'arrhythmia', 'cardiomyopathy', 'valve_disease', 'myocardial_infarction', 'aneurysm']
-	// const symptoms = ['abdomen_pain', 'anxiety','appetite_loss', 'arm_pain', 'back_pain', 'belly_swell', 'blurry', 'bone_pain', 'chest_pain', 'chest_tight', 'chills', 'colds', 'confusion', 'cough', 'cyanosis', 'dizzy', 'dysphasia', 'dyspnea', 'faint', 'fatigue', 'fever', 'headaches', 'heartburn', 'hoarseness', 'legs_swell', 'mouth_pain', 'muscle_pain', 'nausea', 'neck_shoulder_pain', 'neck_swell', 'neck_tight', 'pale_sweat', 'phlegm_clear', 'phlegm_green', 'phlegm_red', 'phlegm_white', 'r_infections', 'sleep_hard', 'tachycardia', 'tachypnea', 'urine_blood', 'weakness', 'weightgain', 'weightloss', 'wheeze']
-
-	// diseases.forEach(disease => {
-	// 	var ref = db.ref(`diseases/${disease}/responses`);
-	// 	ref.update({ans_impression: ''});
-	// });
-
-	var ref = db.ref(`symptoms`);
 	
 
-}
+	console.log('!');
+	console.log(await getUser(6636659469693773));
+	// console.log(await getSession(6636659469693773, 1687431118));
+};
 
 module.exports = {
 	getUser,
 	deleteUser,
 	updateUser,
 	updateAgent,
+	updateUserSeverity,
+	createSession,
+	getSession,
 	createUser,
 	closeDB,
 };
 
-main();
+ main();
 
 
 
