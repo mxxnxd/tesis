@@ -340,7 +340,6 @@ const pneumoniaSeverityRule = {
 	id: 'pneumonia_severity',
 	priority: PRIORITY - 50, // 50 // change?
 	condition: (R, facts) => {
-		var hasAction = false;
 		const disease = disease_severity.find(data => data.disease === "pneumonia");
 
 		var positive_symptoms = facts.user.positive_symptoms; 
@@ -357,49 +356,47 @@ const pneumoniaSeverityRule = {
 		for (i = 0; i < disease.criteria.length; i++) {
 			var investigated_criteria = disease.criteria[i];
 
-			if (hasAction) {
-				break;
-			}
-
 			if (!facts.user.severity[investigated_criteria]) {
 				facts.agent.next_action = `SEVERITY-${disease.disease.toUpperCase()}-ASK-${investigated_criteria.toUpperCase()}`;
-				hasAction = true;
 				R.stop();
+				break;
 			}
 		}
-		// If all the criteria is not undefined
-		R.when(facts.user.severity.confusion && facts.user.severity.urea && 
+
+		if (facts.user.severity.confusion && facts.user.severity.urea && 
 			facts.user.severity.respiratoryRate && facts.user.severity.bloodPressure && 
-			facts.user.severity.age);
+			facts.user.severity.age) {
+				// calculate the score
+				if (facts.user.severity.confusion) {
+					facts.user.severity.score += 1;
+				}
+				if (facts.user.severity.urea > 7) {
+					facts.user.severity.score += 1;
+				}
+				if (facts.user.severity.respiratoryRate >= 30) {
+					facts.user.severity.score += 1;
+				}
+				if (facts.user.severity.bloodPressure[0] < 90 && bloodPressure[1] <= 60) {
+					facts.user.severity.score += 1;
+				}
+				if (facts.user.severity.age >= 65) {
+					facts.user.severity.score += 1;
+				}
+				
+				if (facts.user.severity.score <= 1) { // Low severity, suitable for home treatment.
+					facts.user.severity.final = 'LOW';
+				} else if (facts.user.severity.score === 2) { // Moderate severity, consider hospitalization.
+					facts.user.severity.final = 'MODERATE';
+				} else if (facts.user.severity.score >= 3) { // Severe, hospitalization is often required.
+					facts.user.severity.final = 'SEVERE';
+				}
+		
+			}
+
+		R.when(facts.user.severity.final);
 	},
 	consequence: (R, facts) => {
-		const { confusion, urea, respiratoryRate, bloodPressure, age } = facts.user.severity;
-		facts.user.severity.score = 0;
-		// calculate the score
-		if (confusion) {
-			facts.user.severity.score += 1;
-		}
-		if (urea > 7) {
-			facts.user.severity.score += 1;
-		}
-		if (respiratoryRate >= 30) {
-			facts.user.severity.score += 1;
-		}
-		if (bloodPressure[0] < 90 && bloodPressure[1] <= 60) {
-			facts.user.severity.score += 1;
-		}
-		if (age >= 65) {
-			facts.user.severity.score += 1;
-		}
-
-		if (facts.user.severity.score <= 1) { // Low severity, suitable for home treatment.
-			facts.user.severity.final = 'LOW';
-		} else if (facts.user.severity.score === 2) { // Moderate severity, consider hospitalization.
-			facts.user.severity.final = 'MODERATE';
-		} else if (facts.user.severity.score >= 3) { // Severe, hospitalization is often required.
-			facts.user.severity.final = 'SEVERE';
-		}
-
+		facts.agent.next_action = facts.user.severity.final;
 		R.stop();
 	}
 }
@@ -408,40 +405,37 @@ const hypertensionSeverityRule = {
 	id: 'hypertension_severity',
 	priority: PRIORITY - 51, // 50 // change?
 	condition: (R, facts) => {
-		var hasAction = false;
 		const disease = disease_severity.find(data => data.disease === "hypertension");
 
 		for (i = 0; i < disease.criteria.length; i++) {
 			var investigated_criteria = disease.criteria[i];
 
-			if (hasAction) {
-				break;
-			}
-
 			if (!facts.user.severity[investigated_criteria]) {
 				facts.agent.next_action = `SEVERITY-${disease.disease.toUpperCase()}-ASK-${investigated_criteria.toUpperCase()}`;
-				hasAction = true;
 				R.stop();
+				break;
 			}
 		}
-		// If all the criteria is not undefined
-		R.when(facts.user.severity.bloodPressure);
+
+		if (facts.user.severity.bloodPressure) {
+			const { bloodPressure } = facts.user.severity;
+
+			if (bloodPressure[0] < 90 && bloodPressure[1] <= 60) {
+				facts.user.severity.final = 'NORMAL';
+			} else if (bloodPressure[0] < 120 && bloodPressure[1] < 80) {
+				facts.user.severity.final = 'ELEVATED';
+			} else if ((bloodPressure[0] >= 120 && bloodPressure[0] <= 129) && bloodPressure[1] < 80) {
+				facts.user.severity.final = 'STAGE_1';
+			} else if ((bloodPressure[0] >= 130 && bloodPressure[0] <= 139) && (bloodPressure[0] >= 80 && bloodPressure[0] <= 89)) {
+				facts.user.severity.final = 'STAGE_2';
+			} else if (bloodPressure[0] > 180 && bloodPressure[1] <= 120) {
+				facts.user.severity.final = 'HYPERTENSIVE_CRISIS';
+			}
+		}
+		R.when(facts.user.severity.final);
 	},
 	consequence: (R, facts) => {
-		const { bloodPressure } = facts.user.severity;
-
-		if (bloodPressure[0] < 90 && bloodPressure[1] <= 60) {
-			facts.user.severity.final = 'NORMAL';
-		} else if (bloodPressure[0] < 120 && bloodPressure[1] < 80) {
-			facts.user.severity.final = 'ELEVATED';
-		} else if ((bloodPressure[0] >= 120 && bloodPressure[0] <= 129) && bloodPressure[1] < 80) {
-			facts.user.severity.final = 'STAGE_1';
-		} else if ((bloodPressure[0] >= 130 && bloodPressure[0] <= 139) && (bloodPressure[0] >= 80 && bloodPressure[0] <= 89)) {
-			facts.user.severity.final = 'STAGE_2';
-		} else if (bloodPressure[0] > 180 && bloodPressure[1] <= 120) {
-			facts.user.severity.final = 'HYPERTENSIVE_CRISIS';
-		}
-
+		facts.agent.next_action = facts.user.severity.final;
 		R.stop();
 	}
 }
