@@ -232,7 +232,7 @@ const registerDiseaseRules = (R) => {
 						var phlegms = symptoms.filter(symptom => symptom.startsWith('phlegm_'));
 
 						// Adjust Threshold
-						threshold = symptoms.length - (phlegms.length - 1);
+						threshold = (symptoms.length - (phlegms.length - 1)) * 0.7;
 						
 						// Check if User does not have Phlegm (Ignore asking Phlegm Symptoms)
 						if (facts.user.negative_symptoms.includes('phlegm')) {
