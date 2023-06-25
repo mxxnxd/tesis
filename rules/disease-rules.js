@@ -56,7 +56,7 @@ const cleanFacts = {
 
 const phlegmRule = {
 	id: 'phlegm',
-	priority: PRIORITY + 52,
+	priority: PRIORITY + 75,
 	condition: (R, facts) => {
 		var hasPhlegm = facts.user.positive_symptoms.find(symptom => symptom === 'phlegm');
 		R.when(hasPhlegm);
@@ -71,7 +71,7 @@ const phlegmRule = {
 
 const weightRule = {
 	id: 'weight',
-	priority: PRIORITY + 52,
+	priority: PRIORITY + 74,
 	condition: (R, facts) => {
 		var hasWeight = facts.user.positive_symptoms.find(symptom => symptom.startsWith('weight') && facts.agent.flags.ask_weight == 0);
 		R.when(hasWeight);
@@ -231,7 +231,7 @@ const registerDiseaseRules = (R) => {
 
 const recallSymptoms = {
 	id: 'recall',
-	priority: 200,
+	priority: 173,
 	condition: (R, facts) => {
 		var previous_symptoms = facts.user.previous_symptoms;
 		R.when(previous_symptoms.length != 0);
@@ -239,23 +239,39 @@ const recallSymptoms = {
 	consequence: (R, facts) => { 
 		var previous_symptoms = facts.user.previous_symptoms;
 
-		while (facts.previous_symptoms.length != 0) {
+		while (facts.user.previous_symptoms.length != 0) {
 			var investigated_symptom = previous_symptoms.shift();
-			facts.previous_symptoms = previous_symptoms;
-
+			facts.user.previous_symptoms = previous_symptoms;
+			console.log(previous_symptoms);
 			if (investigated_symptom === `r_infections`) {
 				facts.user.positive_symptoms.push(investigated_symptom);
 			} 
 
-			// phlegm case TODO
-			
-			if (!facts.user.positive_symptoms.includes(investigated_symptom)) {
-				break;
+			// Phlegm Case
+			if (investigated_symptom.startsWith('phlegm_')) {
+				// Ask Phlegm if Flag is not raised
+				if (facts.agent.flags.ask_phlegm == 0) {
+					facts.agent.next_action = `RECALL-PHLEGM`;
+					facts.agent.flags.ask_phlegm = 1;
+					facts.user.previous_symptoms.unshift(investigated_symptom); // Bring the shifted element back to the array because it was not used
+					R.stop();
+					break;
+				}
+				// Check if Phlegm Symptoms already Exist
+				if (facts.user.positive_symptoms.some(symptom => symptom.startsWith('phlegm_'))) {
+					continue;
+				}				
 			}
-		}
 
-		facts.agent.next_action = `RECALL-${investigated_symptom.toUpperCase()}`;
-		R.stop();
+			if (facts.user.positive_symptoms.includes(investigated_symptom)) {
+				continue;
+			}
+			console.log(investigated_symptom)
+			facts.agent.next_action = `RECALL-${investigated_symptom.toUpperCase()}`;
+			R.stop();
+			break;
+			
+		}
 	}
 }
 

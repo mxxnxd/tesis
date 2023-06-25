@@ -64,9 +64,9 @@ const main = async () => {
 	// console.log(R.activeRules)
 	var facts = {
 		user: {
-			positive_symptoms: ['fatigue', 'dyspnea'],
+			positive_symptoms: [],
 			negative_symptoms: [],
-			previous_symptoms: [],
+			previous_symptoms: ['phlegm_red', 'weightloss'],
 			severity: {
 				weight: 0,
 			},
