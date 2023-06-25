@@ -96,32 +96,36 @@ const clean_facts = {
 			}
 		*/
 		
-		// if (!facts.agent.phlegmNeeded) {
-		// 	facts.agent.phlegmNeeded = false;
-		// }
-		// if (!facts.agent.group) {
-		// 	facts.agent.phlegmNeeded = {
-		// 		phlegms: []
-		// 	}
-		// }
-
-		// currentDisease: '',
-		// needsRestart: false,
-		// group: {
-		// 	phlegms: []
-		// },
-		// initialPhlegmActionDone: false,
-		// phlegmNeeded: false,
-		// currentPhlegmCount: 0,
-		// weightNeeded: false
 
 		R.next();
 	}
 };
 
+
+// ASK-PHLEGM ?
+// RECALL-PHLEGM-COLOR
+// STATE-PHLEGM 
+
+
+const phlegmRule = {
+	id: 'phlegm',
+	priority: PRIORITY + 52,
+	condition: (R, facts) => {
+		var hasPhlegm = facts.user.positive_symptoms.find(symptom => symptom === 'phlegm');
+		R.when(hasPhlegm);
+	},
+	consequence: (R, facts) => {
+		// Remove Phlegm from Postive Symptoms
+		facts.user.positive_symptoms = facts.user.positive_symptoms.filter(symptom => symptom !== 'phlegm');
+		facts.agent.flags.ask_phlegm = 1;
+		R.next();
+	}
+};
+
+
 const filter_negative_symptoms = {
 	id: 'filter_negative_symptoms',
-	priority: PRIORITY + 51, // 149,
+	priority: PRIORITY + 51, // 151,
 	condition: (R, facts) => {
 		var negative_symptoms = facts.user.negative_symptoms.filter(symptom => symptom.startsWith('phlegm_'));
 		console.log(negative_symptoms)
@@ -170,7 +174,6 @@ const phlegm_rule = {
 	},
 	consequence: (R, facts) => {
 		facts.agent.phlegmNeeded = false;
-		facts.agent.group.phlegms = [];
 		if (facts.user.positive_symptoms.length >= facts.agent.threshold || facts.user.negative_symptoms.length >= facts.agent.threshold + 1) {
 			facts.agent.next_action = `DIAGNOSE-${facts.agent.currentDisease.toUpperCase()}`;
 		}
@@ -202,58 +205,64 @@ const registerDiseaseRules = (R) => {
 			id,
 			priority: PRIORITY - i,	// 99 - down
 			condition: (R, facts) => {
-				facts.agent.threshold = symptoms.length / 2;
-				facts.agent.currentDisease = id;
-				var hasAction = false;
+				var threshold = symptoms.length * 0.7;
+				var positive = 0;
+				var negative = 0;
+
+				// Check Symptoms
 				for (j = 0; j < symptoms.length; j++) {
 					let investigated_symptom = symptoms[j];
-					if (hasAction) {
+
+					if (threshold <= positive || threshold <= negative) {
+						console.log(`${threshold} <= ${positive} || ${threshold} <= ${negative}`)
 						break;
 					}
-					if (!facts.user.positive_symptoms.includes(investigated_symptom) && !facts.user.negative_symptoms.includes(investigated_symptom)) { // if symptom is not in 
-						if (investigated_symptom.startsWith('phlegm')) {
-							var phlegms = symptoms.filter(symptom => symptom.startsWith('phlegm_'));
-							facts.agent.threshold = (symptoms.length - phlegms.length - 1) / 2;
-							
-							if (!facts.agent.initialPhlegmActionDone) { // flag to trigger initial phlegm question
-								facts.agent.next_action = `ASK-PHLEGM`;
-								facts.agent.initialPhlegmActionDone = true;
-								hasAction = true;
-								R.stop();
-							} else {
-								if (facts.agent.phlegmNeeded) { // trigger R.restart()
-									facts.agent.phlegmNeeded = true;
-									facts.agent.needsRestart = true;
-									hasAction = true;
-								}
-								else {
-									continue;
-								}
-							}
-						} else {
-							hasAction = true;
-							facts.agent.next_action = `ASK-${investigated_symptom.toUpperCase()}`;
-							R.stop()
-						}
+			
+					if (facts.user.positive_symptoms.includes(investigated_symptom)) {
+						positive++;
+						continue;
 					}
+					if (facts.user.negative_symptoms.includes(investigated_symptom)) {
+						negative++
+						continue;
+					}
+					// Group Cases
+					if (investigated_symptom.startsWith('phlegm')) {
+						// Filter Phlegm Symptoms of this Disease
+						var phlegms = symptoms.filter(symptom => symptom.startsWith('phlegm_'));
+
+						// Adjust Threshold
+						threshold = symptoms.length - (phlegms.length - 1);
+						
+						// Check if User does not have Phlegm (Ignore asking Phlegm Symptoms)
+						if (facts.user.negative_symptoms.includes('phlegm')) {
+							continue;
+						}
+						// Check if Phlegm Symptoms already Exist
+						if (facts.user.positive_symptoms.some(symptom => symptom.startsWith('phlegm_'))) {
+							continue;
+						}				
+
+						// Ask Phlegm if Flag is not raised
+						if (facts.agent.flags.ask_phlegm == 0) {
+							facts.agent.next_action = `ASK-PHLEGM`;
+							R.stop();
+							break;
+						}
+					} 
+
+					// Set Next Action
+					facts.agent.next_action = `ASK-${investigated_symptom.toUpperCase()}`;
+					R.stop();
+					break;
 				}
-				R.when(hasAction)
+				R.when(threshold <= positive);
 			},
 			consequence: (R, facts) => {
-				if (facts.agent.needsRestart){	// restart rule engine
-					facts.agent.needsRestart = false;
-					R.restart();
-				} else {
-					if (facts.user.positive_symptoms.length >= facts.agent.threshold || facts.user.negative_symptoms.length >= facts.agent.threshold + 1) {
-						console.log(`${facts.user.positive_symptoms.length} >= ${facts.agent.threshold} || ${facts.user.negative_symptoms.length} >= ${facts.agent.threshold + 1}`)
-						facts.agent.next_action = `DIAGNOSE-${id.toUpperCase()}`;
-					}
-					R.stop();
-				}
-		  
+				facts.agent.next_action = `DIAGNOSE-${id.toUpperCase()}`;
+				R.stop();
 			}
 		}
-
 		R.register(disease_rule);
 	}
 }
@@ -422,9 +431,10 @@ const hypertensionSeverityRule = {
 
 const applyRules = (R) => {
 	R.register(clean_facts);
-	R.register(filter_negative_symptoms);
-	R.register(phlegm_rule);
-	R.register(weight_rule);
+	R.register(phlegmRule);
+	// R.register(filter_negative_symptoms);
+	// R.register(phlegm_rule);
+	// R.register(weight_rule);
 	registerDiseaseRules(R);
 	R.register(recallSymptoms);
 	R.register(pneumoniaSeverityRule);

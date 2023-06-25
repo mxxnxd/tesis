@@ -64,13 +64,16 @@ const main = async () => {
 	// console.log(R.activeRules)
 	var facts = {
 		user: {
-			positive_symptoms: ['fatigue', 'dyspnea', 'colds', 'wheeze', 'legs_swell'],
-			negative_symptoms: ['dizzy', 'tachycardia', 'cough', 'fever', 'cyanosis'],
+			positive_symptoms: ['fatigue', 'dyspnea'],
+			negative_symptoms: [],
 			previous_symptoms: [],
 			severity: {},
 			start: true,
 		},
 		agent: {
+			flags: {
+				ask_phlegm: 0
+			},
 			currentDisease: '',
 			needsRestart: false,
 			group: {
@@ -103,18 +106,9 @@ const main = async () => {
 		var input = prompter(`>:`).toLowerCase();
 
 		if (input === 'y') {
-			if (output.agent.next_action === 'ASK-PHLEGM') {
-				output.agent.phlegmNeeded = true;
-			} else if (output.agent.phlegmNeeded && output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) {
-				output.agent.phlegmNeeded = false; // dont proceed with other colors if 1 is already in positive_symptoms
-				output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
-			} else {
-				output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
-			}
+			output.user.positive_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 		} else if (input === 'n') {
-			if (output.agent.next_action.split('-')[1].startsWith('PHLEGM_')) { // if phlegm_color, dont push to negative symptoms
-				output.user.negative_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
-			}
+			output.user.negative_symptoms.push(output.agent.next_action.split('-')[1].toLowerCase());
 		} else {
 			if (output.agent.next_action === 'ASK-WEIGHT') {
 				output.user.severity.weight = input;
@@ -130,4 +124,4 @@ const main = async () => {
 	}
 };
 
-// main();
+main();
