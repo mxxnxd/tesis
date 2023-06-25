@@ -8,5 +8,11 @@
 			"blood_pressure",
 			"age"
 		]
+	},
+	{
+		"disease": "hypertension",
+		"criteria": [
+			"blood_pressure"
+		]
 	}
 ]
