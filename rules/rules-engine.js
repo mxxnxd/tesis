@@ -67,12 +67,15 @@ const main = async () => {
 			positive_symptoms: ['fatigue', 'dyspnea'],
 			negative_symptoms: [],
 			previous_symptoms: [],
-			severity: {},
+			severity: {
+				weight: 0,
+			},
 			start: true,
 		},
 		agent: {
 			flags: {
-				ask_phlegm: 0
+				ask_phlegm: 0,
+				ask_weight: 0,
 			},
 			currentDisease: '',
 			needsRestart: false,
@@ -120,7 +123,7 @@ const main = async () => {
 		}
 
 		facts = output;
-		console.log(facts.user);
+		// console.log(facts.user);
 	}
 };
 

@@ -101,12 +101,6 @@ const clean_facts = {
 	}
 };
 
-
-// ASK-PHLEGM ?
-// RECALL-PHLEGM-COLOR
-// STATE-PHLEGM 
-
-
 const phlegmRule = {
 	id: 'phlegm',
 	priority: PRIORITY + 52,
@@ -118,6 +112,19 @@ const phlegmRule = {
 		// Remove Phlegm from Postive Symptoms
 		facts.user.positive_symptoms = facts.user.positive_symptoms.filter(symptom => symptom !== 'phlegm');
 		facts.agent.flags.ask_phlegm = 1;
+		R.next();
+	}
+};
+
+const weightRule = {
+	id: 'weight',
+	priority: PRIORITY + 52,
+	condition: (R, facts) => {
+		var hasWeight = facts.user.positive_symptoms.find(symptom => symptom.startsWith('weight') && facts.user.severity.weight == 0);
+		R.when(hasWeight);
+	},
+	consequence: (R, facts) => {
+		facts.agent.flags.ask_weight = 1;
 		R.next();
 	}
 };
@@ -226,7 +233,15 @@ const registerDiseaseRules = (R) => {
 						negative++
 						continue;
 					}
+
 					// Group Cases
+					if (facts.agent.flags.ask_weight == 1) {
+						facts.agent.next_action = `ASK-WEIGHT`;
+						facts.agent.flags.ask_weight = 2;
+						R.stop();
+						break;
+					}
+			
 					if (investigated_symptom.startsWith('phlegm')) {
 						// Filter Phlegm Symptoms of this Disease
 						var phlegms = symptoms.filter(symptom => symptom.startsWith('phlegm_'));
@@ -284,6 +299,8 @@ const recallSymptoms = {
 			if (investigated_symptom === `r_infections`) {
 				facts.user.positive_symptoms.push(investigated_symptom);
 			} 
+
+			// phlegm case TODO
 			
 			if (!facts.user.positive_symptoms.includes(investigated_symptom)) {
 				break;
@@ -432,11 +449,11 @@ const hypertensionSeverityRule = {
 const applyRules = (R) => {
 	R.register(clean_facts);
 	R.register(phlegmRule);
-	// R.register(filter_negative_symptoms);
-	// R.register(phlegm_rule);
-	// R.register(weight_rule);
+	R.register(weightRule);
+
 	registerDiseaseRules(R);
 	R.register(recallSymptoms);
+
 	R.register(pneumoniaSeverityRule);
 	R.register(hypertensionSeverityRule);
 	R.register(hasAction);
