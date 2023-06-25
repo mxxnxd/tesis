@@ -195,6 +195,7 @@ async function handleAgentParameters(agent, type) {
 	} else if (type === 'POSITIVE' || type === 'NEGATIVE') {
 		symptoms.forEach(symptom => {
 			facts.agent.phlegmNeeded = (type === 'POSITIVE' && symptom === 'PHLEGM');
+			facts.agent.weightNeeded = (type === 'POSITIVE' && (symptom === 'WEIGHTGAIN' || symptom === 'WEIGHTLOSS'));
 
 			if (!facts.agent.phlegmNeeded) {
 				acquired_symptoms.push(symptom.toLowerCase());
