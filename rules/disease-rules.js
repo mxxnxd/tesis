@@ -242,7 +242,6 @@ const recallSymptoms = {
 		while (facts.user.previous_symptoms.length != 0) {
 			var investigated_symptom = previous_symptoms.shift();
 			facts.user.previous_symptoms = previous_symptoms;
-			console.log(previous_symptoms);
 			if (investigated_symptom === `r_infections`) {
 				facts.user.positive_symptoms.push(investigated_symptom);
 			} 
@@ -266,7 +265,6 @@ const recallSymptoms = {
 			if (facts.user.positive_symptoms.includes(investigated_symptom)) {
 				continue;
 			}
-			console.log(investigated_symptom)
 			facts.agent.next_action = `RECALL-${investigated_symptom.toUpperCase()}`;
 			R.stop();
 			break;
