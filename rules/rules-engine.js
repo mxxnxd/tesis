@@ -27,7 +27,7 @@ const getAction = (inputFacts) => {
 		for (i = 0; i < initial.matches.length; i++) {
 			R.prioritize(PRIORITY + 49 - i, {id: initial.matches[i]});
 		}
-		console.log('> Rules Reordered...');
+		// console.log('> Rules Reordered...');
 		facts.user.start = false;
 	}
 
@@ -127,4 +127,4 @@ const main = async () => {
 	}
 };
 
-main();
+// main();

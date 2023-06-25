@@ -46,6 +46,10 @@ const enCommandCheckup= async (agent) => {
 
 			// Clear
 			db.updateUser(senderID, {positive_symptoms: [], negative_symptoms: []});
+			db.updateAgent(senderID, {flags: {
+				ask_weight: 0,
+				ask_phlegm: 0,
+			}});
 
 			// Set Contexts
 			util.setContexts(agent, ['PHASE-CHECK'], [5]);	

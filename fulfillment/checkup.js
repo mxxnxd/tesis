@@ -178,13 +178,9 @@ async function handleAgentParameters(agent, type) {
 		const investigated_symptom = facts.agent.next_action.toLowerCase().split('-')[1];
 
 		if (bool === 'AFFIRM') {
-			facts.agent.phlegmNeeded = (investigated_symptom === 'phlegm');
-			facts.agent.weightNeeded = (investigated_symptom === 'weightgain' || investigated_symptom === 'weightloss');
-
 			// Add User Positive Symptoms
-			if (!facts.agent.phlegmNeeded ) {
-				facts.user.positive_symptoms = Array.from(new Set(facts.user.positive_symptoms.concat([investigated_symptom])));
-			}
+			facts.user.positive_symptoms = Array.from(new Set(facts.user.positive_symptoms.concat([investigated_symptom])));
+			
 		} else if (bool === 'NEGATE') {
 			// Add User Negative Symptoms
 			facts.user.negative_symptoms = Array.from(new Set(facts.user.negative_symptoms.concat([investigated_symptom])));
@@ -194,12 +190,7 @@ async function handleAgentParameters(agent, type) {
 
 	} else if (type === 'POSITIVE' || type === 'NEGATIVE') {
 		symptoms.forEach(symptom => {
-			facts.agent.phlegmNeeded = (type === 'POSITIVE' && symptom === 'PHLEGM');
-			facts.agent.weightNeeded = (type === 'POSITIVE' && (symptom === 'WEIGHTGAIN' || symptom === 'WEIGHTLOSS'));
-
-			if (!facts.agent.phlegmNeeded) {
-				acquired_symptoms.push(symptom.toLowerCase());
-			}
+			acquired_symptoms.push(symptom.toLowerCase());
 		});
 		body_parts.forEach(part => {
 			const body_symptom = util.getSymptomCondition(part, body_condition);
@@ -217,8 +208,6 @@ async function handleAgentParameters(agent, type) {
 		const weight = agent.parameters.weight;
 		facts.user.severity.weight = weight;
 	}
-
-	console.log(facts);
 
 	return facts;
 };

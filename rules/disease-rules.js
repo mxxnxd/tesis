@@ -12,7 +12,7 @@ const disease_severity = JSON.parse(disease_severity_json);
 const PRIORITY = 100;
 /* ===== ===== ===== ===== ===== ===== ===== */
 
-const clean_facts = {
+const cleanFacts = {
 	id: 'clean',
 	priority: PRIORITY + 100, // 200
 	condition: (R, facts) => {
@@ -28,75 +28,28 @@ const clean_facts = {
 		if (!facts.user.previous_symptoms) {
 			facts.user.previous_symptoms = [];
 		}
+
+		if (!facts.agent.flags) {
+			facts.agent.flags = {
+				ask_weight: 0,
+				ask_phlegm: 0,
+			}
+		}
+
 		if (!facts.user.severity) {
-			facts.user.severity = {};
-			if (!facts.user.severity.final) {
-				facts.user.severity.final = '';
+			facts.user.severity = {
+				score: 0,
+				weight: {
+					amount: 0,
+					unit: '?',
+				},
+				confusion: false,
+				urea: 0,
+				respiratoryRate: 0,
+				age: 0,
+				bloodPressure: 0,
 			}
-			if (!facts.user.severity.score) {
-				facts.user.severity.score = 0;
-			}
-			if (!facts.user.severity.confusion) {
-				facts.user.severity.confusion = false;
-			}
-			if (!facts.user.severity.urea) {
-				facts.user.severity.urea = 0;
-			}
-			if (!facts.user.severity.respiratoryRate) {
-				facts.user.severity.respiratoryRate = 0;
-			}
-			if (!facts.user.severity.weight) {
-				facts.user.severity.weight = 0;
-			}
-			if (!facts.user.severity.age) {
-				facts.user.severity.age = 0;
-			}
-			if (!facts.user.severity.bloodPressure) {
-				facts.user.severity.bloodPressure = [];
-			}
-
-		}
-		if (!facts.agent.currentDisease) {
-			facts.agent.currentDisease = '';
-		}
-		if (!facts.agent.needsRestart) {
-			facts.agent.needsRestart = false;
-		}
-		if (!facts.agent.initialPhlegmActionDone) {
-			facts.agent.initialPhlegmActionDone = false;
-		}
-		if (!facts.agent.currentPhlegmCount) {
-			facts.agent.currentPhlegmCount = false;
-		}
-		if (!facts.agent.currentPhlegmCount) {
-			facts.agent.currentPhlegmCount = 0;
-		}
-		if (!facts.agent.weightNeeded) {
-			facts.agent.weightNeeded = false;
-		}
-		if (!facts.agent.group) {
-			facts.agent.group = {}
-			if (!facts.agent.group.phlegms) {
-				facts.agent.group.phlegms = [];
-			}
-		}
-		/*
-			I recommend refactoring these fields under a subfield of Agent,
-			so you could just check one field instead of every one of them.
-			This is only applicable since all of the fields are new and not used on old setups.
-			
-			if (!facts.agent.TEMP_NAME) {
-				facts.agent.TEMP_NAME = {
-					phlegmNeeded = false,
-					group: {
-						phlegms: []
-					},
-					etc...
-				}
-			}
-		*/
-		
-
+		} 
 		R.next();
 	}
 };
@@ -120,12 +73,13 @@ const weightRule = {
 	id: 'weight',
 	priority: PRIORITY + 52,
 	condition: (R, facts) => {
-		var hasWeight = facts.user.positive_symptoms.find(symptom => symptom.startsWith('weight') && facts.user.severity.weight == 0);
+		var hasWeight = facts.user.positive_symptoms.find(symptom => symptom.startsWith('weight') && facts.agent.flags.ask_weight == 0);
 		R.when(hasWeight);
 	},
 	consequence: (R, facts) => {
+		facts.agent.next_action = 'ASK-WEIGHT';
 		facts.agent.flags.ask_weight = 1;
-		R.next();
+		R.stop();
 	}
 };
 
@@ -234,14 +188,7 @@ const registerDiseaseRules = (R) => {
 						continue;
 					}
 
-					// Group Cases
-					if (facts.agent.flags.ask_weight == 1) {
-						facts.agent.next_action = `ASK-WEIGHT`;
-						facts.agent.flags.ask_weight = 2;
-						R.stop();
-						break;
-					}
-			
+					// Group Cases		
 					if (investigated_symptom.startsWith('phlegm')) {
 						// Filter Phlegm Symptoms of this Disease
 						var phlegms = symptoms.filter(symptom => symptom.startsWith('phlegm_'));
@@ -441,7 +388,7 @@ const hypertensionSeverityRule = {
 }
 
 const applyRules = (R) => {
-	R.register(clean_facts);
+	R.register(cleanFacts);
 	R.register(phlegmRule);
 	R.register(weightRule);
 
