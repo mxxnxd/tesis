@@ -2,6 +2,7 @@
 	{
 		"disease": "copd",
 		"symptom": [
+			"weightloss",
 			"phlegm_red",
 			"fatigue",
 			"dyspnea",
@@ -15,7 +16,6 @@
 			"phlegm_green",
 			"phlegm_white",			
 			"dysphasia",
-			"weightloss",
 			"colds",
 			"confusion",
 			"hoarseness"

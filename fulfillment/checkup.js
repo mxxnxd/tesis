@@ -125,14 +125,22 @@ const enShareGender = async (agent) => {
 
 const enShareWeight = async (agent) => {
 	const senderID = util.getSenderID(agent);
+	var facts = await handleAgentParameters(agent, 'WEIGHT');
 
-	const weight = agent.parameters.weight;
-	db.updateUserSeverity(senderID, {weight: {
-		weight: weight.amount,
-		unit: weight.unit
-	}});	
+	// Get Next Agent Action
+	if (facts.agent.next_action) {
+		delete facts.agent.next_action;
+	}
 
-	agent.add('GOT IT');
+	// Response
+	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
+	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
+
+	// Update User Data
+	db.updateUser(senderID, res.user);
+	db.updateAgent(senderID, res.agent);
+
 	util.setContexts(agent,['PHASE-CHECK'], [5]);
 };
 
@@ -203,7 +211,10 @@ async function handleAgentParameters(agent, type) {
 		} else if (type === 'NEGATIVE') {
 			facts.user.negative_symptoms = Array.from(new Set(facts.user.negative_symptoms.concat(acquired_symptoms)));
 		}
-	} 
+	} else if (type === 'WEIGHT') {
+		const weight = agent.parameters.weight;
+		facts.user.severity.weight = weight;
+	}
 
 	console.log(facts);
 

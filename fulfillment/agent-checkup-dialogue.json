@@ -171,6 +171,9 @@
         "ask_symptom": ["Do you feel physically weak than usual?", "Do you feel weak even with a full night sleep?"],
         "recall_symptom": ["Do you still feel physically weak than usual?"]
     },
+    "weight": {
+        "ask_symptom": ["What is your current weight?", "How much do you weigh right now?", "How heavy are you?"]
+    },
     "weightgain": {
         "ask_symptom": ["Have you gained weight?"],
         "recall_symptom": ["Have you gained weight again?"]
