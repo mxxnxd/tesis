@@ -52,13 +52,9 @@ const clean_facts = {
 				facts.user.severity.age = 0;
 			}
 			if (!facts.user.severity.bloodPressure) {
-				facts.user.severity.weight = [];
+				facts.user.severity.bloodPressure = [];
 			}
 
-			
-		R.when(facts.user.severity.confusion && facts.user.severity.urea && 
-			facts.user.severity.respiratoryRate && facts.user.severity.bloodPressure && 
-			facts.user.severity.age);
 		}
 		if (!facts.agent.currentDisease) {
 			facts.agent.currentDisease = '';
@@ -74,9 +70,6 @@ const clean_facts = {
 		}
 		if (!facts.agent.currentPhlegmCount) {
 			facts.agent.currentPhlegmCount = 0;
-		}
-		if (!facts.agent.initialWeightActionDone) {
-			facts.agent.initialWeightActionDone = false;
 		}
 		if (!facts.agent.weightNeeded) {
 			facts.agent.weightNeeded = false;
@@ -120,7 +113,6 @@ const clean_facts = {
 		// initialPhlegmActionDone: false,
 		// phlegmNeeded: false,
 		// currentPhlegmCount: 0,
-		// initialWeightActionDone: false,
 		// weightNeeded: false
 
 		R.next();
@@ -191,11 +183,11 @@ const weight_rule = {
 	id: 'weight',
 	priority: PRIORITY + 48, // 148
 	condition: (R, facts) => {
-		R.when(facts.agent.weightNeeded && !facts.user.severity.weight);
+		var present = facts.user.positive_symptoms.includes('weightgain') || facts.user.positive_symptoms.includes('weightloss');
+		R.when(present && facts.agent.weightNeeded);
 	},
 	consequence: (R, facts) => {
 		facts.agent.next_action = `ASK-WEIGHT`;
-		facts.agent.initialWeightActionDone = false;
 		facts.agent.weightNeeded = false;
 		R.stop();
 	}
@@ -237,20 +229,6 @@ const registerDiseaseRules = (R) => {
 								else {
 									continue;
 								}
-							}
-						} else if (investigated_symptom.startsWith('weight') || facts.agent.initialWeightActionDone) { // flag to trigger weight question
-							if (!facts.agent.initialWeightActionDone) {
-								facts.agent.next_action = `ASK-${investigated_symptom.toUpperCase()}`;
-								facts.agent.initialWeightActionDone = true;
-								hasAction = true;
-								R.stop();
-							} else if (!facts.agent.weightNeeded && facts.agent.initialWeightActionDone && (facts.user.positive_symptoms.includes('weightloss') || facts.user.positive_symptoms.includes('weightgain'))) { // trigger R.restart()
-								facts.agent.weightNeeded = true;
-								facts.agent.needsRestart = true;
-								hasAction = true;
-							} else {
-								facts.agent.initialWeightActionDone = false; // do nothing when user says no to weightgain/weightloss
-								R.stop()
 							}
 						} else {
 							hasAction = true;
@@ -450,6 +428,7 @@ const applyRules = (R) => {
 	registerDiseaseRules(R);
 	R.register(recallSymptoms);
 	R.register(pneumoniaSeverityRule);
+	R.register(hypertensionSeverityRule);
 	R.register(hasAction);
 	R.register(diagnoseNone);
 };

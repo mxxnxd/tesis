@@ -179,6 +179,7 @@ async function handleAgentParameters(agent, type) {
 
 		if (bool === 'AFFIRM') {
 			facts.agent.phlegmNeeded = (investigated_symptom === 'phlegm');
+			facts.agent.weightNeeded = (investigated_symptom === 'weightgain' || investigated_symptom === 'weightloss');
 
 			// Add User Positive Symptoms
 			if (!facts.agent.phlegmNeeded ) {

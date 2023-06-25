@@ -79,7 +79,6 @@ const main = async () => {
 			initialPhlegmActionDone: false,
 			phlegmNeeded: false,
 			currentPhlegmCount: 0,
-			initialWeightActionDone: false,
 			weightNeeded: false
 		}
 	};
