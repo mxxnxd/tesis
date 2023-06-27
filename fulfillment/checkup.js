@@ -2,8 +2,6 @@ const fs = require('fs');
 const util = require('./utility.js');
 const db = require('../firebase/database.js');
 const rule = require('../rules/rules-engine.js');
-const { delUserState, getUserState, setUserState } = require('../firebase/state.js');
-const { send } = require('process');
 
 /*
 /*
@@ -35,7 +33,6 @@ const enConfirmSymptom = async (agent) => {
 	// Update User Data
 	db.updateUser(senderID, res.user);
 	db.updateAgent(senderID, res.agent);
-	// db.updateUser(senderID, {start: res.user.start});
 };
 
 const enShareSymptomPositive = async (agent) => {
@@ -55,7 +52,6 @@ const enShareSymptomPositive = async (agent) => {
 	// Update User Data
 	db.updateUser(senderID, res.user);
 	db.updateAgent(senderID, res.agent);
-	// db.updateUser(senderID, {start: res.user.start});
 };
 
 const enShareSymptomNegative = async (agent) => {
@@ -75,7 +71,6 @@ const enShareSymptomNegative = async (agent) => {
 	// Update User Data
 	db.updateUser(senderID, res.user);
 	db.updateAgent(senderID, res.agent);
-	// db.updateUser(senderID, {start: res.user.start});
 };
 
 const enShareFeeling = async (agent) => {										// Add Variations
@@ -89,37 +84,64 @@ const enShareFeeling = async (agent) => {										// Add Variations
 
 const enShareBloodPressure = async (agent) => {
 	const senderID = util.getSenderID(agent);
+	var facts = await handleAgentParameters(agent, 'BLOOD_PRESSURE');
 
-	const blood_pressure = agent.parameters.number;
-	const systolic = blood_pressure[0];
-	const diastolic = blood_pressure[1];
+	// Get Next Agent Action
+	if (facts.agent.next_action) {
+		delete facts.agent.next_action;
+	}
 
-	db.updateUserSeverity(senderID, {blood_pressure: {
-		systolic: systolic,
-		diastolic: diastolic
-	}});
+	// Response
+	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
+	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
 
-	agent.add('GOT IT');
+	// Update User Data
+	db.updateUser(senderID, res.user);
+	db.updateAgent(senderID, res.agent);
+
 	util.setContexts(agent,['PHASE-CHECK'], [5]);
 };
 
 const enShareAge = async (agent) => {
 	const senderID = util.getSenderID(agent);
+	var facts = await handleAgentParameters(agent, 'AGE');
 
-	const age = agent.parameters.age;
-	db.updateUserSeverity(senderID, {age: age});
+	// Get Next Agent Action
+	if (facts.agent.next_action) {
+		delete facts.agent.next_action;
+	}
 
-	agent.add('GOT IT');
+	// Response
+	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
+	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
+
+	// Update User Data
+	db.updateUser(senderID, res.user);
+	db.updateAgent(senderID, res.agent);
+
 	util.setContexts(agent,['PHASE-CHECK'], [5]);
 };
 
 const enShareGender = async (agent) => {
 	const senderID = util.getSenderID(agent);
+	var facts = await handleAgentParameters(agent, 'GENDER');
 
-	const gender = agent.parameters.bot_gender;
-	db.updateUserSeverity(senderID, {gender: gender});
+	// Get Next Agent Action
+	if (facts.agent.next_action) {
+		delete facts.agent.next_action;
+	}
 
-	agent.add('GOT IT');
+	// Response
+	const res = await rule.getAction(facts);
+	console.log(`${senderID}: ${res.agent.next_action}`);
+	handleAgentAction(agent, res.agent.next_action, res.user.positive_symptoms);
+
+	// Update User Data
+	db.updateUser(senderID, res.user);
+	db.updateAgent(senderID, res.agent);
+
 	util.setContexts(agent,['PHASE-CHECK'], [5]);
 };
 
@@ -207,14 +229,28 @@ async function handleAgentParameters(agent, type) {
 	} else if (type === 'WEIGHT') {
 		const weight = agent.parameters.weight;
 		facts.user.severity.weight = weight;
-	}
+	} else if (type === 'AGE') {
+		const age = agent.parameters.age;
+		facts.user.severity.age = age;
+	} else if (type === 'GENDER') {
+		const gender = agent.parameters.bot_gender;
+		facts.user.severity.gender = gender;
+	} else if (type === 'BLOOD_PRESSURE') {
+		const blood_pressure = agent.parameters.number;
+		const systolic = blood_pressure[0];
+		const diastolic = blood_pressure[1];	
 
+		facts.user.severity.blood_pressure = {
+			systolic: systolic,
+			diastolic: diastolic,
+		}
+	}
 	return facts;
 };
 
 function handleAgentAction(agent, action, positive_symptoms) {
 	const senderID = util.getSenderID(agent);
-	console.log(`Handing Action: ${action}`)
+	// console.log(`Handing Action: ${action}`)
 
 	// Response
 	if (action.startsWith('ASK')) {				

@@ -1,0 +1,99 @@
+{
+    "en_user_start_greet": [
+        [
+            "Hello! I'm [BOT], your personal symptom checker.", 
+            "How can I assist you today? I'm here to answer your questions, help you find what you're looking for, or simply have a friendly chat.",
+            "Feel free to ask me anything!"
+        ],
+        [
+            "Hello! I'm [BOT], how can I help you today?",
+            "I'm here to answer your questions, help you find what you're looking for, or simply have a friendly chat.",
+            "Feel free to ask me anything!"
+        ]
+    ],
+    "en_user_start_new": [
+        [
+            "Great! but you need to undergo my introduction first since this is your first time.",
+            "Is that ok with you?"            
+        ],
+        [
+            "It seems like this is your first time? You don't mind if I ask you some questions?",
+            "It'll be quick details on my terms of service :>"
+        ]
+    ],
+    "en_user_start_checkup_term_accepted": [
+        [
+            "Great! we can get started :>",
+            "How are you feeling?"
+        ],
+        [
+            "Sure let's start right away",
+            "How have you been feeling?"
+        ]
+    ],
+    "en_user_start_term_unaccepted": [
+        [
+            "Aww :< it seems you have not accepted the terms of services yet.",
+            "I need you to accept my terms of services for you to access my features."
+        ],
+        [
+            "It seems you did not accept my terms of service before :<",
+            "I need you to accept my terms of service before you can access my features."
+        ]
+    ],
+    "en_user_start_query_term_accepted": [
+        [   
+            "Great! what questions do you have for me?"
+        ],
+        [
+            "Alright! ask away :>"
+        ]
+    ],
+    "en_user_confirm_intro_yes": [
+        [
+            "Alright! Let's start of with the first question.",
+            "What language do you prefer I use, English or Filipino?"
+        ],
+        [
+            "What language do you prefer I converse you with, English or Filipino?"
+        ]
+    ],
+    "en_user_confirm_intro_no": [
+        [
+            "Aww :< I need you to acknowledge my terms & conditions to use my features.",
+            "If you ever change your mind, talk to me again :>"
+        ],
+        [
+            "Aww :< I need you to accept my terms before you can use my features >.>",
+            "Oh well if you change your mind come talk to me again :>"
+        ]
+    ],
+    "en_user_choose_language": [
+        [
+            "Great!",
+            "I see your selected language is [LANGUAGE], can I confirm?"
+        ],
+        [
+            "Ok! can I confirm [LANGUAGE] is your final choice?"
+        ]      
+    ],
+    "en_user_confirm_language_yes": [
+        [
+            "Before you get to access my features >.>",
+            "I need to state that I'm a symptom checker chatbot aimed to provide medical impressions on your condition.",
+            "I'm not meant to be a replacement for a doctor's diagnosis",
+            "For more details, here is a link to my terms of service: [LINK]",
+            "Do you accept these terms?"
+        ]
+    ],
+    "en_user_confirm_language_no": [
+        [
+            "My apologies :<",
+            "Let me try again, what is your preferred language. English or Filipino?"
+        ],
+        [
+            "My bad :<",
+            "What language do you prefer, English or Filipino?"
+        ]
+    ]
+}

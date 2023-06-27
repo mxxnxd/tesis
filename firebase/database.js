@@ -63,6 +63,26 @@ const getSession = (id, timestamp) => {
 	});
 };
 
+const createAgent = (id, json) => {
+	var ref = db.ref(`agent/${id}`);
+	ref.set(json);
+};
+
+const getAgent = (id) => {
+	var ref = db.ref(`agent/${id}`);
+
+	return new Promise((resolve, reject) => {
+		ref.once('value', (snapshot) => {
+			resolve(snapshot.val());
+		});
+	});
+};
+
+const deleteAgent = (id) => {
+	var ref = db.ref(`agent/${id}`);
+	ref.remove();
+};
+
 const closeDB = () => {
 	db.goOffline();
 	app.delete();
@@ -87,6 +107,10 @@ module.exports = {
 	getSession,
 	createUser,
 	closeDB,
+
+	createAgent,
+	getAgent,
+	deleteAgent,
 };
 
  main();

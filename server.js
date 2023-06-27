@@ -22,14 +22,6 @@ app.post('/webhook', express.json(), (req, res) => {
 	var intentMap = new Map();
 	intentMap.set('dv.webhook', ffWebhook.dvWebhook); 					// Test Intent (Dev)
 
-	intentMap.set('en.user.command.checkup', ffStart.enCommandCheckup);
-	intentMap.set('en.user.command.query', ffStart.enCommandQuery);
-
-	intentMap.set('en.user.confirm.intro_start', ffLanguage.enConfirmIntroStart);
-	intentMap.set('en.user.confirm.language', ffLanguage.enConfirmLanguage);
-	intentMap.set('en.user.choose.language', ffLanguage.enChooseLanguage);
-	intentMap.set('en.user.confirm.terms', ffLanguage.enConfirmTerms);
-
 	intentMap.set('en.user.share.symptom.positive', ffCheckup.enShareSymptomPositive);
 	intentMap.set('en.user.confirm.symptom', ffCheckup.enConfirmSymptom);
 	intentMap.set('en.user.share.symptom.negative', ffCheckup.enShareSymptomNegative);
@@ -45,6 +37,16 @@ app.post('/webhook', express.json(), (req, res) => {
 	intentMap.set('en.user.query.disease.symptom', ffQuery.enQueryDiseaseSymptom);
 	intentMap.set('en.user.query.disease.treatment', ffQuery.enQueryDiseaseTreatment);
 	intentMap.set('en.user.query.symptom.definition', ffQuery.enQuerySymptomDefinition);
+
+	// Overhauled
+	intentMap.set('en.user.start.greet', ffStart.enUserStartGreet);
+	intentMap.set('en.user.start.checkup', ffStart.enUserStartCheckup);
+	intentMap.set('en.user.start.query', ffStart.enUserStartQuery);
+
+	intentMap.set('en.user.confirm.intro', ffLanguage.enUserConfirmIntro);
+	intentMap.set('en.user.choose.language', ffLanguage.enUserChooseLanguage);
+	intentMap.set('en.user.confirm.language', ffLanguage.enUserConfirmLanguage);
+	intentMap.set('en.user.confirm.terms', ffLanguage.enUserConfirmTerms);
 
 	// Handle Fulfillment
 	agent.handleRequest(intentMap);

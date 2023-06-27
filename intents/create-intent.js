@@ -6,19 +6,19 @@
 const manager = require('./intent-manager.js');
 
 const main = async () => {
-	const str = 17; // Excel Row -2
-	const end = 18; // Excel Row -1
+	const str = 8; // Excel Row -2
+	const end = 8; // Excel Row -1
 
 	// Load Intent Data
-	const intents = manager.loadIntentExcel();
+	const intents = manager.loadIntentExcel('introduction');
 
 	// Delete Intents
-	for (i = str; i < end; i++) {
+	for (i = str - 2; i < end - 1; i++) {
 		await manager.callDeleteIntent(intents[i]);
 	}
 
 	// Create Intents
-	for (i = str; i < end; i++) {
+	for (i = str - 2; i < end - 1; i++) {
 		await manager.callCreateIntent(intents[i]);
 	}
 }

@@ -1,7 +1,6 @@
 const fs = require('fs');
 const util = require('./utility.js');
 const db = require('../firebase/database.js');
-const { delUserState, getUserState, setUserState } = require('../firebase/state.js');
 
 /*
 	Webhook Functions: Query Intents 

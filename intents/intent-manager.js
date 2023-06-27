@@ -34,10 +34,10 @@ const intentClient = new IntentsClient(CONFIGURATION);
 /*
 	Load Intent Information from Excel Spreadsheet
 */
-const loadIntentExcel = () => {
+const loadIntentExcel = (sheetName) => {
 	var workbook = xlsx.readFile(filePath);
-	var sheetNameList = workbook.SheetNames;
-	var data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
+	// var sheetNameList = workbook.SheetNames;
+	var data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
 	return data;
 };
 

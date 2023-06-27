@@ -1,0 +1,60 @@
+
+>>> User-Agent Dialogue 
+
+>>> Introduction
+
+U: Hi!
+
+C: Hello I am CHATBOT etc...
+C: How can I help you?
+
+U: I would like to undergo a check up with you :)
+
+C: Great! but you need to undergo my introduction first
+C: Do you mind if we go through it?
+
+U: Sure!
+
+C: Ok Great! To start off, I need to know what language do you prefer I converse you with? (ENG, FIL) [CLOSE-ENDED-QUESTION]
+
+U: English is fine
+
+C: Oh ok English is this your final choice? [CLOSE-ENDED-QUESTION]
+
+U: Yeah it is!
+
+C: Nice! next I need to tell you my terms of service
+C: To use my bot you need to accept that etc...
+C: Do you accept? [CLOSE-ENDED-QUESTION]
+
+U: Yes I accept.
+
+C: Great we can get started!
+
+>>> Check Up
+
+C: How have you been feeling? [CLOSE-ENDED-QUESTION]
+
+U: I don't feel well these days
+
+C: Oh why is that? can you share some symptoms? [OPEN-ENDED-QUESTION]]
+
+U: Well I have been coughing for a week actually?
+
+C: Do you also have a fever? [CLOSE-ENDED-QUESTION]
+
+U: Yeah I do.
+
+C: Hmm, is there sputum? [CLOSE-ENDED-QUESTION]
+
+U: Yeah, its green
+
+C: Any other symptoms you can mention? [OPEN-ENDED-QUESTION]
+
+U: Now that you said it, I also been feeling dizzy from time to time.
+
+C: 
+
+>>> Query
+
+

@@ -88,6 +88,28 @@ const getSymptomCondition = (bodyPart, bodyCondition) => {
 	return null;
 };
 
+/*
+    Utility function for multiline responses on Messenger
+*/
+function respond(agent, response, parameters) {
+	// Select Message
+	const messages = response[Math.floor(Math.random() * response.length)];
+
+	// Replace Parameters
+	if (parameters) {
+		for (i = 0; i < parameters.length; i++) {
+			for (j = 0; j < messages.length; j++) {
+				messages[j] = messages[j].replace(parameters[i][0], parameters[i][1]);
+			}
+		}
+	}
+
+	// Send Message
+	messages.forEach(message => {
+		agent.add(message);
+	});
+};
+
 module.exports = {
 	setContexts,
 	triggerEvent,
@@ -95,5 +117,6 @@ module.exports = {
 	getSentimentScore,
 	buildQuickReplyPayload,
 	getEventToKey,
-	getSymptomCondition
+	getSymptomCondition,
+	respond
 };
