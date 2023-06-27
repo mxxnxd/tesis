@@ -29,7 +29,7 @@ async function enUserStartCheckup(agent) {
 	if (!data) {
 		const response = introduction_dialogue.en_user_start_new;
 		util.respond(agent, response);
-		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-START-INTRODUCTION'], [5, 3]);
+		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-INTRODUCTION'], [5, 3]);
 		db.createAgent(senderID, {command: 'CHECKUP'});
 	} else {
 		if (!data.user.terms) {
@@ -53,7 +53,7 @@ async function enUserStartQuery(agent) {
 	if (!data) {
 		const response = introduction_dialogue.en_user_start_new;
 		util.respond(agent, response);
-		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-START-INTRODUCTION'], [5, 3]);
+		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-INTRODUCTION'], [5, 3]);
 		db.createAgent(senderID, {command: 'QUERY'});
 	} else {
 		if (!data.user.terms) {

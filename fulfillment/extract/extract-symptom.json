@@ -1,0 +1,87 @@
+{
+	"ABDOMEN": {
+		"PAIN": "ABDOMEN_PAIN",
+		"SWELL": "BELLY_SWELL"
+	},
+	"APPETITE": {
+		"LOSS": "APPETITE_LOSS",
+		"LACK": "APPETITE_LOSS"
+	},
+	"ARM": {
+		"PAIN": "ARM_PAIN"
+	},
+	"BACK": {
+		"PAIN": "BACK_PAIN"
+	},
+	"BONE": {
+		"PAIN": "BONE_PAIN"
+	},
+	"BREATH": {
+		"SHORT": "DYSPNEA",
+		"RAPID": "TACHYPNEA"
+	},
+	"CHEST": {
+		"PAIN": "CHEST_PAIN",
+		"TIGHT": "CHEST_TIGHT"
+	},
+	"ENERGY": {
+		"LACK": "FATIGUE"
+	},
+	"HAND": {
+		"BLUE": "CYANOSIS"
+	},
+	"HEAD": {
+		"PAIN": "HEADACHES"
+	},
+	"HEART": {
+		"RAPID": "TACHYCARDIA",
+		"PAIN": "HEARTBURN"
+	},
+	"LEGS": {
+		"SWELL": "LEGS_SWELL"
+	},
+	"MOUTH": {
+		"PAIN": "MOUTH_PAIN"
+	},
+	"MUSCLE": {
+		"PAIN": "MUSCLE_PAIN"
+	},
+	"NECK": {
+		"PAIN": "NECK_SHOULDER_PAIN",
+		"SWELL": "NECK_SWELL",
+		"TIGHT": "NECK_TIGHT"
+	},
+	"RESPIRATORY_INFECTIONS": {
+		"FREQUENT": "R_INFECTIONS"
+	},
+	"SHOULDER": {
+		"PAIN": "NECK_SHOULDER_PAIN"
+	},
+	"SLEEP": {
+		"TROUBLE": "SLEEP_HARD"
+	},
+	"PHLEGM": {
+		"GREEN": "PHLEGM_GREEN",
+		"CLEAR": "PHLEGM_CLEAR",
+		"RED": "PHLEGM_RED",
+		"WHITE": "PHLEGM_WHITE"
+	},
+	"THROAT": {
+		"TROUBLE": "DYSPHASIA",
+		"HOARSE": "HOARSENESS"
+	},
+	"URINE": {
+		"RED": "URINE_BLOOD"
+	},
+	"VISION": {
+		"BLURRY": "BLURRY",	
+		"LOSS": "BLURRY"
+	},
+	"VOICE": {
+		"HOARSE": "HOARSENESS"
+	},
+	"WEIGHT": {
+		"GAIN": "WEIGHTGAIN",
+		"LOSS": "WEIGHTLOSS"
+	}
+}

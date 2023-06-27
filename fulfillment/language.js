@@ -41,11 +41,11 @@ async function enUserConfirmIntro(agent) {
 
 		const response = introduction_dialogue.en_user_confirm_intro_yes
 		util.respond(agent, response);
-		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-START-INTRODUCTION', 'CHOOSE-LANGUAGE'], [5, 0, 3]);
+		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-INTRODUCTION', 'CHOOSE-LANGUAGE'], [5, 0, 3]);
 	} else {
 		const response = introduction_dialogue.en_user_confirm_intro_no
 		util.respond(agent, response);
-		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-START-INTRODUCTION'], [0, 0]);	
+		util.setContexts(agent, ['PHASE-INTRODUCTION', 'CONFIRM-INTRODUCTION'], [0, 0]);	
 	}
 };
 

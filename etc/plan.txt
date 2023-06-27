@@ -46,7 +46,7 @@ C: Do you also have a fever? [CLOSE-ENDED-QUESTION]
 U: Yeah I do.
 
 C: Hmm, is there sputum? [CLOSE-ENDED-QUESTION]
-
+    
 U: Yeah, its green
 
 C: Any other symptoms you can mention? [OPEN-ENDED-QUESTION]

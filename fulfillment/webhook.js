@@ -17,11 +17,12 @@ const responses = JSON.parse(jsonData);
 
 const dvWebhook = async (agent) => {
 
-	const action = 'ASK-DYSPHASIA';
+	const body_subject = agent.parameters.body_subject;
+	const body_condition = agent.parameters.body_condition_temp;
 
-	console.log('Webhook!');
-	const response = responses[action.toLowerCase().split('-')[1]].ask_symptom;
-	console.log(response[Math.floor(Math.random() * response.length)])
+	console.log([body_subject, body_condition]);
+
+	console.log(util.extractSymptomFromKeywords(body_subject, body_condition));
 	agent.add('Webhook!');
 };
 

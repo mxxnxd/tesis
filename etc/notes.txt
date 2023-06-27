@@ -1,0 +1,98 @@
+/@Yes:bot-affirm/*
+/@Sure:bot-affirm/*
+/@Yeah:bot-affirm/*
+/@Ok:bot-affirm/*
+/@Alright:bot-affirm/*
+/@Agree:bot-affirm/*
+/@No:bot-affirm/*
+/@Nope:bot-affirm/*
+/@Nah:bot-affirm/*
+/@Disagree:bot-affirm/*
+/@By no means:bot-affirm/*
+/@Absolutely not:bot-affirm/
+
+
+
+I have been [SYMPTOM-VERB] for a while now
+I have a [SYMPTOM]
+I feel [SYMPTOM-ADJ]
+
+>>> Training Entity Phrases (PARTS)
+
+/@Bone:bot-body_subject/ /@Pain:bot-body_condition_temp/
+/@Rapid:bot-body_condition_temp/ /@Breath:bot-body_subject/
+My /@Head:bot-body_subject/ is /@Hurts:bot-body_condition_temp/
+My /@Legs:bot-body_subject/ are /@Swelling:bot-body_condition/
+My /@Neck:bot-body_subject/ feels /@Stiff:bot-body_condition/
+My /@Head:bot-body_subject/ has been /@Hurting:bot-body_condition/
+My /@Chest:bot-body_subject/ is /@Hurting:bot-body_condition/
+My /@Chest:bot-body_subject/ /@Hurts:bot-body_condition/
+I got /@Swollen:bot-body_condition/ /@Legs:bot-body_subject/
+I have /@Swollen:bot-body_condition/ in my /Arms@:bot-body_subject/
+I have /@Swollen:bot-body_condition/ on my /Back@:bot-body_subject/
+I feel /@Pain:bot-body_condition/ in my /@Shoulders:bot-body_subjectt/
+I have been experiencing /@Swelling:bot-body_condition/ on my /@Belly:bot-body_subject/
+I have /@Lost:bot-body_condition/ /@Weight:bot-body_subject/
+There is /@Pain:bot-body_condition/ in my /@Chest:bot-body_subject/
+There is /@Pain:bot-body_condition/ on my /@Chest:bot-body_subject/
+
+
+
+
+>>> Training Entity Phrases (SYMPTOM)
+
+I have been /@Coughing:bot-symptom/ for a while now
+I have a /@Fever:bot-symptom/
+
+
+
+I have 
+
+I have been /@coughing:bot-symptom/ for a while now*
+I have been /@coughing:bot-symptom/ since yesterday*
+My /@head:bot-body_part/ /@hurts:bot-body_condition/*
+I have a /@headache:bot-symptom/*
+I got a /@cold:bot-symptom/ yesterday*
+My /@legs:bot-body_part/ are /@swollen:bot-body_condition/*
+My /@stomach:bot-body_part/ is /@hurting:bot-body_condition/*
+I got /@swollen:bot-body_condition/ /@legs:bot-body_part/*
+My /@muscles:bot-body_part/ /@hurt:bot-body_condition/ and I have a /@fever:bot-symptom/*
+There is /@pain:bot-body_condition/ in my /@chest:bot-body_part/*
+My /@mouth:bot-body_part/ is /@aching:bot-body_condition/*
+I have /@gained weight:bot-symptom/*
+I have /@lost weight:bot-symptom/*
+I am /@tired:bot-symptom/ all the time*
+I woke up in /@cold sweat:bot-symptom/*
+I have both /@neck:bot-body_part/ and /@shoulder:bot-body_part/ /@pain:bot-body_condition/*
+I am feeling /@feverish:bot-symptom/*
+I feel a /@fever:bot-symptom/ coming*
+My /@neck:bot-body_part/ feels /@tight:bot-body_condition/*
+/@respitory infections:bot-symptom/*
+I have been experiencing a /@cold:bot-symptom/*
+I have been feeling a /@fever:bot-symptom/ coming
+
+
+
+
+
+
+My /@head:bot-body_part/ does not /@hurts:bot-body_condition/*
+I do not have a /@headache:bot-symptom/*
+I did not get a /@cold:bot-symptom/ yesterday*
+My /@legs:bot-body_part/ are not /@swollen:bot-body_condition/*
+My /@stomach:bot-body_part/ is not /@hurting:bot-body_condition/*
+I do not got /@swollen:bot-body_condition/ /@legs:bot-body_part/*
+My /@muscles:bot-body_part/ do not /@hurt:bot-body_condition/ and I do not have a /@fever:bot-symptom/*
+There is no /@pain:bot-body_condition/ in my /@chest:bot-body_part/*
+My /@mouth:bot-body_part/ is not /@aching:bot-body_condition/*
+I have not /@gained weight:bot-symptom/*
+I have not /@lost weight:bot-symptom/*
+I am not /@tired:bot-symptom/ all the time*
+I did not woke up in a /@cold sweat:bot-symptom/*
+I do not have both /@neck:bot-body_part/ and /@shoulder:bot-body_part/ /@pain:bot-body_condition/*
+I am not feeling /@feverish:bot-symptom/*
+I do notfeel a /@fever:bot-symptom/ coming*
+My /@neck:bot-body_part/ does not feel /@tight:bot-body_condition/*
+no /@respitory infections:bot-symptom/*
+I have not been experiencing a /@cold:bot-symptom/*
+I have not been feeling a /@fever:bot-symptom/ coming

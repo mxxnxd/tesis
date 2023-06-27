@@ -12,9 +12,22 @@ const rule = require('../rules/rules-engine.js');
 
 /* ========== ========== ========== ========== ========== ========== ========== */
 
-// JSON
+// Load Dialogue
+const elicitation_dialogue = JSON.parse(require('fs').readFileSync('./fulfillment/dialogue/elicitation-dialogue.json', 'utf8'));
+
+
+// REMOVE
 const jsonData = fs.readFileSync('./fulfillment/agent-checkup-dialogue.json', 'utf8');
 const responses = JSON.parse(jsonData);
+
+// async function enConfirmSymptom(agent) {
+// 	// Fetch User Profile
+// 	const senderID = util.getSenderID(agent);
+	
+// 	var data = await db.getUser(senderID);
+// };
+
+
 
 const enConfirmSymptom = async (agent) => {
 	const senderID = util.getSenderID(agent);

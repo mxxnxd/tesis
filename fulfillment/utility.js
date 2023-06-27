@@ -1,5 +1,6 @@
 // Libraries
 const { Payload } = require('dialogflow-fulfillment');
+const extract_symptom = JSON.parse(require('fs').readFileSync('./fulfillment/extract/extract-symptom.json', 'utf8'));
 
 /*
 	Utility function for setting multiple contexts & lifespan.
@@ -110,6 +111,24 @@ function respond(agent, response, parameters) {
 	});
 };
 
+/*
+    Utility function for building symptoms extracted from entities
+*/
+function extractSymptomFromKeywords(body_subject, body_condition) {
+	// Fetch Subject
+	const extracted_subject = extract_symptom[body_subject];
+
+	// Fetch Symptom
+	if (extracted_subject) {
+		const extracted_symptom = extracted_subject[body_condition];
+		if (extracted_symptom) {
+			return extracted_symptom;
+		}
+	}
+
+	return null;
+};
+
 module.exports = {
 	setContexts,
 	triggerEvent,
@@ -118,5 +137,6 @@ module.exports = {
 	buildQuickReplyPayload,
 	getEventToKey,
 	getSymptomCondition,
-	respond
+	respond,
+	extractSymptomFromKeywords
 };
