@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 const dfff = require('dialogflow-fulfillment');
+const intent = require('./intents/intent-manager.js');
+const axios = require('axios');
+require('dotenv').config();
 
 // Fulfillment Handlers
 const ffWebhook = require('./fulfillment/webhook.js');
@@ -11,7 +14,29 @@ const ffCheckup = require('./fulfillment/checkup.js');
 const ffQuery = require('./fulfillment/query.js');
 
 // Routes
-app.post('/webhook', express.json(), (req, res) => {
+app.get('/webhook/messenger', function(req, res) {
+	// Verifies Webhook Setup (Messenger)
+    if (req.query['hub.mode'] === 'subscribe' &&
+        req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
+        console.log(":> Validating webhook");
+        res.status(200).send(req.query['hub.challenge']);
+    } else {
+        console.error(">: Webhook validation failed...");
+        res.sendStatus(403);
+    }
+});
+
+app.post('/webhook/messenger', express.json(), (req, res) => {
+    const data = req.body;
+
+	// MIGHT BREAK?
+	const info = data.entry[0].messaging;
+
+	handleMessengerInput(info[0].sender.id, info[0].message.text);
+	res.sendStatus(200);
+});
+
+app.post('/webhook/dialogflow', express.json(), (req, res) => {
 	// Instantiate Agent
 	const agent = new dfff.WebhookClient({
 		request : req,
@@ -62,3 +87,40 @@ app.post('/webhook', express.json(), (req, res) => {
 app.listen(3000, () => {
 	console.log("CHATBOT WEBSERVER IS ONLINE!");
 });
+
+async function handleMessengerInput(id, message) {
+	// Fetch User
+	// TODO: LOGIC FOR LANGUAGE SWITCH
+
+	// Dialogflow Fulfillment
+	console.log([id, message]);
+	const response = await intent.detectIntent('en', message, id);
+	const fulfillment_messages = response[0].queryResult.fulfillmentMessages;
+
+	// Response
+	await sendMessages(id, fulfillment_messages);
+};
+
+async function sendMessages(id, messages) {
+	const accessToken = process.env.PAGE_ACCESS_TOKEN;
+	for (i = 0; i < messages.length; i++) {
+		const message = messages[i].text.text[0];
+		try {
+			const response = await axios.post(
+			  `https://graph.facebook.com/v15.0/me/messages?access_token=${accessToken}`,
+			  {
+				messaging_type: 'RESPONSE',
+				recipient: {
+				  id: id
+				},
+				message: {
+				  text: message
+				}
+			  }
+			);
+			// console.log('Message sent:', response.data);
+		} catch (error) {
+		console.error('Error sending message:', error);
+		}
+	}
+};

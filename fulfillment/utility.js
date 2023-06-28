@@ -5,7 +5,7 @@ const extract_symptom = JSON.parse(require('fs').readFileSync('./fulfillment/ext
 /*
 	Utility function for setting multiple contexts & lifespan.
 */
-const setContexts = (agent, contexts, lifespan) => {
+function setContexts(agent, contexts, lifespan) {
 	contexts.forEach((context, index) => {
 		agent.context.set({
 			name: context,
@@ -17,7 +17,7 @@ const setContexts = (agent, contexts, lifespan) => {
 /*
 	Utility function for triggering intents (Does not work if add() is not invoked).
 */
-const triggerEvent = (agent, name) => {
+function triggerEvent(agent, name) {
 	agent.add('.');
 	agent.setFollowupEvent(name);
 };
@@ -25,15 +25,23 @@ const triggerEvent = (agent, name) => {
 /*	
 	Utility function for obtaining Facebook user sender ID
 */
-const getSenderID = (agent) => {
-	return agent.request_.body.originalDetectIntentRequest.payload.data.sender.id;
+function getSenderID(agent) {
+	return agent.request_.body.session.split('/')[4];
+	// return agent.request_.body.originalDetectIntentRequest.payload.data.sender.id;
 };
 
 /*	
 	Utility function for obtaining Message Sentiment Score
 */
-const getSentimentScore = (agent) => {
+function getSentimentScore(agent){
 	return agent.alternativeQueryResults[0].sentimentAnalysisResult.queryTextSentiment.score;
+}
+
+/*	
+	Utility function for obtaining Message Language code
+*/
+function getLanguageCode(agent) {
+	return agent.request_.body.queryResult.languageCode;
 }
 
 /*	
@@ -47,7 +55,7 @@ const getEventToKey = (event) => {
 /*
     Utility function for building Custom Quick Replies Payload JSON
 */
-const buildQuickReplyPayload = (agent, message, inputQuickReplies) => {
+function buildQuickReplyPayload(agent, message, inputQuickReplies) {
 	const response = {
 		platform: 'FACEBOOK',
 		text: message,
@@ -63,30 +71,9 @@ const buildQuickReplyPayload = (agent, message, inputQuickReplies) => {
 	});
 
 	// Build Payload
-	var payload =	 new Payload(agent.FACEBOOK, response);
+	var payload = new Payload(agent.FACEBOOK, response);
 	payload.sendAsMessage = true;
 	return payload;
-};
-
-/*
-    Utility function for building symptoms extracted from entities (Pain, Tight, Swell)
-*/
-const getSymptomCondition = (bodyPart, bodyCondition) => {
-	var symptom_name = `${bodyPart}_${bodyCondition}`.toUpperCase();
-	var listedSymptoms = ['BELLY_PAIN', 'ARM_PAIN', 'BACK_PAIN', 'BONE_PAIN', 'CHEST_PAIN', 
-						  'MOUTH_PAIN', 'MUSCLE_PAIN', 'NECK_PAIN', 'SHOULDER_PAIN', 'HEAD_PAIN',
-						  'BELLY_SWELL', 'LEGS_SWELL', 'NECK_SWELL', 'NECK_TIGHT', 'CHEST_TIGHT'];
-
-	if (listedSymptoms.includes(symptom_name)) {
-		switch (symptom_name) {
-			case 'HEAD_PAIN': 		return 'headaches';
-			case 'BELLY_PAIN': 		return 'abdomen_pain';
-			case 'NECK_PAIN':
-			case 'SHOULDER_PAIN': 	return 'neck_shoulder_pain';
-			default:				return symptom_name.toLowerCase();
-		}
-	}
-	return null;
 };
 
 /*
@@ -136,7 +123,7 @@ module.exports = {
 	getSentimentScore,
 	buildQuickReplyPayload,
 	getEventToKey,
-	getSymptomCondition,
 	respond,
-	extractSymptomFromKeywords
+	extractSymptomFromKeywords,
+	getLanguageCode
 };

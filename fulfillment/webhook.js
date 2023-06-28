@@ -17,13 +17,24 @@ const responses = JSON.parse(jsonData);
 
 const dvWebhook = async (agent) => {
 
-	const body_subject = agent.parameters.body_subject;
-	const body_condition = agent.parameters.body_condition_temp;
+	// console.log(agent.alternativeQueryResults);
+	console.log(agent.request_.body.queryResult.languageCode);
+	// console.log(agent);
 
-	console.log([body_subject, body_condition]);
+	console.log(agent.request_.body.session.split('/')[4]);
 
-	console.log(util.extractSymptomFromKeywords(body_subject, body_condition));
-	agent.add('Webhook!');
+	console.log(agent.parameters);
+	//
+
+	if (util.getLanguageCode(agent) === 'en') {
+		agent.add("GOOD MORNING");
+	} 
+
+	if (util.getLanguageCode(agent) === 'fil') {
+		agent.add('MAGANDANG UMAGA');
+	}
+	
+	agent.add("WOW");
 };
 
 module.exports = {

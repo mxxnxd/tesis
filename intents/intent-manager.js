@@ -15,6 +15,7 @@ const sjson = require('./structjson');
 
 // Google API
 const { IntentsClient } = require('@google-cloud/dialogflow').v2;
+const { SessionsClient } = require('@google-cloud/dialogflow').v2;
 require('dotenv').config({path: '../.env'});
 require('dotenv').config();
 
@@ -30,6 +31,7 @@ const CONFIGURATION = {
 
 // Intent Client (Used for create, view, delete operations on intents)
 const intentClient = new IntentsClient(CONFIGURATION);
+const sessionClient = new SessionsClient(CONFIGURATION);
 
 /*
 	Load Intent Information from Excel Spreadsheet
@@ -263,6 +265,29 @@ const callListIntent = async () => {
 }
 
 /*
+	Detect intents present on the DialogFlow API
+*/
+const detectIntent = async (languageCode, queryText, sessionId) => {
+	var sessionPath = sessionClient.projectAgentSessionPath(PROJECTID, sessionId);
+	var req = {
+		session: sessionPath,
+		queryInput: {
+			text: {
+				text: queryText,
+				languageCode: languageCode,
+			},
+			payload: sjson.jsonToStructProto({sender: sessionId}),
+		},
+		queryParams: {
+			analyzeQueryTextSentiment: true,
+		},
+		webhookPayload: sjson.jsonToStructProto({sender: sessionId}),
+
+	}
+	return sessionClient.detectIntent(req);
+};
+
+/*
 	Utility function for retrieving intent ID based on intent name
 */
 const getIntentID = async (inputName) => {
@@ -320,13 +345,21 @@ module.exports = {
 	loadIntentExcel,
 	callCreateIntent,
 	callDeleteIntent,
-	callListIntent
+	callListIntent,
+	detectIntent,
 };
 
 const main = async () => {
-	const data = loadIntentExcel();
-	await callDeleteIntent(data[0]);
-	await callCreateIntent(data[0]);;
-};
+
+	const data = await detectIntent('en', 'webhook', '123123123');
+	// console.log(data);
+
+	data[0].queryResult.fulfillmentMessages.forEach(message => {
+		console.log(message.text);
+	});
+
+
+	// console.log(data[0].queryResult.fulfillmentMessages);
+};			
 
 // main();
