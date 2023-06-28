@@ -10,7 +10,7 @@ const main = async () => {
 	const end = 2; // Excel Row -1
 
 	// Load Intent Data
-	const intents = manager.loadIntentExcel('intent-definition');
+	const intents = manager.loadIntentExcel('elicitation');
 
 	// Delete Intents
 	for (i = str - 2; i < end - 1; i++) {

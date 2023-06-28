@@ -20,15 +20,195 @@ const elicitation_dialogue = JSON.parse(require('fs').readFileSync('./fulfillmen
 const jsonData = fs.readFileSync('./fulfillment/agent-checkup-dialogue.json', 'utf8');
 const responses = JSON.parse(jsonData);
 
-// async function enConfirmSymptom(agent) {
-// 	// Fetch User Profile
-// 	const senderID = util.getSenderID(agent);
-	
-// 	var data = await db.getUser(senderID);
-// };
+function cleanData(data) {
+	// Populate Missing Fields (Firebase does not store empty values)
+	if (!data.user.positive_symptoms) {
+		data.user.positive_symptoms = [];
+	}
+	if (!data.user.negative_symptoms) {
+		data.user.negative_symptoms = [];
+	}
+	if (!data.user.previous_symptoms) {
+		data.user.previous_symptoms = [];
+	}
+	return data;
+};
+
+function handleEliciationResponse(agent, data) {
+	// Fetch Action
+	const next_action = data.agent.next_action.split('-');
+	const action = next_action[0];
+	const subject = next_action[1];
+
+	// Response
+	if (action === 'ASK') {
+		const response = elicitation_dialogue.en_user_share_symptom_ask[subject];
+		util.respond(agent, response);
+		util.setContexts(agent, ['PHASE-ELICITATION'], [5]);
+	}
+	if (action === 'RECALL') {
+		agent.add('RECALL');
+	}
+	if (action === 'DIAGNOSE') {
+		agent.add('DIAGNOSE');
+	}
+	if (action === 'NO') {
+		agent.add('NO');
+	}
+};
+
+async function enUserShareSymptomPartYes(agent) {
+	// Fetch User
+	const senderID = util.getSenderID(agent);
+	const data = await db.getUser(senderID);
+
+	// Fetch Parameters
+	const body_subject = agent.parameters.body_subject;
+	const body_condition = agent.parameters.body_condition;
+
+	// Update Data
+	var cleaned_data = cleanData(data);
+	const new_symptom = util.extractSymptomFromKeywords(body_subject, body_condition);
+	if (new_symptom) {
+		cleaned_data.user.positive_symptoms =  Array.from(new Set(cleaned_data.user.positive_symptoms.concat([new_symptom])));
+	} else {
+		// OTHER DIALOGUE?
+		console.log('ERROR NEW_SYMPTOM');
+	}
+
+	// Fetch Next Action
+	var processed_data = await rule.getAction(cleaned_data);
+	console.log(`${senderID}: ${processed_data.agent.next_action}`);
+
+	// Response
+	handleEliciationResponse(agent, processed_data);
+
+	// Update User Data
+	db.updateUser(senderID, processed_data.user);
+	db.updateAgent(senderID, processed_data.agent);
+};
+
+async function enUserShareSymptomPartNo(agent) {
+	// Fetch User
+	const senderID = util.getSenderID(agent);
+	const data = await db.getUser(senderID);
+
+	// Fetch Parameters
+	const body_subject = agent.parameters.body_subject;
+	const body_condition = agent.parameters.body_condition;
+
+	// Update Data
+	var cleaned_data = cleanData(data);
+	const new_symptom = util.extractSymptomFromKeywords(body_subject, body_condition);
+	if (new_symptom) {
+		cleaned_data.user.negative_symptoms =  Array.from(new Set(cleaned_data.user.negative_symptoms.concat([new_symptom])));
+	} else {
+		// OTHER DIALOGUE?
+		console.log('ERROR NEW_SYMPTOM');
+	}
+
+	// Fetch Next Action
+	var processed_data = await rule.getAction(cleaned_data);
+	console.log(`${senderID}: ${processed_data.agent.next_action}`);
+
+	// Response
+	handleEliciationResponse(agent, processed_data);
+
+	// Update User Data
+	db.updateUser(senderID, processed_data.user);
+	db.updateAgent(senderID, processed_data.agent);
+};
+
+async function enUserShareSymptomYes(agent) {
+	// Fetch User
+	const senderID = util.getSenderID(agent);
+	const data = await db.getUser(senderID);
+
+	// Fetch Parameters
+	const new_symptom = agent.parameters.symptom;
+
+	// Update Data
+	var cleaned_data = cleanData(data);
+	if (new_symptom) {
+		cleaned_data.user.positive_symptoms =  Array.from(new Set(cleaned_data.user.positive_symptoms.concat([new_symptom])));
+	} else {
+		// OTHER DIALOGUE?
+		console.log('ERROR NEW_SYMPTOM');
+	}
+
+	// Fetch Next Action
+	var processed_data = await rule.getAction(cleaned_data);
+	console.log(`${senderID}: ${processed_data.agent.next_action}`);
+
+	// Response
+	handleEliciationResponse(agent, processed_data);
+
+	// Update User Data
+	db.updateUser(senderID, processed_data.user);
+	db.updateAgent(senderID, processed_data.agent);
+};
+
+async function enUserShareSymptomNo(agent) {
+	// Fetch User
+	const senderID = util.getSenderID(agent);
+	const data = await db.getUser(senderID);
+
+	// Fetch Parameters
+	const new_symptom = agent.parameters.symptom;
+
+	// Update Data
+	var cleaned_data = cleanData(data);
+	if (new_symptom) {
+		cleaned_data.user.negative_symptoms =  Array.from(new Set(cleaned_data.user.negative_symptoms.concat([new_symptom])));
+	} else {
+		// OTHER DIALOGUE?
+		console.log('ERROR NEW_SYMPTOM');
+	}
+
+	// Fetch Next Action
+	var processed_data = await rule.getAction(cleaned_data);
+	console.log(`${senderID}: ${processed_data.agent.next_action}`);
+
+	// Response
+	handleEliciationResponse(agent, processed_data);
+
+	// Update User Data
+	db.updateUser(senderID, processed_data.user);
+	db.updateAgent(senderID, processed_data.agent);
+};
+
+async function enUserConfirmSymptom(agent) {
+	// Fetch User
+	const senderID = util.getSenderID(agent);
+	const data = await db.getUser(senderID);
+
+	// Fetch Parameters
+	const bool = agent.parameters.affirm;
+
+	// Update 
+	var cleaned_data = cleanData(data);
+	const new_symptom = cleaned_data.agent.next_action.split('-')[1];
+	if (bool === 'AFFIRM') {
+		cleaned_data.user.positive_symptoms =  Array.from(new Set(cleaned_data.user.positive_symptoms.concat([new_symptom])));
+	} else {
+		cleaned_data.user.negative_symptoms =  Array.from(new Set(cleaned_data.user.negative_symptoms.concat([new_symptom])));
+	}
+
+	// Fetch Next Action
+	var processed_data = await rule.getAction(cleaned_data);
+	console.log(`${senderID}: ${processed_data.agent.next_action}`);
+
+	// Response
+	handleEliciationResponse(agent, processed_data);
+
+	// Update User Data
+	db.updateUser(senderID, processed_data.user);
+	db.updateAgent(senderID, processed_data.agent);
+};
 
 
 
+// OLD
 const enConfirmSymptom = async (agent) => {
 	const senderID = util.getSenderID(agent);
 	var facts = await handleAgentParameters(agent, 'AFFIRM');
@@ -179,16 +359,7 @@ const enShareWeight = async (agent) => {
 	util.setContexts(agent,['PHASE-CHECK'], [5]);
 };
 
-module.exports = {
-	enConfirmSymptom,
-	enShareSymptomPositive,
-	enShareSymptomNegative,
-	enShareFeeling,
-	enShareBloodPressure,
-	enShareAge,
-	enShareGender,
-	enShareWeight,
-};
+
 
 
 async function handleAgentParameters(agent, type) {
@@ -325,3 +496,11 @@ function cleanFacts(facts) {
 	}
 	return facts;	
 }
+
+module.exports = {
+	enUserShareSymptomPartYes,
+	enUserShareSymptomPartNo,
+	enUserShareSymptomYes,
+	enUserShareSymptomNo,
+	enUserConfirmSymptom,
+};

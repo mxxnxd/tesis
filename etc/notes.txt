@@ -19,9 +19,10 @@ I feel [SYMPTOM-ADJ]
 
 >>> Training Entity Phrases (PARTS)
 
-/@Bone:bot-body_subject/ /@Pain:bot-body_condition_temp/
-/@Rapid:bot-body_condition_temp/ /@Breath:bot-body_subject/
-My /@Head:bot-body_subject/ is /@Hurts:bot-body_condition_temp/
+>>> (POSITIVE)
+/@Bone:bot-body_subject/ /@Pain:bot-body_condition/
+/@Rapid:bot-body_condition/ /@Breath:bot-body_subject/
+My /@Head:bot-body_subject/ is /@Hurts:bot-body_condition/
 My /@Legs:bot-body_subject/ are /@Swelling:bot-body_condition/
 My /@Neck:bot-body_subject/ feels /@Stiff:bot-body_condition/
 My /@Head:bot-body_subject/ has been /@Hurting:bot-body_condition/
@@ -35,17 +36,81 @@ I have been experiencing /@Swelling:bot-body_condition/ on my /@Belly:bot-body_s
 I have /@Lost:bot-body_condition/ /@Weight:bot-body_subject/
 There is /@Pain:bot-body_condition/ in my /@Chest:bot-body_subject/
 There is /@Pain:bot-body_condition/ on my /@Chest:bot-body_subject/
+Felt /@Pain:bot-body_condition/ in my /@Chest:bot-body_subject/
 
-
-
+>>> (NEGATIVE)
+No /@Bone:bot-body_subject/ /@Pain:bot-body_condition/
+No /@Rapid:bot-body_condition/ /@Breath:bot-body_subject/
+My /@Head:bot-body_subject/ is not /@Hurts:bot-body_condition/
+My /@Legs:bot-body_subject/ are not /@Swelling:bot-body_condition/
+My /@Neck:bot-body_subject/ does not feels /@Stiff:bot-body_condition/
+My /@Head:bot-body_subject/ has not been    /@Hurting:bot-body_condition/
+My /@Chest:bot-body_subject/ is not /@Hurting:bot-body_condition/
+My /@Chest:bot-body_subject/ does not /@Hurts:bot-body_condition/
+I do not got /@Swollen:bot-body_condition/ /@Legs:bot-body_subject/
+I do not have /@Swollen:bot-body_condition/ in my /Arms@:bot-body_subject/
+I do not have /@Swollen:bot-body_condition/ on my /Back@:bot-body_subject/
+I do not feel /@Pain:bot-body_condition/ in my /@Shoulders:bot-body_subjectt/
+I have not been experiencing /@Swelling:bot-body_condition/ on my /@Belly:bot-body_subject/
+I have not /@Lost:bot-body_condition/ /@Weight:bot-body_subject/
+There is no /@Pain:bot-body_condition/ in my /@Chest:bot-body_subject/
+There is no /@Pain:bot-body_condition/ on my /@Chest:bot-body_subject/
+Have not felt /@Pain:bot-body_condition/ in my /@Chest:bot-body_subject/
 
 >>> Training Entity Phrases (SYMPTOM)
 
+>>> (POSITIVE)
+/@Myalgia:bot-symptom/
 I have been /@Coughing:bot-symptom/ for a while now
+I have been /@Coughing:bot-symptom/ since last week
 I have a /@Fever:bot-symptom/
+I got a /@Cold:bot-symptom/
+I have signs of a /@Cold:bot-symptom/
+I feel /@Dizzy:bot-symptom/
+I feel a /@Fever:bot-symptom/ coming
+I /@Fainted:bot-symptom/
+I feel /@Anxious:bot-symptom/
+Last week I felt /@Chilly:bot-symptom/
+I am /@Fatigued:bot-symptom/
+I woke up with a /@Cold Sweat:bot-symptom/
+I also have a /@Fever:bot-symptom/
+I also been feeling /@Dizzy:bot-symptom/
+Feeling /@Dizzy:bot-symptom/
+
+>>> (NEGATIVE)
+I have not been /@Coughing:bot-symptom/
+I do not have a /@Fever:bot-symptom/
+I do not got a /@Cold:bot-symptom/
+I do not have signs of a /@Cold:bot-symptom/
+I do not feel /@Dizzy:bot-symptom/
+I do not feel a /@Fever:bot-symptom/ coming
+I have not /@Fainted:bot-symptom/
+I do not feel /@Anxious:bot-symptom/
+I am not /@Fatigued:bot-symptom/
+No /@Myalgia:bot-symptom/
+My /@Fever:bot-symptom/ is gone
+I no longer have a /@Fever:bot-symptom/
+I no longer feel /@Fever:bot-symptom/
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>> OLD
 I have 
 
 I have been /@coughing:bot-symptom/ for a while now*
@@ -66,7 +131,7 @@ I woke up in /@cold sweat:bot-symptom/*
 I have both /@neck:bot-body_part/ and /@shoulder:bot-body_part/ /@pain:bot-body_condition/*
 I am feeling /@feverish:bot-symptom/*
 I feel a /@fever:bot-symptom/ coming*
-My /@neck:bot-body_part/ feels /@tight:bot-body_condition/*
+My /@neck:bot-body_part/ feels /@tight:bot-f/*
 /@respitory infections:bot-symptom/*
 I have been experiencing a /@cold:bot-symptom/*
 I have been feeling a /@fever:bot-symptom/ coming

@@ -1,8 +1,514 @@
 {
     "en_user_share_symptom_pump": [
-
-    ],
-    "en_user_share_symptom_ask": [
         
-    ]
+    ],
+    "en_user_share_symptom_ask": {
+        "ABDOMEN_PAIN": [
+                [
+                    "Have you expereinced any sort of pain in your stomach recently?"
+                ],
+                [
+                    "Does your stomach hurt?",
+                    "or anywhere in your abdomen region?"
+                ]
+            ],
+        "AGE": [
+                [
+                    "Hmm...",
+                    "How old are you?"
+                ],
+                [
+                    "What is your age right now?"
+                ]
+            ],
+        "ANXIETY": [
+                [
+                    "Do you feel anxious lately?",
+                    "A feeling of worry that you become tense?"
+                ],
+                [
+                    "Have you experienced feelings of anxiety recently?"
+                ]
+            ],
+        "APPETITE_LOSS": [
+                [
+                    "Have you lost your appetite?"
+                ],
+                [
+                    "Do you feel like you don't have the motivation to eat?"
+                ]
+            ],
+        "ARM_PAIN": [
+                [
+                    "Do any of your arms hurt?"
+                ],
+                [
+                    "Do you feel pain in your arms recently?"
+                ],
+                [
+                    "Hmm...",
+                    "Do your arms hurt unrelated to physical trauma?"
+                ]
+            ],
+        "BACK_PAIN": [
+                [
+                    "Does your back hurt?"
+                ],
+                [
+                    "Have you been experiencing back pain?"
+                ]
+            ],
+        "BELLY_SWELL": [
+                [
+                    "Do you feel bloated in your stomach?",
+                    "Like feelings of your belly swelling?"
+                ],
+                [
+                    "Does your stomach look more bloated than usual?"
+                ],
+                [
+                    "Do you feel like there is a buildup of fluids in your belly?"
+                ]
+            ],
+        "BLURRY": [
+                [
+                    "Does your vision feel blurry recently?"
+                ],
+                [
+                    "Has your eyesight worsen recently?",
+                    "Where your vision becomes blurry?"
+                ],
+                [
+                    "Do you have trouble seeing?",
+                    "Where your sight has become blurry lately?"
+                ]
+            ],
+        "BLOOD_PRESSURE": [
+                [
+                    "Do you know your blood pressure?"
+                ],
+                [
+                    "Have you tested your blood pressure recently?",
+                    "It would help me determine details on your condition :>"
+                ]
+            ],
+        "BLOOD_PRESSURE_SYSTOLIC": [
+            [
+                "What is systolic your blood pressure? (---> X/Y)",
+                "It is the first number in your reading "
+            ],            
+            [
+                "Could you tell me your systolic your blood pressure? (---> X/Y)"
+            ]
+        ],
+        "BLOOD_PRESSURE_DIASTOLIC": [
+            [
+                "What is diastolic your blood pressure? (X/Y <---)",
+                "It is the second number in your reading "
+            ],            
+            [
+                "Could you tell me your diastolic your blood pressure? (X/Y <---)"
+            ]
+        ],       
+        "BONE_PAIN": [
+                [
+                    "Does your bones hurt?",
+                    "I mean feelings of aching in your bones."
+                ],
+                [
+                    "Have you experienced pain in your bones recently that is not related to physical injury?"
+                ]
+            ],
+        "CHEST_PAIN": [
+                [
+                    "Does your chest hurt?"
+                ],
+                [
+                    "Have you expereinced any form of pain in your chest region recently?"
+                ],
+                [
+                    "Have you felt a painful sensation in your chest lately?"
+                ]
+            ],
+        "CHEST_TIGHT": [
+                [
+                    "Does your chest feel tight?",
+                    "Where there are tense feelings in the chest region?"
+                ],
+                [
+                    "Have you expereinced any form of tightness or stiffness in your chest region recently?"
+                ]
+            ],
+        "CHILLS": [
+                [
+                    "Do you feel usually chilly?"
+                ],
+                [
+                    "Do you feel random chills going through your body even though the environment is warm?"
+                ]
+            ],
+        "COLDS": [
+                [
+                    "Do you have cold?"
+                ],
+                [
+                    "Are you down with a cold?"
+                ],
+                [
+                    "Do you have a runny nose?",
+                    "While also feeling very sleepy?"
+                ]
+            ],
+        "CONFUSION": [
+                [
+                    "Do you sometimes feel confused out of nowhere from time to time?"
+                ],
+                [
+                    "Do you feel foggy frequently ?",
+                    "Where you're suddenly forgetful."
+                ],
+                [
+                    "Do you feel like you have a lack focus or mental clarity lately?"
+                ]
+            ],
+        "COUGH": [
+                [
+                    "Have you been coughing?"
+                ],
+                [
+                    "Do you have a cough?"
+                ],
+                [
+                    "Are you down with a cough?"
+                ]
+            ],
+        "CYANOSIS": [
+                [
+                    "Are your hands or fingertips bluish?"
+                ],
+                [
+                    "Is your hand blue?",
+                    "or have the shades of blue?"
+                ],
+                [
+                    "Do you show signs of cyanosis? where your finger tips have a shade of blue?"
+                ]
+            ],
+        "DIZZY": [
+                [
+                    "Do you feel dizzy?"
+                ],
+                [
+                    "Have you felt dizzy recently?"
+                ],
+                [
+                    "Have you felt lightheaded or dizzy?"
+                ]
+            ],
+        "DYSPHASIA": [
+                [
+                    "Have you been experiencing trouble swallowing your food?"
+                ],
+                [
+                    "Do you expereince disconformfort when swallowing?"
+                ],
+                [
+                    "Do you struggle to swallow food?"
+                ]
+            ],
+        "DYSPNEA": [
+                [
+                    "Do you feel breathless from time to time?"
+                ],
+                [
+                    "Do you feel like you are running out of breath alot?"
+                ],
+                [
+                    "Have you been experiencing feelings of breathlessness?",
+                    "Where you feel like your body is suffocating from the lack of air."
+                ]
+            ],
+        "FAINT": [
+                [
+                    "Have you already fainted?"
+                ],
+                [
+                    "Have you fainted recently?"
+                ],
+                [
+                    "Have you blacked out or passed out?"
+                ]
+            ],
+        "FATIGUE": [
+                [
+                    "Do you feel tired for no reason?"
+                ],
+                [
+                    "Do you feel like you lack energy?",
+                    "Making you weak to perform physical activities."
+                ],
+                [
+                    "Have you felt fatigued or tired?"
+                ]
+            ],
+        "FEVER": [
+                [
+                    "Do you have a fever?"
+                ],
+                [
+                    "Have been experiencing a fever?"
+                ],
+                [
+                    "Is your body temperature higher than (37.8°C/ 100°F)?",
+                    "In other words do you have a fever?"
+                ]
+            ],
+        "GENDER": [
+                [
+                    "What is your biological sex? (M/F)"
+                ],
+                [
+                    "What is your gender?",
+                    "Male or Female?"
+                ]
+            ],
+        "HEADACHES": [
+                [
+                    "Hmm...",
+                    "Do you have a headache?"
+                ],
+                [
+                    "Does your head hurt like a headache or migraine?"
+                ]
+            ],
+        "HEARTBURN": [
+                [
+                    "Have you experience a heartburn recently?"
+                ],
+                [
+                    "Have you felt an uncomfortable burning senssation in your chest region recently? also known as heartburn."
+                ]
+            ],
+        "HOARSENESS": [
+                [
+                    "Do you have a hoarse or weak scratchy voice lately?"
+                ],
+                [
+                    "Do you have a scratchy husky voice that is not your normal voice?"
+                ]
+            ],
+        "LEGS_SWELL": [
+                [
+                    "Do you feel like your legs are swelling?"
+                ],
+                [
+                    "Do you feel bloated on your legs?"
+                ],
+                [
+                    "Are your legs swelling?",
+                    "Making it appear bloated than usual?"
+                ],
+                [
+                    "Do you feel like fluids are building up inside your legs making it swell?"
+                ]
+            ],
+        "MOUTH_PAIN": [
+                [
+                    "Do you feel pain in your mouth unrelated to physical injury?"
+                ],
+                [
+                    "Do you have mouth pain?"
+                ]
+            ],
+        "MUSCLE_PAIN": [
+                [
+                    "Does your muscle hurts out of the blue that is not caused by physical injury?"
+                ],
+                [
+                    "Oh!",
+                    "Do your muscles hurt recently?"
+                ]
+            ],
+        "NAUSEA": [
+                [
+                    "Do you feel nauseas?"
+                ],
+                [
+                    "Have you felt nauseas that you feel like vomiting?"
+                ],
+                [
+                    "Have you vomitted recently?"
+                ]
+            ],
+        "NECK_SHOULDER_PAIN": [
+                [
+                    "Does you neck hurt?"
+                ],
+                [
+                    "Does your shoulder hurt?"
+                ],
+                [
+                    "Do you experience pain in your neck or shoulder?"
+                ],
+                [
+                    "Have you felt pain in your neck and shoulders?"
+                ]
+            ],
+        "NECK_SWELL": [
+                [
+                    "Is your neck swelling?"
+                ],
+                [
+                    "Do you feel like your neck is swelling?"
+                ],
+                [
+                    "Do you feel bloated on your neck?"
+                ]
+            ],
+        "NECK_TIGHT": [
+                [
+                    "Does your neck feel tight?"
+                ],
+                [
+                    "Does your neck feel stiff?"
+                ]
+            ],
+        "PALE_SWEAT": [
+                [
+                    "Have you woken up with a cold sweat?"
+                ],
+                [
+                    "Do you look pale and sweaty?"
+                ]
+            ],
+        "PHLEGM": [
+                [
+                    "Does your throat have phlegm or sputum?"
+                ],
+                [
+                    "Do you have mucus buildup in your throat?",
+                    "also known as phlegm or sputum?"
+                ]
+            ],
+        "PHLEGM_CLEAR": [
+                [
+                    "Oh ok is the color clear?"
+                ],
+                [
+                    "Is the color of your phlegm clear?"
+                ]
+            ],
+        "PHLEGM_GREEN": [
+                [
+                    "Oh ok is the color green?"
+                ],
+                [
+                    "Is the color of your phlegm green?"
+                ]
+            ],
+        "PHLEGM_RED": [
+                [
+                    "Oh ok is the color red?"
+                ],
+                [
+                    "Is the color of your phlegm red?",
+                    "in other words is there blood on it?"
+                ]
+            ],
+        "PHLEGM_WHITE": [
+                [
+                    "Hmm..",
+                    "is the phlegm color white?"
+                ],
+                [
+                    "Is the color of your phlegm white?"
+                ]
+            ],
+        "R_INFECTIONS": [
+                [
+                    "Do you have a history with respiratory infections?",
+                    "Like previous cases of other respiratory diseases?"
+                ]
+            ],
+        "SLEEP_HARD": [
+                [
+                    "Do you have trouble sleeping lately?"
+                ],
+                [
+                    "Do you struggle to sleep recently?"
+                ]
+            ],
+        "TACHYCARDIA": [
+                [
+                    "Is your heart beating rapidly?"
+                ],
+                [
+                    "Do you expereince rapid heart palpitations?",
+                    "where your heart beats rapidly?"
+                ]
+            ],
+        "TACHYPNEA": [
+                [
+                    "Have you been breathing rapidly lately?"
+                ],
+                [
+                    "Have you expereinced cases where you breath rapidly recently?"
+                ],
+                [
+                    "Do you feel like you have been abnormally breathing really fast?"
+                ]
+            ],
+        "URINE_BLOOD": [
+                [
+                    "Is there blood present in your urine recently?"
+                ],
+                [
+                    "Do you have bloody urine?"
+                ],
+                [
+                    "Does your urine have the colors or shade of red?"
+                ]
+            ],
+        "WEAKNESS": [
+                [
+                    "Do you feel physically weak than usual not attributed to lack of sleep?"
+                ],
+                [
+                    "Do you feel weak even with a full night sleep?"
+                ]
+            ],
+        "WEIGHT": [
+                [
+                    "What is your current weight?"
+                ],
+                [
+                    "How much do you weigh right now?"
+                ],
+                [
+                    "How heavy are you right now?",
+                    "Could you tell me your weight in kilograms?"
+                ]
+            ],
+        "WEIGHTGAIN": [
+                [
+                    "Have you gained weight?"
+                ]
+            ],
+        "WEIGHTLOSS": [
+                [
+                    "Have you lost weight?"
+                ]
+            ],
+        "WHEEZE": [
+            [
+                "Have you experienced wheezing recently?"
+            ],
+            [
+                "Have you been wheezing?"
+            ]
+        ]
+    },
+    "en_user_share_symptom_recall": {
+
+    }
 }

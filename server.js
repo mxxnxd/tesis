@@ -22,15 +22,15 @@ app.post('/webhook', express.json(), (req, res) => {
 	var intentMap = new Map();
 	intentMap.set('dv.webhook', ffWebhook.dvWebhook); 					// Test Intent (Dev)
 
-	intentMap.set('en.user.share.symptom.positive', ffCheckup.enShareSymptomPositive);
-	intentMap.set('en.user.confirm.symptom', ffCheckup.enConfirmSymptom);
-	intentMap.set('en.user.share.symptom.negative', ffCheckup.enShareSymptomNegative);
-	intentMap.set('en.user.share.feeling', ffCheckup.enShareFeeling);
+	// intentMap.set('en.user.share.symptom.positive', ffCheckup.enShareSymptomPositive);
+	// intentMap.set('en.user.confirm.symptom', ffCheckup.enConfirmSymptom);
+	// intentMap.set('en.user.share.symptom.negative', ffCheckup.enShareSymptomNegative);
+	// intentMap.set('en.user.share.feeling', ffCheckup.enShareFeeling);
 
-	intentMap.set('en.user.share.blood_pressure', ffCheckup.enShareBloodPressure);
-	intentMap.set('en.user.share.gender', ffCheckup.enShareGender);
-	intentMap.set('en.user.share.age', ffCheckup.enShareAge);
-	intentMap.set('en.user.share.weight', ffCheckup.enShareWeight);
+	// intentMap.set('en.user.share.blood_pressure', ffCheckup.enShareBloodPressure);
+	// intentMap.set('en.user.share.gender', ffCheckup.enShareGender);
+	// intentMap.set('en.user.share.age', ffCheckup.enShareAge);
+	// intentMap.set('en.user.share.weight', ffCheckup.enShareWeight);
 
 	intentMap.set('en.user.query.disease.cause', ffQuery.enQueryDiseaseCause);
 	intentMap.set('en.user.query.disease.definition', ffQuery.enQueryDiseaseDefinition);
@@ -47,6 +47,12 @@ app.post('/webhook', express.json(), (req, res) => {
 	intentMap.set('en.user.choose.language', ffLanguage.enUserChooseLanguage);
 	intentMap.set('en.user.confirm.language', ffLanguage.enUserConfirmLanguage);
 	intentMap.set('en.user.confirm.terms', ffLanguage.enUserConfirmTerms);
+
+	intentMap.set('en.user.share.symptom.parts.yes', ffCheckup.enUserShareSymptomPartYes);
+	intentMap.set('en.user.share.symptom.parts.no', ffCheckup.enUserShareSymptomPartNo);
+	intentMap.set('en.user.share.symptom.yes', ffCheckup.enUserShareSymptomYes);
+	intentMap.set('en.user.share.symptom.no', ffCheckup.enUserShareSymptomNo);
+	intentMap.set('en.user.confirm.symptom', ffCheckup.enUserConfirmSymptom);
 
 	// Handle Fulfillment
 	agent.handleRequest(intentMap);

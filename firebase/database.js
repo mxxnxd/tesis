@@ -90,10 +90,19 @@ const closeDB = () => {
 
 const main = async () => {
 
-	
+	// const id = 'TEST';
+	// var ref = db.ref(`agent/${id}`);
+	// var setObj = new Set([1, "PHLEGM", "BALLS"]);
+	// console.log(Array.from(setObj))
+	// ref.set(Array.from(setObj));
 
-	console.log('!');
-	console.log(await getUser(6636659469693773));
+	// const data = await getAgent('TEST');
+	// console.log(new Set(data));
+
+
+
+	// console.log('!');
+	// console.log(await getUser(6636659469693773));
 	// console.log(await getSession(6636659469693773, 1687431118));
 };
 
